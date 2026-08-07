@@ -1,0 +1,397 @@
+/* ====================================================================
+   TEXTTILE · THE PUBLIC SITE · COMPONENTS
+
+   Loaded after round-13-base.css, so it inherits the desk's element
+   defaults: the same input styling, the same serif prose, the same
+   focus ring, the same reduced-motion switch.
+
+   What is here is the half of the front end the desk does not have: a
+   site header, a hero, section bands, the two feature lists, a code
+   block, the editor mockup. Everything else is either a Tailwind
+   utility in the markup or a class that already exists in the base
+   sheet (.prose, .link, .note, .r-img).
+
+   The buttons are the desk's buttons, transcribed from @apply to
+   plain CSS: the front end has no compiler of its own, and the shape
+   must not drift between the two halves of the product.
+
+   Not one hex value in this file either. Everything is a --tt- token.
+   ==================================================================== */
+
+@layer components {
+
+  /* ==================================================================
+     THE PAGE · one column, and a footer that sits on the bottom edge
+     of the window even when the page above it is short
+     ================================================================== */
+  /* the gutter the scrollbar sits in is always reserved. Without it a
+     search that leaves three results short of a screenful takes the
+     scrollbar away, and the whole page steps sideways. */
+  html { scrollbar-gutter: stable; }
+  body { display: flex; flex-direction: column; min-height: 100dvh; }
+  body > footer { margin-top: auto; }
+
+  /* ==================================================================
+     THE BUTTONS · quiet / solid / plain, exactly the desk's
+     ================================================================== */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; text-align: center;
+    gap: 7px; height: 30px; padding: 0 13px;
+    font-size: 13px; font-weight: 500; white-space: nowrap;
+    color: var(--tt-ink); background: transparent; text-decoration: none;
+    border-radius: var(--tt-radius);
+    box-shadow: inset 0 0 0 1px var(--tt-rule);
+    transition: box-shadow .15s ease, background-color .15s ease, color .15s ease, transform .08s ease;
+  }
+  .btn:hover { background: var(--tt-paper); box-shadow: inset 0 0 0 1px var(--tt-ink); color: var(--tt-ink); }
+  .btn:active { transform: translateY(1px); }
+  .btn.solid { background: var(--tt-solid); color: var(--tt-onsolid); box-shadow: none; }
+  .btn.solid:hover { background: var(--tt-solidhover); color: var(--tt-onsolid); box-shadow: none; }
+  .btn.quiet { color: var(--tt-dim); padding: 0 10px; box-shadow: none; }
+  .btn.quiet:hover { color: var(--tt-ink); background: var(--tt-field); box-shadow: none; }
+  .btn.sm { height: 25px; padding: 0 9px; font-size: 12px; }
+  /* the one size the desk does not need: a call to action that carries
+     a line of its own */
+  .btn.lg { height: 38px; padding: 0 18px; font-size: 14px; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; }
+
+  /* ==================================================================
+     FIELDS · the quiet field of the desk's side column, not the filled
+     one: no box at all, one rule under the text, violet the moment the
+     pointer arrives and twice as heavy once the field has the caret.
+     This is .quiet-fields from the app, written out for the front end.
+     ================================================================== */
+  input[type=text], input[type=email], input[type=password], input[type=date],
+  input[type=number], input[type=search], textarea, select {
+    background: transparent; border: 0; border-radius: 0;
+    border-bottom: 1px solid var(--tt-rule);
+    padding: 6px 0; font-size: 16px; color: var(--tt-ink);
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  @media (min-width: 900px) {
+    input[type=text], input[type=email], input[type=password], input[type=date],
+    input[type=number], input[type=search], textarea, select { font-size: 15px; }
+  }
+  /* the comment box grows with what is written in it, the way the
+     editor's body field does, so nothing ever scrolls inside a two-line
+     box. resize is off because the field sizes itself. */
+  textarea {
+    field-sizing: content; resize: none; min-height: 2lh; line-height: 1.6;
+  }
+
+  input:hover, textarea:hover, select:hover {
+    background: transparent; border-bottom-color: var(--tt-accent);
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none; background: transparent;
+    border-bottom-color: var(--tt-accent);
+    box-shadow: 0 1px 0 0 var(--tt-accent);
+  }
+
+  /* the desk's link, which lives in its @apply block and so has to be
+     written out once here */
+  .link {
+    color: var(--tt-accent); text-decoration: underline; text-underline-offset: 2px;
+    text-decoration-color: var(--tt-accentsoft);
+  }
+
+  /* ==================================================================
+     THE HEADER · the reader header of round-13, with the site menu
+     the app builds out of its pages
+     ================================================================== */
+  .site-head {
+    position: sticky; top: 0; z-index: 40;
+    display: flex; align-items: center; gap: 14px;
+    height: var(--tt-headh); padding: 0 var(--tt-gut);
+    background: var(--tt-bar); border-bottom: 1px solid var(--tt-rule);
+    backdrop-filter: blur(8px) saturate(1.5); -webkit-backdrop-filter: blur(8px) saturate(1.5);
+  }
+  .site-mark {
+    display: inline-flex; align-items: center; gap: 9px; flex: none;
+    font-family: var(--tt-font-serif); font-size: 17px; font-weight: 600;
+    letter-spacing: -.01em; color: var(--tt-ink); text-decoration: none;
+  }
+  .site-mark svg { color: var(--tt-ink); }
+  /* the site description, as it stands in Settings. It is the whole
+     positioning line, and it costs no chrome */
+  .site-desc {
+    color: var(--tt-dim); font-size: 12.5px; white-space: nowrap;
+    padding-left: 14px; border-left: 1px solid var(--tt-rule);
+  }
+  .site-nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+  .site-nav a, .site-nav button {
+    font-size: 13px; color: var(--tt-dim); text-decoration: none;
+    padding: 5px 8px; border-radius: var(--tt-radius); transition: color .15s ease, background-color .15s ease;
+  }
+  .site-nav a:hover, .site-nav button:hover { color: var(--tt-ink); background: var(--tt-field); }
+  .site-nav a[aria-current] { color: var(--tt-ink); font-weight: 600; }
+
+  /* the foot of every page: one row, dim text, links that answer the
+     pointer instead of underlining themselves permanently */
+  .f-foot { font-size: 13px; color: var(--tt-dim); }
+  .f-foot a { color: var(--tt-dim); text-decoration: none; }
+  .f-foot a:hover { color: var(--tt-ink); text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 900px) { .site-desc { display: none; } }
+  @media (max-width: 600px) { .site-nav .hide-sm { display: none; } }
+
+  /* ==================================================================
+     LAYOUT · one wrapper, three widths, all of them the desk's
+     ================================================================== */
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 var(--tt-gut); }
+  .wrap.mid { max-width: 760px; }
+  .wrap.narrow { max-width: 660px; }
+  /* padding-block only: .sec is worn together with .wrap, and the
+     shorthand would take the gutter away from it */
+  .sec { padding-top: var(--tt-sec); padding-bottom: var(--tt-sec); }
+  .sec.tight { padding-top: calc(var(--tt-sec) * .62); padding-bottom: calc(var(--tt-sec) * .62); }
+  .band { background: var(--tt-band); border-top: 1px solid var(--tt-rule); border-bottom: 1px solid var(--tt-rule); }
+  .hero-wash { background: linear-gradient(var(--tt-hero), var(--tt-page)); }
+
+  /* ==================================================================
+     TYPE · four roles, all serif where the desk is serif
+     ================================================================== */
+  .f-h1 {
+    font-family: var(--tt-font-serif); font-weight: 600;
+    font-size: clamp(33px, 6.2vw, 47px); line-height: 1.06; letter-spacing: -.025em;
+  }
+  .f-h2 {
+    font-family: var(--tt-font-serif); font-weight: 600;
+    font-size: clamp(22px, 3.2vw, 27px); line-height: 1.15; letter-spacing: -.018em;
+  }
+  .f-h3 { font-size: 14.5px; font-weight: 600; letter-spacing: -.005em; color: var(--tt-ink); }
+  /* the reader's prose has lists on the pages, and the base sheet
+     resets every list margin to zero */
+  .prose ul { list-style: disc; padding-left: 20px; margin: 0 0 19px; }
+  .prose li { margin-bottom: 4px; }
+
+  /* what a text is divided into once it is published: comments, about,
+     subscribe. One size for all of them, the serif of the article they
+     sit under, so the page has one voice from the title down. */
+  .f-sec-h {
+    font-family: var(--tt-font-serif); font-size: 21px; font-weight: 600;
+    line-height: 1.2; letter-spacing: -.015em; color: var(--tt-ink);
+  }
+  .f-lead { font-size: 15.5px; line-height: 1.62; color: var(--tt-dim); max-width: 48ch; }
+  .f-body { font-size: 14.5px; line-height: 1.62; max-width: var(--tt-measure); }
+  /* the quiet role sits on dim, not faint: on a blog it carries dates,
+     comment times and the notes under the forms, and those have to be
+     comfortable to read, not just legible */
+  .f-note { font-size: 12.5px; line-height: 1.55; color: var(--tt-dim); }
+  /* the one coloured phrase per page, and the accent it is allowed */
+  .f-accent { color: var(--tt-accent); }
+  .f-mark { background: var(--tt-mark); box-decoration-break: clone; -webkit-box-decoration-break: clone; padding: 0 .1em; }
+
+  /* the section label the desk writes as .sec-h: normal case, dim,
+     semibold. No capitals anywhere on this site. */
+  .f-eyebrow { font-size: 13px; font-weight: 600; color: var(--tt-dim); }
+
+  /* ==================================================================
+     THE LIST OF TEXTS · the Texts grid of the desk, read by a reader:
+     one preview image, a title clamped to two lines, the date, a lead
+     line and the tags. Same proportions, same hover.
+     ================================================================== */
+  .cards {
+    display: grid; gap: 30px 20px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    align-items: start;
+  }
+  @media (max-width: 560px) { .cards { grid-template-columns: 1fr; gap: 34px; } }
+  .card { display: block; width: 100%; text-decoration: none; color: inherit; }
+  /* square, like every other picture on this site: the gallery, the
+     tiles in the editor, the lightbox. A preview is a tile. */
+  .card .cimg {
+    display: block; width: 100%; aspect-ratio: 1; overflow: hidden;
+    background: var(--tt-field); border-radius: var(--tt-radius-img);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .card .cimg svg { width: 100%; height: 100%; }
+  .card:hover .cimg { transform: translateY(-2px); box-shadow: 0 8px 20px rgb(var(--tt-shadow) / .16); }
+  .card .ct {
+    display: -webkit-box; overflow: hidden; margin-top: 11px; min-height: 2.5em;
+    font-family: var(--tt-font-serif); font-size: 18px; font-weight: 600;
+    line-height: 1.25; letter-spacing: -.01em; color: var(--tt-ink);
+    -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  }
+  .card:hover .ct { text-decoration: underline; text-underline-offset: 3px; }
+  .card-wrap .cm { font-size: 12.5px; color: var(--tt-dim); margin-top: 3px; }
+  .card-wrap .clead { font-size: 13.5px; line-height: 1.5; color: var(--tt-dim); margin-top: 6px; }
+  .card-wrap .ctags { margin-top: 7px; }
+  .ctag {
+    display: inline-block; margin-right: 6px; font-size: 12.5px;
+    color: var(--tt-accent); text-decoration: none;
+  }
+  .ctag:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+  /* the search over the list: the field keeps its own rule, and the
+     count stands beside it and follows what you type */
+  .searchrow { display: flex; align-items: baseline; gap: 16px; margin-bottom: 30px; }
+  .searchrow input { flex: 1; min-width: 0; }
+  .searchrow .cnt { flex: none; font-size: 12.5px; }
+  /* the browser draws its own clear button for type=search, in its own
+     blue. Ours matches the page and only appears when there is
+     something to clear. */
+  .searchrow input[type=search]::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+  .cnt { color: var(--tt-dim); font-variant-numeric: tabular-nums; font-size: 11.5px; font-weight: 400; }
+
+  /* ==================================================================
+     THE TWO LISTS · what it does, and what it refuses to have
+     ================================================================== */
+  .flist { display: flex; flex-direction: column; gap: 13px; padding: 0; margin: 0; list-style: none; }
+  .flist li { display: flex; gap: 11px; font-size: 14px; line-height: 1.55; }
+  .flist li b { display: block; font-weight: 600; }
+  .flist.does li::before {
+    content: ""; flex: none; width: 6px; height: 6px; margin-top: 8px;
+    border-radius: 50%; background: var(--tt-accent);
+  }
+  .flist.nope { color: var(--tt-dim); }
+  .flist.nope li::before {
+    content: ""; flex: none; width: 11px; height: 1px; margin-top: 11px; background: var(--tt-rule);
+  }
+
+  /* the figure row of the Stats screen, borrowed for three numbers */
+  .figrow { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--tt-rule); border-bottom: 1px solid var(--tt-rule); }
+  .figrow > div { padding: 15px 0; border-top: 1px solid var(--tt-hair); }
+  .figrow > div:first-child { border-top: 0; }
+  .figrow .n {
+    font-family: var(--tt-font-serif); font-size: 26px; font-weight: 600;
+    letter-spacing: -.015em; font-variant-numeric: tabular-nums;
+  }
+  .figrow .l { font-size: 12.5px; color: var(--tt-faint); margin-top: 2px; }
+  @media (min-width: 720px) {
+    .figrow { grid-template-columns: repeat(3, 1fr); }
+    .figrow > div { padding: 15px 20px; border-top: 0; border-left: 1px solid var(--tt-hair); }
+    .figrow > div:first-child { padding-left: 0; border-left: 0; }
+  }
+
+  /* ==================================================================
+     CODE · the one place a monospace face is honest
+     ================================================================== */
+  .code {
+    font-family: var(--tt-font-mono); font-size: 12.5px; line-height: 1.7;
+    background: var(--tt-field); color: var(--tt-ink);
+    border-radius: var(--tt-radius); padding: 13px 15px; overflow-x: auto;
+    box-shadow: inset 0 0 0 1px var(--tt-hair);
+  }
+
+  /* ==================================================================
+     THE GALLERY · the reader's tile grid, and the lightbox behind it
+     ================================================================== */
+  .gal { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  @media (min-width: 900px) { .gal { grid-template-columns: repeat(4, 1fr); } }
+  .gal button {
+    display: block; width: 100%; aspect-ratio: 1; padding: 0; overflow: hidden;
+    border-radius: var(--tt-radius-img); background: var(--tt-field);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .gal button svg { width: 100%; height: 100%; }
+  .gal button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgb(var(--tt-shadow) / .16); }
+  /* the lightbox of round-13, in the shape the reader gets it: a count,
+     a way out, an arrow on each side, and the same swipe on touch. No
+     per-image form, which is the half that belongs to the desk. */
+  .lb {
+    position: fixed; inset: 0; z-index: 80; display: flex; flex-direction: column;
+    background: var(--tt-lightbox);
+  }
+  .lb-bar {
+    flex: none; display: flex; align-items: center; gap: 12px;
+    height: 52px; padding: 0 14px; color: rgb(255 255 255 / .8); font-size: 12.5px;
+  }
+  .lb-btn {
+    color: rgb(255 255 255 / .85); font-size: 13px; padding: 6px 12px;
+    border-radius: var(--tt-radius); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .35);
+  }
+  .lb-btn:hover { color: #fff; background: rgb(255 255 255 / .1); }
+  .lb-stage {
+    flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center;
+    gap: 4px; padding: 0 6px; touch-action: pan-y pinch-zoom;
+  }
+  .lb-arrow {
+    flex: none; color: rgb(255 255 255 / .7); font-size: 30px; line-height: 1;
+    padding: 24px 10px; text-align: center;
+  }
+  .lb-arrow:hover { color: #fff; }
+  .lb-img { flex: 1; min-width: 0; height: 100%; display: grid; place-items: center; }
+  .lb-img svg {
+    width: auto; height: auto; max-width: 100%; max-height: 100%;
+    aspect-ratio: 1; border-radius: var(--tt-radius-img);
+  }
+  .lb-cap {
+    flex: none; padding: 12px 16px 22px; text-align: center;
+    color: rgb(255 255 255 / .7); font-size: 12.5px;
+  }
+  /* while it is open the page underneath does not move */
+  html.lb-open, html.lb-open body { overflow: hidden; }
+
+  /* ==================================================================
+     THE MOCKUP · a small, still-life round-13 desk, only what the eye
+     needs: the bar, the writing surface, the tiles, julia
+     ================================================================== */
+  .mock {
+    background: var(--tt-page); border: 1px solid var(--tt-rule);
+    border-radius: var(--tt-radius-pop); overflow: hidden;
+    box-shadow: 0 14px 34px rgb(var(--tt-shadow) / .12);
+    user-select: none;
+  }
+  .mock-bar {
+    display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 11px;
+    border-bottom: 1px solid var(--tt-rule); background: var(--tt-bar);
+    font-size: 12.5px; color: var(--tt-dim);
+  }
+  .mock-crumb { font-family: var(--tt-font-serif); font-size: 13.5px; font-weight: 600; color: var(--tt-ink); letter-spacing: -.01em; }
+  .mock-slash { color: var(--tt-slash); }
+  .mock-stamp {
+    font-size: 10.5px; padding: 2px 8px; border-radius: var(--tt-radius-pill);
+    background: var(--tt-field); color: var(--tt-dim);
+  }
+  /* the split state button of the bar, at mockup scale */
+  .mock-split { display: inline-flex; align-items: center; height: 24px; border-radius: var(--tt-radius); background: var(--tt-solid); color: var(--tt-onsolid); font-size: 11.5px; font-weight: 500; }
+  .mock-split .m { padding: 0 9px; }
+  .mock-split .d { width: 1px; height: 12px; background: var(--tt-solidline); }
+  .mock-split .c { padding: 0 7px; }
+
+  .mock-body { display: grid; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .mock-body { grid-template-columns: minmax(0, 1fr) 168px; } }
+  .mock-text { padding: 15px 15px 18px; min-width: 0; }
+  .mock-side {
+    padding: 13px 15px 18px; background: var(--tt-paper);
+    border-top: 1px solid var(--tt-rule);
+  }
+  @media (min-width: 560px) { .mock-side { border-top: 0; border-left: 1px solid var(--tt-rule); } }
+  .mock-title {
+    font-family: var(--tt-font-serif); font-size: 19px; font-weight: 600;
+    letter-spacing: -.02em; padding-bottom: 7px; border-bottom: 2px solid var(--tt-inksoft);
+  }
+  .mock-line { height: 7px; border-radius: 3px; background: var(--tt-hair); }
+  .mock-caret { display: inline-block; width: 1.5px; height: 13px; background: var(--tt-julia); vertical-align: -2px; animation: pulse 1.1s steps(1, end) infinite; }
+  /* julia's bar, in her own tint, exactly as the editor states it */
+  .mock-jbar {
+    display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+    margin: 0 0 13px; padding: 6px 10px; border-radius: var(--tt-radius);
+    font-size: 11.5px; color: var(--tt-julia);
+    background: var(--tt-juliatint); box-shadow: inset 0 0 0 1px var(--tt-julialine);
+  }
+  .mock-jbar .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: none; }
+  /* the takeover, which is the whole lock model in two words */
+  .mock-take {
+    flex: none; padding: 1px 7px; border-radius: var(--tt-radius);
+    box-shadow: inset 0 0 0 1px var(--tt-julialine); background: var(--tt-paper);
+  }
+  .mock-lab { display: flex; align-items: baseline; gap: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--tt-rule); font-size: 12px; font-weight: 600; }
+  .mock-lab span { margin-left: auto; font-weight: 400; font-size: 11px; color: var(--tt-faint); }
+  .mock-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 10px; }
+  .mock-tiles svg {
+    width: 100%; aspect-ratio: 1; border-radius: var(--tt-radius-img);
+    transition: transform .55s cubic-bezier(.3, .7, .3, 1), box-shadow .2s ease;
+  }
+  .mock-tiles svg.held { box-shadow: 0 0 0 2px var(--tt-julia); }
+  /* julia's pointer: her color, her name, no motion the desk does not
+     have either */
+  .jcursor { position: absolute; left: 0; top: 0; z-index: 5; pointer-events: none; display: flex; align-items: flex-start; transition: transform 1.05s cubic-bezier(.3, .7, .3, 1); }
+  .jname {
+    margin-left: 3px; padding: 1px 5px; border-radius: var(--tt-radius-img);
+    background: var(--tt-julia); color: var(--tt-onsolid); font-size: 10px; font-weight: 600;
+  }
+  /* the darkroom treatment reaches the front end too */
+  :root[data-theme="darkroom"] .gal button svg, :root[data-theme="darkroom"] .mock-tiles svg,
+  :root[data-theme="darkroom"] .lb svg { filter: saturate(1.06) brightness(1.06); }
+}
