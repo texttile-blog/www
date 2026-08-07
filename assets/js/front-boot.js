@@ -9,7 +9,7 @@
    because a theme here is the same one file of tokens it is in the
    app.
 
-   2 · THE TAB ICON, drawn the way round-13 draws it: from the live
+   2 · THE TAB ICON, drawn the way the app draws it: from the live
    tokens, so it follows the theme, in the same viewBox with the same
    three units of air around the mark. The static file next to the app
    is the same drawing, and it paints first, before this runs.
