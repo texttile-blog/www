@@ -1,6 +1,6 @@
 # www
 
-The product page for [texttile.blog](https://texttile.blog).
+The product page for [www.texttile.blog](https://www.texttile.blog).
 
 One HTML file and the stylesheets it borrows from the app. No build step and no
 framework: GitHub Pages serves the files as they lie here.
@@ -43,4 +43,5 @@ When the app's look moves, copy the files across again.
 
 ## Deploy
 
-Push to `main`. GitHub Pages publishes the branch root.
+Push to `main`. GitHub Pages publishes the branch root at `www.texttile.blog`.
+The `www` name is a CNAME to `texttile-blog.github.io`; the apex carries no record.
