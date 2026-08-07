@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/front.css">
 <script src="assets/js/front-boot.js"></script>
+<script src="assets/js/analytics.js"></script>
 <style type="text/tailwindcss">
   @theme inline {
     --font-sans: var(--tt-font-sans);
@@ -73,24 +74,24 @@
     <a href="#together" class="hide-sm">Writing together</a>
     <a href="#does" class="hide-sm">What it does</a>
     <a href="#story" class="hide-sm">Why we made it</a>
-    <a href="https://demo.texttile.blog" target="_blank" rel="noopener">Demo blog</a>
-    <a href="#run">Hosting</a>
-    <a class="btn sm" href="https://github.com/texttile-blog/texttile">Source</a>
+    <a href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="nav_demo">Demo blog</a>
+    <a href="#run" data-track="nav_hosting">Hosting</a>
+    <a class="btn sm" href="https://github.com/texttile-blog/texttile" data-track="nav_source">Source</a>
   </nav>
 </header>
 
 <main id="top">
 
   <!-- ==================== HERO ==================================== -->
-  <section class="hero-wash">
+  <section class="hero-wash" id="hero">
     <div class="wrap grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,480px)] lg:items-center pt-12 pb-14 lg:pt-16 lg:pb-20">
       <div>
         <h1 class="f-h1">One article.<br>Many authors.<br><span class="f-accent">No conflicts.</span></h1>
         <p class="f-lead mt-5">Texttile is a blog engine for more than one writer. Everyone on the blog can be in the same article at the same time, photo gallery included. One of you drags a picture into place, and the others watch it move. It runs in one Docker container with SQLite, and it needs no other service.</p>
         <div class="btn-row mt-7">
-          <a class="btn solid lg" href="https://github.com/texttile-blog/texttile">Get the source</a>
-          <a class="btn lg" href="#run">Ask about hosting</a>
-          <a class="btn quiet lg" href="https://demo.texttile.blog" target="_blank" rel="noopener">See the demo blog</a>
+          <a class="btn solid lg" href="https://github.com/texttile-blog/texttile" data-track="hero_source">Get the source</a>
+          <a class="btn lg" href="#run" data-track="hero_hosting">Ask about hosting</a>
+          <a class="btn quiet lg" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="hero_demo">See the demo blog</a>
         </div>
         <p class="f-note mt-5">MIT license · Elixir and Phoenix LiveView · one container</p>
       </div>
@@ -146,7 +147,7 @@
   </section>
 
   <!-- ==================== THREE NUMBERS ============================ -->
-  <section class="wrap">
+  <section class="wrap" id="numbers">
     <div class="figrow">
       <div><div class="n num">1</div><div class="l">container to run, one folder to back up</div></div>
       <div><div class="n num">0</div><div class="l">plugins to keep patched</div></div>
@@ -182,8 +183,8 @@
       <h2 class="f-h2">Why we<br class="hidden lg:block"> made it</h2>
       <div class="max-w-[62ch]">
         <p class="f-body">We spent three weeks in Polynesia and kept one journal between us. We took turns writing, and whoever was not writing fixed things afterwards. The photos were the harder part. Not picking them, but getting a thousand pictures into a gallery in an order that made sense, together.</p>
-        <p class="f-body mt-4">So I built <a href="https://imaedge.org" class="link">imaedge</a> for that part, and we tried it on the next holiday, in Mexico. Uploading held up. Tiles arrive in the order their EXIF timestamps give them. Drag one and Texttile rewrites its timestamp to match, so the order stays valid whoever opens the folder later.</p>
-        <p class="f-body mt-4">What was still missing was the text around it. The family blog it should have gone on ran on WordPress. That meant updates every few weeks, a plugin the author had abandoned, and bots at the login page around the clock. So after Mexico, with the gallery proven, I wrote a minimal CMS around it. It has to work for the two of us on the next holiday first, but it is ready for other people. <a href="https://demo.texttile.blog" class="link" target="_blank" rel="noopener">The longer version</a> is on the blog it was made for.</p>
+        <p class="f-body mt-4">So I built <a href="https://imaedge.org" class="link" data-track="story_imaedge">imaedge</a> for that part, and we tried it on the next holiday, in Mexico. Uploading held up. Tiles arrive in the order their EXIF timestamps give them. Drag one and Texttile rewrites its timestamp to match, so the order stays valid whoever opens the folder later.</p>
+        <p class="f-body mt-4">What was still missing was the text around it. The family blog it should have gone on ran on WordPress. That meant updates every few weeks, a plugin the author had abandoned, and bots at the login page around the clock. So after Mexico, with the gallery proven, I wrote a minimal CMS around it. It has to work for the two of us on the next holiday first, but it is ready for other people. <a href="https://demo.texttile.blog" class="link" target="_blank" rel="noopener" data-track="story_demo">The longer version</a> is on the blog it was made for.</p>
       </div>
     </div>
   </section>
@@ -242,8 +243,8 @@
   ghcr.io/texttile-blog/texttile:latest</code></pre>
         <p class="f-note mt-3">Those environment variables are the whole setup: who can write, the address the blog answers on, and one secret. SQLite, the original photos and the copies made for the web all live in <span class="num">/data</span>. Everything you might change later is in Settings, and nothing there has a Save button.</p>
         <div class="btn-row mt-6">
-          <a class="btn solid lg" href="https://github.com/texttile-blog/texttile">Get the source</a>
-          <a class="btn lg" href="https://demo.texttile.blog" target="_blank" rel="noopener">See the demo blog</a>
+          <a class="btn solid lg" href="https://github.com/texttile-blog/texttile" data-track="run_source">Get the source</a>
+          <a class="btn lg" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="run_demo">See the demo blog</a>
         </div>
       </div>
       <div>
@@ -251,7 +252,7 @@
         <p class="f-body mt-3">Same software, one instance per blog, on our machines. Your domain in front of it, and a copy of all your data whenever you ask. Small monthly invoice, cancel whenever you like.</p>
         <p class="f-body mt-3">Write us a line about the blog you have in mind and we answer in a day or two.</p>
         <div class="btn-row mt-6">
-          <a class="btn solid lg" href="mailto:klaus@texttile.blog?subject=Hosting%20a%20Texttile%20blog">Write to klaus@texttile.blog</a>
+          <a class="btn solid lg" href="mailto:klaus@texttile.blog?subject=Hosting%20a%20Texttile%20blog" data-track="hosting_mail">Write to klaus@texttile.blog</a>
         </div>
       </div>
     </div>
@@ -261,9 +262,9 @@
 <footer class="border-t border-rule">
   <div class="wrap f-foot flex flex-wrap items-baseline gap-x-4 gap-y-1.5 pt-4 pb-7">
     <a href="#top" class="font-semibold text-ink">Texttile</a>
-    <a href="https://github.com/texttile-blog/texttile">Source</a>
-    <a href="https://demo.texttile.blog" target="_blank" rel="noopener">Demo blog</a>
-    <a href="mailto:klaus@texttile.blog">klaus@texttile.blog</a>
+    <a href="https://github.com/texttile-blog/texttile" data-track="footer_source">Source</a>
+    <a href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="footer_demo">Demo blog</a>
+    <a href="mailto:klaus@texttile.blog" data-track="footer_mail">klaus@texttile.blog</a>
     <span class="sp"></span>
     <span>&copy; 2026 <a href="https://v01.io" target="_blank" rel="noopener">Klaus Breyer</a></span>
   </div>

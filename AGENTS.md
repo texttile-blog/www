@@ -24,3 +24,8 @@ texttile.blog: one HTML file and the stylesheets it borrows from the app.
   again, so the product page and the product stay one design system.
 - The page is static, so it has no form to receive. The hosting section is a
   mailto link to klaus@texttile.blog instead.
+- A link worth counting gets `data-track="<name>"`. The click listener in
+  `assets/js/analytics.js` sits on the document and needs nothing else.
+- Cloudflare rewrites every mailto on this domain into a `/cdn-cgi/l/email-
+  protection` URL. `analytics.js` reads it back before it reports, so do not
+  report a raw href from anywhere else.
