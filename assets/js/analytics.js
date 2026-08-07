@@ -27,7 +27,19 @@
 posthog.init('phc_uEy5BZ4d9DmPyr6UAbRRU5aKqURYTYJG5tBp8XznV2f7', {
   api_host: 'https://eu.i.posthog.com',
   defaults: '2026-05-30',
-  person_profiles: 'identified_only'
+  person_profiles: 'identified_only',
+
+  /* Nothing is written to the browser. No cookie and no local storage,
+     so the page needs no consent banner, which is the only answer that
+     agrees with what the page says two sections above about the
+     product.
+
+     The price is the visitor count: the id lives in the tab and dies
+     with it, so a reload is a new anonymous person and "unique
+     visitors" means "sessions with the page open". Everything the page
+     was built to answer survives it, because a click, a section and a
+     scroll mark all happen inside one visit. */
+  persistence: 'memory'
 });
 
 (function () {

@@ -57,6 +57,11 @@ PostHog (EU host). Three layers:
 The theme rides on every event as a registered property, so a `?theme=` visit
 can be told apart afterwards.
 
+`persistence: 'memory'` keeps the id in the tab, so the page writes no cookie
+and no local storage and needs no consent banner. A reload is therefore a new
+anonymous person: read "unique visitors" as "visits". Clicks, sections and
+scroll marks happen inside one visit and are unaffected.
+
 To add a name to a new link, put `data-track="the_name"` on it. Nothing else
 has to change; the click listener sits on the document.
 

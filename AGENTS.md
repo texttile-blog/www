@@ -24,6 +24,9 @@ texttile.blog: one HTML file and the stylesheets it borrows from the app.
   again, so the product page and the product stay one design system.
 - The page is static, so it has no form to receive. The hosting section is a
   mailto link to klaus@texttile.blog instead.
+- PostHog runs on `persistence: 'memory'`: no cookie, no local storage, no
+  consent banner. Keep it that way, and do not read the visitor count as
+  people.
 - A link worth counting gets `data-track="<name>"`. The click listener in
   `assets/js/analytics.js` sits on the document and needs nothing else.
 - Cloudflare rewrites every mailto on this domain into a `/cdn-cgi/l/email-
