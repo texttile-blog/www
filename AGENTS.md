@@ -22,5 +22,5 @@ texttile.blog: one HTML file and the stylesheets it borrows from the app.
 - Everything under `assets/` is a copy of what `texttile-blog/texttile` ships.
   Do not restyle it here; when the app's look moves, copy the files across
   again, so the product page and the product stay one design system.
-- The page is static, so it has no form to receive. The hosting section writes
-  a mail to klaus@texttile.blog instead.
+- The page is static, so it has no form to receive. The hosting section is a
+  mailto link to klaus@texttile.blog instead.

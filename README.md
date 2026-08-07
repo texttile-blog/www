@@ -19,7 +19,7 @@ framework: GitHub Pages serves the files as they lie here.
 
 - Source: [texttile-blog/texttile](https://github.com/texttile-blog/texttile)
 - Demo blog: [demo.texttile.blog](https://demo.texttile.blog)
-- Hosting: the "Or let us run it" button writes a mail to <klaus@texttile.blog>.
+- Hosting: the "Or let us run it" button is a mailto link to <klaus@texttile.blog>.
   The page is static, so there is nothing to receive a form.
 
 ## Look at it

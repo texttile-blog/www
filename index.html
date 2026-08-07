@@ -250,15 +250,9 @@
         <h2 class="f-h2">Or let us run it</h2>
         <p class="f-body mt-3">Same software, one instance per blog, on our machines. Your domain in front of it, and a copy of all your data whenever you ask. Small monthly invoice, cancel whenever you like.</p>
         <p class="f-body mt-3">Write us a line about the blog you have in mind and we answer in a day or two.</p>
-        <form class="mt-5 max-w-[400px]" id="hostForm">
-          <label class="f-h3 block" for="h-blog">What the blog is about</label>
-          <input class="mt-1" type="text" id="h-blog" placeholder="Three of us walking the Alps, family reads along">
-          <p class="mt-5">
-            <button class="btn solid lg" type="submit">Write to klaus@texttile.blog</button>
-          </p>
-        </form>
-        <p class="f-note mt-3">Opens your mail program. Or write to
-          <a class="link" href="mailto:klaus@texttile.blog">klaus@texttile.blog</a> yourself.</p>
+        <div class="btn-row mt-6">
+          <a class="btn solid lg" href="mailto:klaus@texttile.blog?subject=Hosting%20a%20Texttile%20blog">Write to klaus@texttile.blog</a>
+        </div>
       </div>
     </div>
   </section>
@@ -276,25 +270,6 @@
 </footer>
 
 <script>
-  /* "Or let us run it" is one mail, not a form on a server. The page is
-     static, so the button writes the mail instead of sending it: the
-     one field it has becomes the first line, and the mail program does
-     the rest. Without a field filled in it is still a plain mailto. */
-  (function () {
-    var form = document.getElementById('hostForm');
-    if (!form) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var about = document.getElementById('h-blog').value.trim();
-      var body = 'Hello Klaus,\n\n'
-        + (about ? 'I would like a blog about: ' + about + '\n\n' : '')
-        + 'Please tell me what hosting a Texttile blog would cost.\n\n';
-      location.href = 'mailto:klaus@texttile.blog'
-        + '?subject=' + encodeURIComponent('Hosting a Texttile blog')
-        + '&body=' + encodeURIComponent(body);
-    });
-  })();
-
   /* julia picks a tile up and puts it down somewhere else, and the grid
      moves out of her way (FLIP). It is the one animation on the page,
      and it is here because it is the feature. */
