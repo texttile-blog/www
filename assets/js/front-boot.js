@@ -1,28 +1,15 @@
 /* ====================================================================
    THE FRONT END, BEFORE THE FIRST PAINT
 
-   Two things every public page needs in the head, and both of them
-   were copied into six files until this one existed.
+   THE TAB ICON, drawn the way the app draws it: from the live tokens
+   of theme.css, in the same viewBox with the same three units of air
+   around the mark. The static file next to the app is the same
+   drawing, and it paints first, before this runs.
 
-   1 · THE THEME. The public site wears the desk's clothes. Elixir is
-   what it ships with; ?theme=iris|paper|signal|darkroom swaps it,
-   because a theme here is the same one file of tokens it is in the
-   app.
-
-   2 · THE TAB ICON, drawn the way the app draws it: from the live
-   tokens, so it follows the theme, in the same viewBox with the same
-   three units of air around the mark. The static file next to the app
-   is the same drawing, and it paints first, before this runs.
+   The theme itself is no longer switched here. The app ships one
+   theme, so the page links that one file and wears it.
    ==================================================================== */
 (function () {
-  var THEMES = ['paper', 'iris', 'elixir', 'signal', 'darkroom'];
-  var m = /[?&]theme=([a-z]+)/i.exec(location.search);
-  var id = m && THEMES.indexOf(m[1].toLowerCase()) >= 0 ? m[1].toLowerCase() : 'elixir';
-
-  var link = document.getElementById('ttTheme');
-  if (link) link.setAttribute('href', 'assets/css/theme-' + id + '.css');
-  document.documentElement.setAttribute('data-theme', id);
-
   /* how light a hex is, roughly. Enough to decide which of the theme's
      two extremes reads against the tab strip. */
   function light(hex) {
@@ -43,8 +30,8 @@
     /* The tab strip belongs to the browser, not to the page, so the
        mark follows the browser's scheme and not the theme's. A light
        theme on a dark strip draws itself in its own page color, and a
-       dark theme on a light strip does the same. Without this, elixir
-       on a dark macOS is dark ink on dark chrome. */
+       dark theme on a light strip does the same. Without this, the
+       mark is dark ink on dark chrome on a dark macOS. */
     var chromeIsDark = matchMedia('(prefers-color-scheme: dark)').matches;
     if (light(ink) !== chromeIsDark) ink = page;
     var bar = function (y, w) {

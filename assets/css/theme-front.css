@@ -1,21 +1,20 @@
 /* ====================================================================
-   THEME · ELIXIR, EXTENDED FOR THE FRONT END
+   THE APP'S THEME, EXTENDED FOR THE FRONT END
 
-   The public site wears the desk's clothes. Everything it needs for
-   color, ink, lines and radii already exists in the app's theme
-   files, so this file adds only what a desk has no use for: a page
-   band, a hero wash, a reading measure, a gutter, a header height.
+   The public site wears the app's clothes. Everything it needs for
+   color, ink, lines and radii already exists in theme.css, the one
+   theme the app ships, so this file adds only what the admin area has
+   no use for: a page band, a hero wash, a reading measure, a gutter,
+   a header height.
 
-   Every value is derived from the desk tokens rather than written
-   out, so the front end follows whichever theme is linked above it.
-   It is tuned on elixir (the default of these pages) and holds up in
-   iris, paper, signal and darkroom.
+   Every value is derived from the app's tokens rather than written
+   out, so the front end moves when the app's theme moves.
 
    Same --tt- prefix on purpose: this is not a second theme, it is the
    same theme with a few more rooms.
    ==================================================================== */
 :root {
-  /* the alternating section band: the same white the desk uses for
+  /* the alternating section band: the same white the app uses for
      its side column, so a section change reads as a change of paper,
      not as a card */
   --tt-band:      var(--tt-paper);
@@ -28,8 +27,8 @@
   --tt-mark:      var(--tt-accentwash);
 
   /* measure and rhythm */
-  --tt-measure:   62ch;          /* the desk's own reading width */
+  --tt-measure:   62ch;          /* the app's own reading width */
   --tt-gut:       clamp(14px, 4vw, 26px);
-  --tt-headh:     54px;          /* the reader header of round-13 */
+  --tt-headh:     54px;          /* the height of the reader header */
   --tt-sec:       clamp(46px, 7vw, 76px);
 }

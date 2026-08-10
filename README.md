@@ -9,10 +9,10 @@ framework: GitHub Pages serves the files as they lie here.
 |---|---|
 | `index.html` | the page |
 | `assets/css/base.css` | the app's element defaults: prose, inputs, focus ring, hairlines |
-| `assets/css/theme-*.css` | the five themes, one file of tokens each |
+| `assets/css/theme.css` | the app's theme: every colour, wash and radius, in one file of tokens |
 | `assets/css/theme-front.css` | six tokens the app has no use for: a band, a hero wash, a measure, a gutter |
 | `assets/css/front.css` | what the app does not have: header, hero, bands, the two lists, the mockup |
-| `assets/js/front-boot.js` | picks the theme and draws the tab icon from the live tokens |
+| `assets/js/front-boot.js` | draws the tab icon from the live tokens |
 | `assets/js/analytics.js` | PostHog: the page view, every click, the sections read, the scroll depth |
 | `assets/img/texttile-mark.svg` | the mark, and the favicon before the script runs |
 
@@ -31,9 +31,8 @@ Open `index.html` from disk, or serve the folder:
 python3 -m http.server 8000
 ```
 
-`?theme=iris|paper|signal|darkroom` swaps the look, because a theme here is the
-same one file of tokens it is in the app. Without the parameter the page is
-elixir.
+The app ships one theme, so the page wears that one. There is nothing to
+switch.
 
 ## The design comes from the app
 
@@ -53,9 +52,6 @@ PostHog (EU host). Three layers:
   so on), plus the section it sits in and whether the target is outbound.
 - **Reading**: `section_viewed` per section, `scroll_depth` at 25/50/75/100,
   and `docker_command_copied` when somebody copies the `docker run` line.
-
-The theme rides on every event as a registered property, so a `?theme=` visit
-can be told apart afterwards.
 
 `persistence: 'memory'` keeps the id in the tab, so the page writes no cookie
 and no local storage and needs no consent banner. A reload is therefore a new
