@@ -8,6 +8,8 @@ framework: GitHub Pages serves the files as they lie here.
 | Path | What it is |
 |---|---|
 | `index.html` | the page |
+| `privacy.html` | what the page counts, and what happens to the demo address |
+| `imprint.html` | the details of the law, and the address to reach a person |
 | `assets/css/base.css` | the app's element defaults: prose, inputs, focus ring, hairlines |
 | `assets/css/theme.css` | the app's theme: every colour, wash and radius, in one file of tokens |
 | `assets/css/theme-front.css` | six tokens the app has no use for: a band, a hero wash, a measure, a gutter |
@@ -22,6 +24,10 @@ framework: GitHub Pages serves the files as they lie here.
 - Demo blog: [demo.texttile.blog](https://demo.texttile.blog)
 - A demo of your own: the "Try it" section calls Warper at
   `https://warper.texttile.blog`. See below.
+- Privacy: `privacy.html`, in the same stylesheets. It has to stay true to
+  `assets/js/analytics.js` and to the demo client, so change it with them.
+- Imprint: `imprint.html`, in the same stylesheets. Name, address, mail, the
+  person who answers for the content, and the two paragraphs the law asks for.
 - Hosting: the "Or let us run it" button is a mailto link to <klaus@texttile.blog>.
   The page is static, so there is nothing to receive a form.
 
@@ -40,13 +46,15 @@ whole client:
    request without `contact_consent: true`, so the page always sends it. The
    checkbox states the hour the blog lives, and the line under the button says
    what the address is used for.
-3. On `201`, send the browser to the `url` that comes back.
+3. On `201`, show two links: the admin area at `<url>/admin`, where the reader
+   signs in as `admin` and the first sign-in sets the password, and the blog at
+   `url`. Both open in a new tab. The page sends the browser nowhere by itself.
 
 The answers the page knows:
 
 | Answer | What the reader sees |
 |---|---|
-| `201` | the address, the admin name, the hour it ends, then the browser goes there |
+| `201` | the hour it ends, a link to the admin area and a link to the blog, with the admin name |
 | `503 at_capacity` | all demos are in use, try again in a few minutes |
 | `429 rate_limited` | one demo at a time from one connection, try again in N minutes |
 | `422 invalid_email` | back to the form, with the field named |

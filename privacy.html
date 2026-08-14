@@ -1,0 +1,125 @@
+<!doctype html>
+<!--
+  TEXTTILE · PRIVACY · www.texttile.blog/privacy.html
+
+  The second page of the product page, and the only one the law asks
+  for. It wears the same stylesheets as index.html and adds nothing of
+  its own. What it says has to stay true to two files: the counting in
+  assets/js/analytics.js, and the demo client at the foot of
+  index.html.
+-->
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Texttile: Privacy</title>
+<meta name="description" content="What www.texttile.blog stores, what it counts, and what happens to the address you type into the demo form.">
+<link rel="canonical" href="https://www.texttile.blog/privacy.html">
+<meta name="robots" content="index,follow">
+<link rel="icon" id="ttIcon" href="assets/img/texttile-mark.svg" type="image/svg+xml">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" id="ttTheme" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/theme-front.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/front.css">
+<script src="assets/js/front-boot.js"></script>
+<script src="assets/js/analytics.js"></script>
+<style type="text/tailwindcss">
+  @theme inline {
+    --font-sans: var(--tt-font-sans);
+    --font-serif: var(--tt-font-serif);
+    --font-mono: var(--tt-font-mono);
+    --color-paper: var(--tt-paper);
+    --color-page: var(--tt-page);
+    --color-field: var(--tt-field);
+    --color-ink: var(--tt-ink);
+    --color-inksoft: var(--tt-inksoft);
+    --color-dim: var(--tt-dim);
+    --color-faint: var(--tt-faint);
+    --color-rule: var(--tt-rule);
+    --color-hair: var(--tt-hair);
+    --color-accent: var(--tt-accent);
+    --color-accentsoft: var(--tt-accentsoft);
+    --color-solid: var(--tt-solid);
+    --color-onsolid: var(--tt-onsolid);
+    --color-julia: var(--tt-julia);
+  }
+</style>
+
+<header class="site-head">
+  <a class="site-mark" href="index.html" data-track="privacy_home">
+    <svg width="17" height="17" viewBox="0 0 43 43" aria-hidden="true" class="flex-none">
+      <rect x="0" y="0"    width="43" height="3.5" rx="1.75" fill="currentColor"/>
+      <rect x="0" y="7.5"  width="34" height="3.5" rx="1.75" fill="currentColor"/>
+      <rect x="0" y="15"   width="43" height="3.5" rx="1.75" fill="currentColor"/>
+      <rect x="0" y="22.5" width="26" height="3.5" rx="1.75" fill="currentColor"/>
+      <rect x="0"  y="30" width="13" height="13" rx="2.5" fill="currentColor"/>
+      <rect x="15" y="30" width="13" height="13" rx="2.5" fill="currentColor"/>
+      <rect x="30" y="30" width="13" height="13" rx="2.5" fill="var(--tt-accentsoft)"/>
+    </svg>
+    Texttile
+  </a>
+  <span class="site-desc">The Multiplayer Blog Engine</span>
+  <nav class="site-nav" aria-label="Sections">
+    <a href="index.html" data-track="privacy_back">Back to the page</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="sec hero-wash">
+    <div class="wrap mid">
+      <h1 class="f-h1">Privacy</h1>
+      <p class="f-lead mt-5">This page is www.texttile.blog, the product page for Texttile. It has no account and no cookie. It counts how it is read, and it takes one email address, in the demo form. This is the whole list.</p>
+      <p class="f-note mt-4">Last changed in August 2026.</p>
+
+      <h2 class="f-h2 mt-12">Who is responsible</h2>
+      <p class="f-body mt-3">Klaus Breyer runs this page and answers for it. The address and the other details of the law are in the <a class="link" href="imprint.html" data-track="privacy_imprint">imprint</a>. You reach a person at <a class="link" href="mailto:klaus@texttile.blog" data-track="privacy_mail">klaus@texttile.blog</a>.</p>
+
+      <h2 class="f-h2 mt-12">Where the page runs</h2>
+      <p class="f-body mt-3">GitHub Pages serves the files. Cloudflare sits in front of the domain. Both companies see the request that brings this page to you: your IP address, the time, the page, and what your browser says about itself. They keep that for a short time, to serve the page and to stop attacks. The legal ground is our interest in a page that stays up (Art. 6 (1) (f) GDPR).</p>
+
+      <h2 class="f-h2 mt-12">What the page counts</h2>
+      <p class="f-body mt-3">We count how the page is read, with PostHog on its European servers. PostHog writes nothing to your browser here. It is set to keep its id in the tab, not in a cookie and not in local storage, so the id ends when you close the tab. This is why the page asks you for nothing before it counts.</p>
+      <ul class="flist does mt-6">
+        <li><span><b>The visit.</b>The page you opened, when, and where you came from.</span></li>
+        <li><span><b>The clicks.</b>Which link or button you used, with its text and its address.</span></li>
+        <li><span><b>The reading.</b>Which sections came onto your screen, how far down you got, and whether you copied the docker line.</span></li>
+      </ul>
+      <p class="f-body mt-5">PostHog gets your IP address with each of these, and it derives a rough place from it. We see a count, not a person. The legal ground is our interest in a page we can make better (Art. 6 (1) (f) GDPR). The whole of the counting is one file you can read: <span class="num">assets/js/analytics.js</span>.</p>
+
+      <h2 class="f-h2 mt-12">The demo blog</h2>
+      <p class="f-body mt-3">"Try it out" starts a real Texttile for you. Warper, our own service, creates it on Fly in a Frankfurt datacenter, and destroys it one hour later with everything you put in it.</p>
+      <ul class="flist does mt-6">
+        <li><span><b>Your email address.</b>You type it in the form. We use it once, to ask you what you think of Texttile. It goes to nobody else. The checkbox next to it is your consent (Art. 6 (1) (a) GDPR), and you can take it back at any time, with one mail.</span></li>
+        <li><span><b>A record of the demo.</b>The name of the machine, its address, the hour it ends, the time of your consent, and your IP address as a hash. The hash is how the service holds one demo per connection at a time.</span></li>
+        <li><span><b>What you write in the demo.</b>It stays in the demo, and it goes with the demo. After the hour, the machine and its disk are destroyed. Nothing is copied out of it and nothing is read by us.</span></li>
+      </ul>
+      <p class="f-body mt-5">Please treat the demo as a public room. Everybody who has its address is signed in as admin. Do not put anything in it that has to stay private.</p>
+
+      <h2 class="f-h2 mt-12">Mail</h2>
+      <p class="f-body mt-3">If you write to <a class="link" href="mailto:klaus@texttile.blog" data-track="privacy_mail_body">klaus@texttile.blog</a>, we keep your mail as long as the answer needs it, and as long as the tax and trade law asks us to keep letters of business.</p>
+
+      <h2 class="f-h2 mt-12">What you can ask for</h2>
+      <p class="f-body mt-3">You can ask us what we hold about you, ask us to correct it, and ask us to delete it. You can object to the counting. You can also complain to a data protection authority. One mail to <a class="link" href="mailto:klaus@texttile.blog" data-track="privacy_rights_mail">klaus@texttile.blog</a> is enough for the first three.</p>
+
+      <h2 class="f-h2 mt-12">The product is not this page</h2>
+      <p class="f-body mt-3">Texttile itself is a container you run on your own machine, and it sends us nothing. This page describes what happens here, on <a class="link" href="index.html" data-track="privacy_home_link">www.texttile.blog</a>, and in the demo we run for you.</p>
+
+    </div>
+  </section>
+</main>
+
+<footer class="border-t border-rule">
+  <div class="wrap f-foot flex flex-wrap items-baseline gap-x-4 gap-y-1.5 pt-4 pb-7">
+    <a href="index.html" class="font-semibold text-ink">Texttile</a>
+    <a class="self-center inline-flex" href="https://github.com/texttile-blog/texttile" target="_blank" rel="noopener"
+       title="Texttile on GitHub, where you can star it" aria-label="Texttile on GitHub, where you can star it"
+       data-track="footer_source"><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+    <a href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="footer_demo">Demo blog</a>
+    <a href="mailto:klaus@texttile.blog" data-track="footer_mail">klaus@texttile.blog</a>
+    <a href="privacy.html" aria-current="page" data-track="footer_privacy">Privacy</a>
+    <a href="imprint.html" data-track="footer_imprint">Imprint</a>
+    <span class="sp"></span>
+    <span>&copy; 2026 <a href="https://v01.io" target="_blank" rel="noopener">Klaus Breyer</a></span>
+  </div>
+</footer>
+</html>
