@@ -70,7 +70,8 @@
     <a href="#together" class="hide-sm">Writing together</a>
     <a href="#does" class="hide-sm">What it does</a>
     <a href="#story" class="hide-sm">Why we made it</a>
-    <a href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="nav_demo">Demo blog</a>
+    <a href="#try" data-track="nav_try">Try it</a>
+    <a href="https://demo.texttile.blog" class="hide-sm" target="_blank" rel="noopener" data-track="nav_demo">Demo blog</a>
     <a href="#run" data-track="nav_hosting">Hosting</a>
     <a class="btn sm" href="https://github.com/texttile-blog/texttile" data-track="nav_source">Source</a>
   </nav>
@@ -86,7 +87,7 @@
         <p class="f-lead mt-5">Texttile is a blog engine for more than one writer. Everyone on the blog can be in the same entry at the same time, gallery included. One of you drags a picture into place, and the others watch it move. It runs in one Docker container with SQLite, and it needs no other service.</p>
         <div class="btn-row mt-7">
           <a class="btn solid lg" href="https://github.com/texttile-blog/texttile" data-track="hero_source">Get the source</a>
-          <a class="btn lg" href="#run" data-track="hero_hosting">Ask about hosting</a>
+          <a class="btn lg" href="#try" data-track="hero_try">Start a blog of your own</a>
           <a class="btn quiet lg" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="hero_demo">See the demo blog</a>
         </div>
         <p class="f-note mt-5">Open source · Elixir and Phoenix LiveView · one container</p>
@@ -232,6 +233,82 @@
     </div>
   </section>
 
+  <!-- ==================== TRY ONE ================================== -->
+  <!-- The only part of this page that is not static. Warper starts a
+       Texttile on Fly for the reader and hands back its address; the
+       script at the foot of the page does the whole conversation. -->
+  <section class="sec hero-wash border-t border-rule" id="try">
+    <div class="wrap grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:items-start">
+      <div>
+        <h2 class="f-h2">Try it with a blog of your own</h2>
+        <p class="f-lead mt-3">Try it out. We start a Texttile for you in a Frankfurt datacenter and hand you the address. After <span data-demo-lifetime>one hour</span> we delete it again.</p>
+        <ul class="flist does mt-7">
+          <li><span><b>It is yours.</b>The admin area is open. Write an entry, add photos, drag the tiles, publish it, change the look in Settings. Only the people you give the address to can see it.</span></li>
+          <li><span><b>Two people, one entry.</b>Send the address to a friend, or open it on a second phone. You are both signed in as admin, so you are both in the same entry. One of you types. The other reads each word as it arrives, and takes the text over with one tap. A screenshot cannot show this, so find a second pair of hands.</span></li>
+          <li><span><b>Nothing to install.</b>No card, no account, no download. It starts in about a minute, and then you write.</span></li>
+          <li><span><b>It ends by itself.</b>After <span data-demo-lifetime>one hour</span> we delete the blog and everything in it. There is nothing to cancel and nothing to pay.</span></li>
+        </ul>
+      </div>
+
+      <div class="rounded-[var(--tt-radius-pop)] border border-rule bg-paper p-6 md:p-7 min-h-[290px]"
+           style="box-shadow: 0 14px 34px rgb(var(--tt-shadow) / .10)">
+
+        <!-- 1 · the form -->
+        <div data-demo-state="idle">
+          <h3 class="f-sec-h">Start your own</h3>
+          <form id="demoForm" class="mt-5" novalidate>
+            <label class="f-eyebrow block" for="demoEmail">Your email address</label>
+            <input class="mt-1" id="demoEmail" type="email" name="email" autocomplete="email" placeholder="you@example.com" spellcheck="false" required>
+            <label class="f-note flex items-start gap-2.5 mt-4">
+              <input type="checkbox" id="demoConsent" class="mt-[3px] flex-none accent-[var(--tt-accent)]" required>
+              <span>I understand that this blog and everything in it is deleted after <span data-demo-lifetime>one hour</span>.</span>
+            </label>
+            <p class="f-note mt-4 text-[var(--tt-accentloud)]" id="demoFormError" role="alert" hidden></p>
+            <button class="btn solid lg w-full mt-5" type="submit" id="demoSubmit" data-track="demo_start">Start my demo blog</button>
+            <p class="f-note mt-3">We may write to you once, to ask what you think of it. Your address goes to nobody else.</p>
+          </form>
+        </div>
+
+        <!-- 2 · the wait, which is real work and takes about a minute -->
+        <div data-demo-state="working" hidden>
+          <h3 class="f-sec-h">Making your blog</h3>
+          <p class="f-body mt-4" id="demoStep" role="status" aria-live="polite">We check that you are a person.</p>
+          <div class="mt-5 h-[3px] rounded-full bg-hair overflow-hidden" aria-hidden="true">
+            <div class="h-full bg-accent" id="demoBar" style="width:3%;transition:width .8s linear"></div>
+          </div>
+          <p class="f-note mt-4">This takes 30 to 60 seconds. Please keep the page open.</p>
+        </div>
+
+        <!-- 3 · ready. The script sends the browser there by itself; the
+             button is for the case where it may not. -->
+        <div data-demo-state="ready" hidden>
+          <h3 class="f-sec-h">Your blog is ready</h3>
+          <p class="f-body mt-4">We send you there now. Sign in as <b class="num">admin</b>. The first sign-in sets the password, so pick any password.</p>
+          <p class="f-note mt-3" id="demoExpiry"></p>
+          <a class="btn solid lg w-full mt-5" id="demoLink" href="#" data-track="demo_open">Open my blog</a>
+        </div>
+
+        <!-- 4 · every demo is in use -->
+        <div data-demo-state="busy" hidden>
+          <h3 class="f-sec-h" id="demoBusyTitle">All of them are in use</h3>
+          <p class="f-body mt-4" id="demoBusyText"></p>
+          <button class="btn lg w-full mt-5" type="button" data-demo-retry data-track="demo_retry">Try again</button>
+        </div>
+
+        <!-- 5 · it did not work -->
+        <div data-demo-state="failed" hidden>
+          <h3 class="f-sec-h">That did not work</h3>
+          <p class="f-body mt-4" id="demoFailText"></p>
+          <div class="btn-row mt-5">
+            <button class="btn lg" type="button" data-demo-retry data-track="demo_retry">Try again</button>
+            <a class="btn quiet lg" href="https://github.com/texttile-blog/texttile" data-track="demo_error_source">Tell us on GitHub</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== RUN IT ==================================== -->
   <section class="band" id="run">
     <div class="wrap sec grid gap-12 md:grid-cols-2">
@@ -320,6 +397,316 @@
     toTile(grid.children[4], false);
     setTimeout(tick, 1100);
     setInterval(tick, 4600);
+  })();
+</script>
+
+<script>
+  /* ==================================================================
+     THE DEMO BUTTON
+
+     Warper (github.com/texttile-blog/warper) creates one Texttile per
+     reader on Fly and destroys it when the hour is up. The whole
+     conversation is three steps, and only the middle one is slow:
+
+       1 · GET  /altcha/challenge   a hash puzzle, solved here
+       2 · POST /demo               waits while Fly starts the machine
+       3 · the reader is sent to the address that comes back
+
+     Step 2 keeps the request open until the new blog answers its own
+     first request, which is 30 to 60 seconds. Warper gives up at 60 and
+     answers with a reason; the abort here waits longer than that on
+     purpose, so the reader gets Warper's sentence and not the
+     browser's.
+     ================================================================== */
+  (function () {
+    var API = 'https://warper.texttile.blog';
+
+    /* Warper answers one address and refuses every other, so a copy of
+       this page on a laptop is blocked by the browser before the answer
+       is read. "We could not reach it" is true there and useless, so
+       the reason is named. A reader never sees this sentence. */
+    var HOME = 'https://www.texttile.blog';
+
+    /* how long a demo lives. It is one setting in Warper's admin, and
+       this is its copy: change the two words and every sentence on the
+       page that names the hour changes with it. */
+    var LIFETIME = 'one hour';
+
+    /* Warper's REQUEST_TIMEOUT_SECONDS is 60. This sits above it so
+       that the server's own answer always arrives first. */
+    var TIMEOUT_MS = 75000;
+
+    var form = document.getElementById('demoForm');
+    if (!form) return;
+
+    var card = form.closest('[data-demo-state]').parentNode;
+    var panels = card.querySelectorAll('[data-demo-state]');
+    var email = document.getElementById('demoEmail');
+    var consent = document.getElementById('demoConsent');
+    var submit = document.getElementById('demoSubmit');
+    var formError = document.getElementById('demoFormError');
+    var step = document.getElementById('demoStep');
+    var bar = document.getElementById('demoBar');
+    var expiry = document.getElementById('demoExpiry');
+    var link = document.getElementById('demoLink');
+    var busyTitle = document.getElementById('demoBusyTitle');
+    var busyText = document.getElementById('demoBusyText');
+    var failText = document.getElementById('demoFailText');
+    var timers = [];
+    var ticker = 0;
+
+    [].forEach.call(document.querySelectorAll('[data-demo-lifetime]'), function (el) {
+      el.textContent = LIFETIME;
+    });
+
+    function show(name) {
+      [].forEach.call(panels, function (p) {
+        p.hidden = p.getAttribute('data-demo-state') !== name;
+      });
+    }
+
+    function track(event, props) {
+      if (window.posthog && posthog.capture) posthog.capture(event, props || {});
+    }
+
+    function stopTimers() {
+      timers.forEach(clearTimeout);
+      timers = [];
+      clearInterval(ticker);
+    }
+
+    /* back to the form, with the button alive again */
+    function backToForm() {
+      stopTimers();
+      submit.disabled = false;
+      show('idle');
+    }
+
+    function fail(text, reason) {
+      failText.textContent = text;
+      show('failed');
+      track('demo_failed', { reason: reason });
+    }
+
+    /* the sentences of the wait. There is no progress to report, so the
+       page reports what is being done instead, and the bar under them
+       measures the minute it usually takes, nothing else. */
+    var STEPS = [
+      [0, 'We create your blog in a Frankfurt datacenter.'],
+      [7000, 'The container starts.'],
+      [16000, 'We wait for your blog to answer.'],
+      [28000, 'The first start is the slow part. Please wait.'],
+      [42000, 'Your blog is almost ready.'],
+      [58000, 'This one takes longer than usual. Please wait.']
+    ];
+
+    function runSteps() {
+      var started = Date.now();
+      STEPS.forEach(function (s) {
+        timers.push(setTimeout(function () { step.textContent = s[1]; }, s[0]));
+      });
+      /* the bar walks to 96 per cent over the minute and waits there.
+         It never reaches the end before the answer does. */
+      ticker = setInterval(function () {
+        var pct = Math.min(96, 3 + (Date.now() - started) / 62000 * 93);
+        bar.style.width = pct.toFixed(1) + '%';
+      }, 800);
+    }
+
+    /* ALTCHA · find the number that hashes to the challenge. It is a
+       few thousand SHA-256 rounds, which is a tenth of a second here
+       and expensive enough to be worth nobody's while at scale. */
+    function sha256(text) {
+      return crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)).then(function (buf) {
+        var out = '';
+        new Uint8Array(buf).forEach(function (b) { out += b.toString(16).padStart(2, '0'); });
+        return out;
+      });
+    }
+
+    function solve(challenge) {
+      var number = 0;
+      function next() {
+        if (number > challenge.maxnumber) return Promise.reject(new Error('unsolved'));
+        var mine = number++;
+        return sha256(challenge.salt + mine).then(function (hash) {
+          if (hash !== challenge.challenge) return next();
+          return btoa(JSON.stringify({
+            algorithm: challenge.algorithm,
+            challenge: challenge.challenge,
+            number: mine,
+            salt: challenge.salt,
+            signature: challenge.signature
+          }));
+        });
+      }
+      return next();
+    }
+
+    function call(path, options) {
+      var control = new AbortController();
+      var timer = setTimeout(function () { control.abort(); }, TIMEOUT_MS);
+      options = options || {};
+      options.signal = control.signal;
+      return fetch(API + path, options).then(function (response) {
+        clearTimeout(timer);
+        return response.json().catch(function () { return {}; }).then(function (body) {
+          return { status: response.status, body: body };
+        });
+      }, function (error) {
+        clearTimeout(timer);
+        throw error;
+      });
+    }
+
+    /* a file on a laptop has no origin at all, and "open on null" says
+       nothing to the person who put it there */
+    function here() {
+      var origin = window.location.origin;
+      return (!origin || origin === 'null') ? 'from a file' : 'on ' + origin;
+    }
+
+    function minutes(seconds) {
+      var m = Math.max(1, Math.ceil((seconds || 120) / 60));
+      return m === 1 ? 'a minute' : m + ' minutes';
+    }
+
+    function clock(iso) {
+      var at = new Date(iso);
+      if (isNaN(at)) return '';
+      return at.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    }
+
+    function claim() {
+      show('working');
+      step.textContent = 'We check that you are a person.';
+      bar.style.width = '3%';
+      track('demo_requested');
+
+      call('/altcha/challenge', { headers: { 'Accept': 'application/json' } })
+        .then(function (answer) {
+          if (answer.status !== 200 || !answer.body.challenge) throw new Error('no_challenge');
+          return solve(answer.body);
+        })
+        .then(function (proof) {
+          runSteps();
+          return call('/demo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: email.value.trim(),
+              contact_consent: true,
+              altcha: proof
+            })
+          });
+        })
+        .then(function (answer) {
+          stopTimers();
+          var body = answer.body || {};
+
+          if (answer.status === 201 && body.url) {
+            bar.style.width = '100%';
+            var at = clock(body.expires_at);
+            expiry.textContent = at
+              ? 'We delete it at ' + at + ', with everything in it.'
+              : 'We delete it after ' + LIFETIME + ', with everything in it.';
+            link.href = body.url;
+            show('ready');
+            track('demo_created', { url: body.url });
+            setTimeout(function () { window.location.href = body.url; }, 1400);
+            return;
+          }
+
+          if (body.error === 'at_capacity') {
+            busyTitle.textContent = 'All of them are in use';
+            busyText.textContent = 'Somebody else is writing in every demo blog we keep. '
+              + 'Each one lives for ' + LIFETIME + ', so one is free again soon. '
+              + 'Please try again in ' + minutes(body.retry_after_seconds) + '.';
+            show('busy');
+            track('demo_at_capacity');
+            return;
+          }
+
+          if (body.error === 'rate_limited') {
+            busyTitle.textContent = 'One demo at a time';
+            busyText.textContent = 'You started a demo blog from this connection a moment ago. '
+              + 'One at a time is the rule. Please try again in '
+              + minutes(body.retry_after_seconds) + '.';
+            show('busy');
+            track('demo_rate_limited');
+            return;
+          }
+
+          if (body.error === 'invalid_email') {
+            backToForm();
+            formError.textContent = 'Please check the address. We cannot read that one.';
+            formError.hidden = false;
+            email.focus();
+            return;
+          }
+
+          if (body.error === 'creation_timeout' || body.error === 'creation_failed') {
+            fail('We are sorry. Your blog did not start in time, and we removed it again. '
+              + 'Please try again in a minute. If this happens again, please tell us.',
+              body.error);
+            return;
+          }
+
+          fail('We are sorry. Something failed on our side, and we did not make a blog. '
+            + 'Please try again. You can also run the container yourself, one section down.',
+            body.error || String(answer.status));
+        })
+        .catch(function (error) {
+          stopTimers();
+          var aborted = error && error.name === 'AbortError';
+          var elsewhere = window.location.origin !== HOME;
+          fail(aborted
+            ? 'We are sorry. Your blog did not answer in time, and we stopped waiting. '
+              + 'We may have made it anyway. Please try again in a few minutes.'
+            : 'We are sorry. We could not reach the service that makes the blogs. '
+              + 'Please try again, or run the container yourself, one section down.'
+              + (elsewhere
+                ? ' This page is open ' + here() + '. The service answers only ' + HOME
+                  + ', so the demo works on the published page.'
+                : ''),
+            aborted ? 'timeout' : 'network');
+        });
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      formError.hidden = true;
+
+      if (!email.checkValidity() || !email.value.trim()) {
+        formError.textContent = 'Please write an email address we can answer.';
+        formError.hidden = false;
+        email.focus();
+        return;
+      }
+      if (!consent.checked) {
+        formError.textContent = 'Please agree to the line above. The blog is deleted after ' + LIFETIME + '.';
+        formError.hidden = false;
+        consent.focus();
+        return;
+      }
+      if (!window.crypto || !crypto.subtle) {
+        formError.textContent = 'This browser cannot solve the puzzle that stops the robots. '
+          + 'Please use a different browser.';
+        formError.hidden = false;
+        return;
+      }
+
+      submit.disabled = true;
+      claim();
+    });
+
+    [].forEach.call(card.querySelectorAll('[data-demo-retry]'), function (button) {
+      button.addEventListener('click', function () {
+        formError.hidden = true;
+        backToForm();
+        email.focus();
+      });
+    });
   })();
 </script>
 </html>
