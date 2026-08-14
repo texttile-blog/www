@@ -24,6 +24,14 @@ texttile.blog: one HTML file and the stylesheets it borrows from the app.
   again, so the product page and the product stay one design system.
 - The page is static, so it has no form to receive. The hosting section is a
   mailto link to klaus@texttile.blog instead.
+- One exception: the "Try it" section calls Warper at
+  `https://warper.texttile.blog` to start a demo instance for the reader. The
+  whole client is the last script in `index.html`. Its `TIMEOUT_MS` must stay
+  above Warper's `request_timeout_seconds`, so the server's own error wins over
+  a browser abort, and `LIFETIME` is the copy of Warper's `demo_ttl_minutes`:
+  one constant, and every sentence that names the hour reads it from there.
+  Warper answers only the origin in its settings, so the section cannot be
+  tested from `localhost` or from a file.
 - PostHog runs on `persistence: 'memory'`: no cookie, no local storage, no
   consent banner. Keep it that way, and do not read the visitor count as
   people.
