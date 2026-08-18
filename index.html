@@ -68,9 +68,9 @@
   <span class="site-desc">The Multiplayer Blog Engine</span>
   <nav class="site-nav" aria-label="Sections">
     <a href="#together" class="hide-sm">Writing together</a>
-    <a href="#does" class="hide-sm">What it does</a>
     <a href="#story" class="hide-sm">Why we made it</a>
     <a href="#try" data-track="nav_try">Try it</a>
+    <a href="#does" class="hide-sm">What it does</a>
     <a href="#run" data-track="nav_hosting">Hosting</a>
     <a class="btn sm hide-sm" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="nav_demo">Demo blog</a>
     <!-- the mark and the word: the code is one click from here, and so
@@ -207,59 +207,11 @@
     </div>
   </section>
 
-  <!-- ==================== DOES / NOTHING MORE ====================== -->
-  <section class="sec" id="does">
-    <div class="wrap">
-      <h2 class="f-h2">What it does, and what it leaves out.</h2>
-      <div class="grid gap-10 md:grid-cols-2 md:gap-14 mt-9">
-        <div>
-          <h3 class="f-eyebrow mb-5">It does this</h3>
-          <ul class="flist does">
-            <li><span><b>Everyone writes in the same entry.</b>One person has the text and types. The others read along as it happens, and can take it over with one tap.</span></li>
-            <li><span><b>You sort the gallery together.</b>Drag the tiles around, from as many phones as there are people. Each entry has one gallery, and the order you leave it in is the order readers see. Texttile keeps the order beside the picture, not inside it, so the file you uploaded stays the file you uploaded.</span></li>
-            <li><span><b>Videos, from your own server.</b>Drop one in and Texttile converts it once, into one MP4 every browser plays, with a poster frame. It converts one at a time and at the lowest priority, so the blog stays quick while it works. No player from anywhere else, and no account on a video site.</span></li>
-            <li><span><b>Markdown, saved while you type.</b>Paste or drop a photo into the text and it gets uploaded and inserted, the way GitHub does it.</span></li>
-            <li><span><b>Versions.</b>Save version keeps the title and text as they stand. You can see what changed word by word and put an old one back.</span></li>
-            <li><span><b>A log for every entry.</b>Who took the text over, which picture arrived, which tile moved, when it went live, which version was saved and which was put back.</span></li>
-            <li><span><b>Entries and pages.</b>Tags get their own archive page, and pages appear in the site menu on their own.</span></li>
-            <li><span><b>Publish today, or on a day you name.</b>A date in the future holds the entry back, and Texttile puts it live on that day by itself, subscriber mail included. Until then the entry's address answers only to somebody signed in.</span></li>
-            <li><span><b>English or German.</b>One language for the blog, picked in Settings. It reaches the reader pages, the admin area, the dates, the feed and every mail.</span></li>
-            <li><span><b>Comments, with no queue to work through.</b>A reader confirms their address once by mail, and everything they write afterwards appears at once. Switch the confirmation off and nothing waits at all. Admins can release, edit or bin a comment, and the bin holds it for 30 days. The spam filter is a honeypot, a timer and a rate limit.</span></li>
-            <li><span><b>An email when you publish, and a feed.</b>Readers subscribe once and confirm. Every mail carries the way off the list. The RSS feed at /feed.xml carries the whole entry.</span></li>
-            <li><span><b>Mail through the service you already have.</b>Name one of Resend, Postmark, Brevo, Amazon SES or plain SMTP, and the confirmations, the subscriber mail and the password reset go out through it. It is one variable and its key, and nothing else changes.</span></li>
-            <li><span><b>Views and readers, counted by the blog itself.</b>Per entry and for the whole site, with the pages readers arrived from. No cookie is set and none is read. A reader becomes one number for one day, drawn with a secret this server forgets every midnight.</span></li>
-            <li><span><b>One password for the whole blog.</b>A word you hand around, not a login. It guards the whole blog: no entry has a switch of its own. While it stands, there is no feed, because a feed reader cannot type a password.</span></li>
-            <li><span><b>The people who may write.</b>Environment variables in the configuration name them. The first sign-in of a name sets its password, its email address and the name shown over its work, so a forgotten password comes back by mail. Take a name out and its access ends at once, in every open browser.</span></li>
-            <li><span><b>One container, SQLite, photos as files.</b>Back up the folder and the blog is backed up, or let a machine of your own pull the whole installation on a schedule.</span></li>
-            <li><span><b>The look is one CSS file.</b>You edit it in Settings.</span></li>
-          </ul>
-        </div>
-        <!-- the rule runs the whole height of the section, and the short
-             list rides along it instead of running out halfway down -->
-        <div class="md:border-l md:border-rule md:pl-14">
-          <div class="md:sticky md:top-[78px]">
-            <h3 class="f-eyebrow mb-5">It leaves out</h3>
-            <ul class="flist nope">
-              <li>Plugins and a theme store.</li>
-              <li>A sign-up page and user roles to hand out.</li>
-              <li>A comment queue to work through.</li>
-              <li>Analytics scripts and a cookie banner.</li>
-              <li>Anything else to run: no CDN, no image host, no video platform, no captcha.</li>
-              <li>A build step and a laptop. You can write the whole thing on a phone.</li>
-              <li>AI.</li>
-            </ul>
-            <p class="f-body mt-7 pt-5 border-t border-hair text-dim">If the first list is what you need and you do not miss anything in the second, this will suit you. If you do miss something in the second, get Ghost or WordPress instead.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ==================== WHAT IT LOOKS LIKE ======================= -->
   <!-- the pictures are the app itself, cropped to the window: the admin
        area on the left column, the reader on the right, and the same
        blog once more on a phone. Exported from design/screenshots.sketch. -->
-  <section class="band border-b-0" id="looks">
+  <section id="looks">
     <div class="wrap sec">
       <h2 class="f-h2">What it looks like</h2>
       <p class="f-lead mt-3">The editor, an entry the way the reader sees it, the comments, and the numbers. And all of it fits in one hand.</p>
@@ -380,6 +332,54 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DOES / NOTHING MORE ====================== -->
+  <section class="sec border-t border-rule" id="does">
+    <div class="wrap">
+      <h2 class="f-h2">What it does, and what it leaves out.</h2>
+      <div class="grid gap-10 md:grid-cols-2 md:gap-14 mt-9">
+        <div>
+          <h3 class="f-eyebrow mb-5">It does this</h3>
+          <ul class="flist does">
+            <li><span><b>Everyone writes in the same entry.</b>One person has the text and types. The others read along as it happens, and can take it over with one tap.</span></li>
+            <li><span><b>You sort the gallery together.</b>Drag the tiles around, from as many phones as there are people. Each entry has one gallery, and the order you leave it in is the order readers see. Texttile keeps the order beside the picture, not inside it, so the file you uploaded stays the file you uploaded.</span></li>
+            <li><span><b>Videos, from your own server.</b>Drop one in and Texttile converts it once, into one MP4 every browser plays, with a poster frame. It converts one at a time and at the lowest priority, so the blog stays quick while it works. No player from anywhere else, and no account on a video site.</span></li>
+            <li><span><b>Markdown, saved while you type.</b>Paste or drop a photo into the text and it gets uploaded and inserted, the way GitHub does it.</span></li>
+            <li><span><b>Versions.</b>Save version keeps the title and text as they stand. You can see what changed word by word and put an old one back.</span></li>
+            <li><span><b>A log for every entry.</b>Who took the text over, which picture arrived, which tile moved, when it went live, which version was saved and which was put back.</span></li>
+            <li><span><b>Entries and pages.</b>Tags get their own archive page, and pages appear in the site menu on their own.</span></li>
+            <li><span><b>Publish today, or on a day you name.</b>A date in the future holds the entry back, and Texttile puts it live on that day by itself, subscriber mail included. Until then the entry's address answers only to somebody signed in.</span></li>
+            <li><span><b>English or German.</b>One language for the blog, picked in Settings. It reaches the reader pages, the admin area, the dates, the feed and every mail.</span></li>
+            <li><span><b>Comments, with no queue to work through.</b>A reader confirms their address once by mail, and everything they write afterwards appears at once. Switch the confirmation off and nothing waits at all. Admins can release, edit or bin a comment, and the bin holds it for 30 days. The spam filter is a honeypot, a timer and a rate limit.</span></li>
+            <li><span><b>An email when you publish, and a feed.</b>Readers subscribe once and confirm. Every mail carries the way off the list. The RSS feed at /feed.xml carries the whole entry.</span></li>
+            <li><span><b>Mail through the service you already have.</b>Name one of Resend, Postmark, Brevo, Amazon SES or plain SMTP, and the confirmations, the subscriber mail and the password reset go out through it. It is one variable and its key, and nothing else changes.</span></li>
+            <li><span><b>Views and readers, counted by the blog itself.</b>Per entry and for the whole site, with the pages readers arrived from. No cookie is set and none is read. A reader becomes one number for one day, drawn with a secret this server forgets every midnight.</span></li>
+            <li><span><b>One password for the whole blog.</b>A word you hand around, not a login. It guards the whole blog: no entry has a switch of its own. While it stands, there is no feed, because a feed reader cannot type a password.</span></li>
+            <li><span><b>The people who may write.</b>Environment variables in the configuration name them. The first sign-in of a name sets its password, its email address and the name shown over its work, so a forgotten password comes back by mail. Take a name out and its access ends at once, in every open browser.</span></li>
+            <li><span><b>One container, SQLite, photos as files.</b>Back up the folder and the blog is backed up, or let a machine of your own pull the whole installation on a schedule.</span></li>
+            <li><span><b>The look is one CSS file.</b>You edit it in Settings.</span></li>
+          </ul>
+        </div>
+        <!-- the rule runs the whole height of the section, and the short
+             list rides along it instead of running out halfway down -->
+        <div class="md:border-l md:border-rule md:pl-14">
+          <div class="md:sticky md:top-[78px]">
+            <h3 class="f-eyebrow mb-5">It leaves out</h3>
+            <ul class="flist nope">
+              <li>Plugins and a theme store.</li>
+              <li>A sign-up page and user roles to hand out.</li>
+              <li>A comment queue to work through.</li>
+              <li>Analytics scripts and a cookie banner.</li>
+              <li>Anything else to run: no CDN, no image host, no video platform, no captcha.</li>
+              <li>A build step and a laptop. You can write the whole thing on a phone.</li>
+              <li>AI.</li>
+            </ul>
+            <p class="f-body mt-7 pt-5 border-t border-hair text-dim">If the first list is what you need and you do not miss anything in the second, this will suit you. If you do miss something in the second, get Ghost or WordPress instead.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
