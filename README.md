@@ -99,7 +99,7 @@ PostHog (EU host). Three layers:
 - **Autocapture**, which PostHog does by itself: page view, page leave, and
   every click with the element it hit.
 - **`cta_click`**, one event for every link and button, with the `data-track`
-  name of the ones that matter (`hero_source`, `hosting_mail`, `run_demo` and
+  name of the ones that matter (`hero_try`, `hosting_mail`, `run_demo` and
   so on), plus the section it sits in and whether the target is outbound.
 - **Reading**: `section_viewed` per section, `scroll_depth` at 25/50/75/100,
   and `docker_command_copied` when somebody copies the `docker run` line.
