@@ -264,6 +264,21 @@
   }
 
   /* ==================================================================
+     THE SCREENSHOTS · the product photographed, not imitated: a window
+     without its browser, and a caption that says which room it is
+     ================================================================== */
+  .shot { margin: 0; }
+  .shot img {
+    display: block; width: 100%; height: auto;
+    border: 1px solid var(--tt-rule); border-radius: var(--tt-radius-pop);
+    box-shadow: 0 10px 26px rgb(var(--tt-shadow) / .10);
+    background: var(--tt-paper);
+  }
+  .shot figcaption { margin-top: 8px; font-size: 12.5px; line-height: 1.55; color: var(--tt-dim); }
+  /* a phone keeps the corners of the device it was taken on */
+  .shot.phone img { border-radius: 18px; }
+
+  /* ==================================================================
      CODE · the one place a monospace face is honest
      ================================================================== */
   .code {
