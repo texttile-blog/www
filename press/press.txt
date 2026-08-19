@@ -1,8 +1,7 @@
 TEXTTILE · PRESS KIT · www.texttile.blog/press.html
 
 The name
-  Texttile, one word, capital T, three t in all. Text plus tile:
-  an entry is text, and its gallery is tiles.
+  Texttile means: an entry is text, and its gallery is tiles.
 
 The line under the name
   The Multiplayer Blog Engine
@@ -47,7 +46,7 @@ The files
   mark/   the mark: adaptive, light and dark, as SVG and PNG
   shots/  ten screenshots as full-size PNG
 
-The rules
+Usage
   Use the words, the mark and the pictures in your coverage of
   Texttile. Do not change the mark, and do not say that we endorse
   you. The colors of the mark: ink #23201b, light ink #e9e5dd,
