@@ -10,6 +10,8 @@ framework: GitHub Pages serves the files as they lie here.
 | `index.html` | the page |
 | `privacy.html` | what the page counts, and what happens to the demo address |
 | `imprint.html` | the details of the law, and the address to reach a person |
+| `press.html` | the press kit as a page: the words, the mark and the pictures, each a file to take |
+| `press/` | what the press page hands out, and the whole of it once more as `texttile-press-kit.zip` |
 | `assets/css/base.css` | the app's element defaults: prose, inputs, focus ring, hairlines |
 | `assets/css/theme.css` | the app's theme: every colour, wash and radius, in one file of tokens |
 | `assets/css/theme-front.css` | six tokens the app has no use for: a band, a hero wash, a measure, a gutter |
@@ -70,6 +72,26 @@ Two numbers must agree with Warper:
 - `TIMEOUT_MS` is 75 seconds and must stay above Warper's
   `request_timeout_seconds` (60), so that the server's own reason arrives before
   the browser gives up.
+
+## The press kit
+
+`press.html` hands out four kinds of files, all under `press/`:
+
+- `press/press.txt`: the name, the two descriptions, the facts and the rules,
+  as plain text.
+- `press/mark/`: the mark with the ink fixed for a light and for a dark ground,
+  as SVG and as PNG at 1024 px. The adaptive original stays
+  `assets/img/texttile-mark.svg`. The PNGs come from
+  `rsvg-convert -w 1024 -h 1024`.
+- `press/shots/`: the nine screenshots as the original PNGs, restored from git
+  history (they left `shots/` for WebP in `8944594`), plus `writing-pair.png`:
+  the two writing shots stacked and labeled, so one picture shows both sides of
+  the same minute. Its WebP preview sits next to it, made with the same `cwebp`
+  line as the ones in `shots/`.
+- `press/texttile-press-kit.zip`: all of the above in one folder named
+  `texttile-press-kit`, with the adaptive mark copied in as
+  `texttile-mark-adaptive.svg`. There is no build step, so after changing a
+  file under `press/`, zip that folder layout again and commit the zip with it.
 
 ## Look at it
 
