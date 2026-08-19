@@ -78,6 +78,7 @@ for an hour and destroys it again. The whole client is the last script in
 
 - `main` is live. A push publishes the page. Never commit on `main`; every
   change starts on a branch.
+- Create the worktree at `../worktrees/<repository-folder-name>-<slug>`.
 - Branch names, commits and pull request text are English. Add no co-author and
   no generation trailer, and never name the tool that wrote the change.
 - Rebase onto the latest `main` before you open a pull request.
