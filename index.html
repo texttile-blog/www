@@ -315,8 +315,8 @@
         <h2 class="f-h2">Try it out</h2>
         <p class="f-lead mt-3">We start a Texttile for you in a Frankfurt datacenter and hand you the address. After <span data-demo-lifetime>one hour</span> we delete it again.</p>
         <ul class="flist does mt-7">
-          <li><span><b>It is yours.</b>The admin area is open. Write an entry, add photos, drag the tiles, publish it, change the look in Settings. Only the people you give the address to can see it.</span></li>
-          <li><span><b>Two people, one entry.</b>Send the address to a friend, or open it on a second phone. You are both signed in as admin, so you are both in the same entry. One of you types. The other reads each word as it arrives, and takes the text over with one tap. A screenshot cannot show this, so find a second pair of hands.</span></li>
+          <li><span><b>It is yours.</b>The admin account is yours, and the link that opens it is in your mail. Write an entry, add photos, drag the tiles, publish it, change the look in Settings. Only the people you give the address to can see it.</span></li>
+          <li><span><b>Two people, one entry.</b>Send the address to a friend, or open it on a second phone, and sign in there with the same address and password. You are both in the same entry. One of you types. The other reads each word as it arrives, and takes the text over with one tap. A screenshot cannot show this, so find a second pair of hands.</span></li>
           <li><span><b>Nothing to install.</b>No card, no account, no download. It starts in about a minute, and then you write.</span></li>
           <li><span><b>It ends by itself.</b>After <span data-demo-lifetime>one hour</span> we delete the blog and everything in it. There is nothing to cancel and nothing to pay.</span></li>
         </ul>
@@ -337,7 +337,7 @@
             </label>
             <p class="f-note mt-4 text-[var(--tt-accentloud)]" id="demoFormError" role="alert" hidden></p>
             <button class="btn solid lg w-full mt-5" type="submit" id="demoSubmit" data-track="demo_start">Start my demo blog</button>
-            <p class="f-note mt-3">We may write to you once, to ask what you think of it. Your address goes to nobody else.</p>
+            <p class="f-note mt-3">Your blog sends the sign-in link here, so use an address you can read now. We may write to you once, to ask what you think of it. It goes to nobody else.</p>
           </form>
         </div>
 
@@ -351,16 +351,18 @@
           <p class="f-note mt-4">This takes 30 to 60 seconds. Please keep the page open.</p>
         </div>
 
-        <!-- 3 · ready. Two doors, and the reader picks one: the desk to
-             write at, and the blog as the reader sees it. The page does
-             not send the browser anywhere by itself. Both links open a
-             new tab, so the two addresses stay here. -->
+        <!-- 3 · ready. The blog is up, but the admin account is not
+             open yet: it belongs to the address the reader typed, and
+             the blog mails the link that sets its password. So the mail
+             is the instruction here, and the one button is the blog as
+             a reader sees it. The page sends the browser nowhere by
+             itself; the link opens a new tab. -->
         <div data-demo-state="ready" hidden>
-          <h3 class="f-sec-h">Your test blog is ready</h3>
-          <p class="f-body mt-4">Start at the admin area. Sign in as <b class="num">admin</b>. The first sign-in sets the password, so pick any password.</p>
+          <h3 class="f-sec-h">Check your mail</h3>
+          <p class="f-body mt-4">We sent a link to <b id="demoAddress">your address</b>. Open it, choose a password, and you are in the admin area. That address is what you sign in with.</p>
           <p class="f-note mt-3" id="demoExpiry"></p>
-          <a class="btn solid lg w-full mt-5" id="demoAdminLink" href="#" target="_blank" rel="noopener" data-track="demo_open_admin">Open the admin area</a>
-          <a class="btn lg w-full mt-3" id="demoLink" href="#" target="_blank" rel="noopener" data-track="demo_open">Open the blog</a>
+          <a class="btn solid lg w-full mt-5" id="demoLink" href="#" target="_blank" rel="noopener" data-track="demo_open">Open the blog</a>
+          <p class="f-note mt-3">The mail comes from <span class="num">blog@warper.texttile.blog</span> and takes a moment. Look in the spam folder if it is not there.</p>
         </div>
 
         <!-- 4 · every demo is in use -->
@@ -491,8 +493,10 @@
 
        1 · GET  /altcha/challenge   a hash puzzle, solved here
        2 · POST /demo               waits while Fly starts the machine
-       3 · the address that comes back is put on two links, one to the
-           admin area and one to the blog. The reader opens them.
+       3 · the address that comes back is put on the link to the blog.
+           The admin account belongs to the address the reader typed,
+           and the new blog mails the link that sets its password, so
+           the page has nothing to hand over but the blog itself.
 
      Step 2 keeps the request open until the new blog answers its own
      first request, which is 30 to 60 seconds. Warper gives up at 60 and
@@ -531,7 +535,7 @@
     var bar = document.getElementById('demoBar');
     var expiry = document.getElementById('demoExpiry');
     var link = document.getElementById('demoLink');
-    var adminLink = document.getElementById('demoAdminLink');
+    var address = document.getElementById('demoAddress');
     var busyTitle = document.getElementById('demoBusyTitle');
     var busyText = document.getElementById('demoBusyText');
     var failText = document.getElementById('demoFailText');
@@ -654,12 +658,6 @@
       return m === 1 ? 'a minute' : m + ' minutes';
     }
 
-    /* the desk of a Texttile is one path under its own address, and
-       the address that comes back may end in a slash or not */
-    function admin(url) {
-      return url.replace(/\/+$/, '') + '/admin';
-    }
-
     function clock(iso) {
       var at = new Date(iso);
       if (isNaN(at)) return '';
@@ -700,7 +698,7 @@
               ? 'We delete it at ' + at + ', with everything in it.'
               : 'We delete it after ' + LIFETIME + ', with everything in it.';
             link.href = body.url;
-            adminLink.href = admin(body.url);
+            address.textContent = email.value.trim();
             show('ready');
             track('demo_created', { url: body.url });
             return;

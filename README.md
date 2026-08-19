@@ -48,15 +48,18 @@ whole client:
    request without `contact_consent: true`, so the page always sends it. The
    checkbox states the hour the blog lives, and the line under the button says
    what the address is used for.
-3. On `201`, show two links: the admin area at `<url>/admin`, where the reader
-   signs in as `admin` and the first sign-in sets the password, and the blog at
-   `url`. Both open in a new tab. The page sends the browser nowhere by itself.
+3. On `201`, ask the reader to check their mail, and show one link: the blog at
+   `url`, in a new tab. Warper hands the address to the new Texttile as its
+   first admin address, and the blog mails the one-time link that sets the
+   password. The account is not open yet, the address is the sign-in name, and
+   the page has no second door to offer. The page sends the browser nowhere by
+   itself.
 
 The answers the page knows:
 
 | Answer | What the reader sees |
 |---|---|
-| `201` | the hour it ends, a link to the admin area and a link to the blog, with the admin name |
+| `201` | check your mail, the address the link went to, the hour it ends, a link to the blog |
 | `503 at_capacity` | all demos are in use, try again in a few minutes |
 | `429 rate_limited` | one demo at a time from one connection, try again in N minutes |
 | `422 invalid_email` | back to the form, with the field named |
