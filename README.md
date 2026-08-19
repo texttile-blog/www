@@ -89,9 +89,8 @@ Two numbers must agree with Warper:
   the same minute. Its WebP preview sits next to it, made with the same `cwebp`
   line as the ones in `shots/`.
 - `press/texttile-press-kit.zip`: all of the above in one folder named
-  `texttile-press-kit`, with the adaptive mark copied in as
-  `texttile-mark-adaptive.svg`. There is no build step, so after changing a
-  file under `press/`, zip that folder layout again and commit the zip with it.
+  `texttile-press-kit`. There is no build step, so after changing a file under
+  `press/`, zip that folder layout again and commit the zip with it.
 
 ## Look at it
 

@@ -43,7 +43,7 @@ Facts
   Contact     klaus@texttile.blog
 
 The files
-  mark/   the mark: adaptive, light and dark, as SVG and PNG
+  mark/   the mark, light and dark, as SVG and PNG
   shots/  ten screenshots as full-size PNG
 
 Usage
