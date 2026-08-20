@@ -69,8 +69,8 @@ for an hour and destroys it again. The whole client is the last script in
   what happens to the demo address. Change it in the same commit as either one.
 - **`README.md` stays true.** It is the map of the files and the demo client.
 - **Phone and desktop.** Judge both screenshots together, phone first.
-- **Look at it.** Serve the folder with `python3 -m http.server 8000`. Opening
-  the file from disk works too.
+- **Look at it.** After every change, open the changed HTML file from disk in
+  the browser with `open`, no webserver. The pages work as plain files.
 - Avoid a CSS animation that repaints without end. The one animation on the page
   is the gallery mockup, and it stops for `prefers-reduced-motion`.
 
