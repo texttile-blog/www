@@ -41,12 +41,14 @@ My preferences in the moment beat anything written here.
 ## The demo, and the two numbers
 
 The "Try it" section is the one thing the page does. It calls Warper at
-`https://warper.texttile.blog`, which creates a real Texttile on Fly, keeps it
-for an hour and destroys it again. The whole client is the last script in
+`https://warper.texttile.blog`, which creates a real Texttile on Fly, runs it
+for 24 hours, stops it and deletes it 30 days later. A reader who writes to us
+inside those 30 days gets it back. The whole client is the last script in
 `index.html`.
 
 - `LIFETIME` is the copy of Warper's `demo_ttl_minutes`. It stands once, and
-  every sentence that names the hour reads it from there.
+  every sentence that names the lifetime reads it from there. The 30 days stand
+  in the sentences themselves.
 - `TIMEOUT_MS` must stay above Warper's `request_timeout_seconds`, so the
   server's own reason arrives before the browser gives up.
 - Warper answers only the origin in its settings, so the section cannot be
