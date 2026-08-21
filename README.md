@@ -17,6 +17,7 @@ framework: GitHub Pages serves the files as they lie here.
 | `assets/js/front-boot.js` | draws the tab icon from the live tokens |
 | `assets/js/analytics.js` | PostHog: the page view, every click, the sections read, the scroll depth |
 | `assets/img/texttile-mark.svg` | the mark, and the favicon before the script runs |
+| `assets/img/social-card.png` | the 1200 x 630 picture a link to the page shows on LinkedIn, Mastodon and the like: the mark, the words and the two screens |
 | `shots/` | the product photographed: the screenshots `index.html` shows, in WebP |
 | `design/screenshots.sketch` | the Sketch file the screenshots are cropped from. Export to PNG, then `cwebp -q 80 -m 6 -sharp_yuv` |
 
