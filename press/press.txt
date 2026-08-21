@@ -1,0 +1,53 @@
+TEXTTILE · PRESS KIT · www.texttile.blog/press.html
+
+The name
+  Texttile meaning: an entry is text, and its gallery is tiles.
+
+The line under the name
+  The Multiplayer Blog Engine
+
+The short form
+  One entry. Many authors. No conflicts.
+
+In fifty words
+  Texttile is a blog engine for more than one writer. Everyone on
+  the blog can be in the same entry at the same time, gallery of
+  photos and videos included. It ships as one Docker container with
+  SQLite inside, and needs no other service.
+
+In three paragraphs
+  Texttile is a blog engine built for writing together. Most
+  engines give an entry one author and a lock. Texttile gives it
+  company: everyone on the blog can open the same entry at the same
+  time. One person has the text and types, the others see the words
+  appear and can take the text over with one tap. The gallery is
+  never locked, so tiles move under everyone's hands at once.
+
+  An entry is text and tiles. The gallery holds photos and videos
+  in a square grid, and readers get a lightbox. Save version keeps
+  the title and the text as they stand, word by word. One password
+  can guard the whole blog: a word you hand around, not a login.
+
+  Texttile is open source, written in Elixir. It ships as one
+  Docker container with SQLite inside, and needs no other service.
+  The demo at www.texttile.blog starts a real Texttile and destroys
+  it an hour later.
+
+Facts
+  What        A blog engine for more than one writer, self-hosted
+  Ships as    One Docker container, SQLite inside, no other service
+  Written in  Elixir, open source
+  Source      https://github.com/texttile-blog/texttile
+  Demo        https://www.texttile.blog (a real Texttile for one hour)
+  Made by     Klaus Breyer, https://v01.io
+  Contact     klaus@texttile.blog
+
+The files
+  mark/   the mark, light and dark, as SVG and PNG
+  shots/  ten screenshots as full-size PNG
+
+Usage
+  Use the words, the mark and the pictures in your coverage of
+  Texttile. Do not change the mark, and do not say that we endorse
+  you. The colors of the mark: ink #23201b, light ink #e9e5dd,
+  accent #b6a2e4.
