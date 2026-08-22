@@ -39,9 +39,9 @@ framework: GitHub Pages serves the files as they lie here.
 ## The one thing the page does
 
 "Try it with a blog of your own" starts a real Texttile for the reader.
-[Warper](https://github.com/texttile-blog/warper) creates it on Fly, keeps it for
-one hour and destroys it again. The script at the foot of `index.html` is the
-whole client:
+[Warper](https://github.com/texttile-blog/warper) creates it on Fly, runs it for
+24 hours, stops it and deletes it 30 days later. The script at the foot of
+`index.html` is the whole client:
 
 1. `GET /altcha/challenge`, and solve the hash puzzle with Web Crypto. It is a
    few thousand SHA-256 rounds, about a tenth of a second.
@@ -49,8 +49,8 @@ whole client:
    request open while Fly starts the machine, so this takes 30 to 60 seconds.
    The page reports what is being done while it waits. Warper refuses the
    request without `contact_consent: true`, so the page always sends it. The
-   checkbox states the hour the blog lives, and the line under the button says
-   what the address is used for.
+   checkbox states the 24 hours the blog runs and the 30 days before it is
+   deleted, and the line under the button says what the address is used for.
 3. On `201`, ask the reader to check their mail, and show one link: the blog at
    `url`, in a new tab. Warper hands the address to the new Texttile as its
    first admin address, and the blog mails the one-time link that sets the
@@ -62,7 +62,7 @@ The answers the page knows:
 
 | Answer | What the reader sees |
 |---|---|
-| `201` | check your mail, the address the link went to, the hour it ends, a link to the blog |
+| `201` | check your mail, the address the link went to, the day and hour it stops, a link to the blog |
 | `503 at_capacity` | all demos are in use, try again in a few minutes |
 | `429 rate_limited` | one demo at a time from one connection, try again in N minutes |
 | `422 invalid_email` | back to the form, with the field named |
@@ -70,9 +70,10 @@ The answers the page knows:
 
 Two numbers must agree with Warper:
 
-- `LIFETIME` is the copy of `demo_ttl_minutes`. It stands once in the script and
-  every sentence on the page that names the hour reads it from there. When the
-  setting moves to 24 hours, change those two words.
+- `LIFETIME` is the copy of `demo_ttl_minutes`, which is 1440. It stands once in
+  the script and every sentence on the page that names the lifetime reads it
+  from there. The 30 days that Warper keeps a stopped demo stand in the
+  sentences themselves, because nothing else on the page needs the number.
 - `TIMEOUT_MS` is 75 seconds and must stay above Warper's
   `request_timeout_seconds` (60), so that the server's own reason arrives before
   the browser gives up.

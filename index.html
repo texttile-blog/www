@@ -317,12 +317,12 @@
     <div class="wrap grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:items-start">
       <div>
         <h2 class="f-h2">Try it out</h2>
-        <p class="f-lead mt-3">We start a Texttile for you in a Frankfurt datacenter and hand you the address. After <span data-demo-lifetime>one hour</span> we delete it again.</p>
+        <p class="f-lead mt-3">We start a Texttile for you in a Frankfurt datacenter and hand you the address. It is yours for <span data-demo-lifetime>24 hours</span>. Then it stops.</p>
         <ul class="flist does mt-7">
           <li><span><b>It is yours.</b>The admin account is yours, and the link that opens it is in your mail. Write an entry, add photos, drag the tiles, publish it, change the look in Settings. Only the people you give the address to can see it.</span></li>
           <li><span><b>Two people, one entry.</b>Send the address to a friend, or open it on a second phone, and sign in there with the same address and password. You are both in the same entry. One of you types. The other reads each word as it arrives, and takes the text over with one tap. A screenshot cannot show this, so find a second pair of hands.</span></li>
           <li><span><b>Nothing to install.</b>No card, no account, no download. It starts in about a minute, and then you write.</span></li>
-          <li><span><b>It ends by itself.</b>After <span data-demo-lifetime>one hour</span> we delete the blog and everything in it. There is nothing to cancel and nothing to pay.</span></li>
+          <li><span><b>It ends by itself.</b>After <span data-demo-lifetime>24 hours</span> the blog stops, and 30 days later we delete it with everything in it. <a class="link" href="mailto:klaus@texttile.blog" data-track="demo_keep_mail">Write to us</a> inside those 30 days and we start it again and keep it. There is nothing to cancel and nothing to pay.</span></li>
         </ul>
       </div>
 
@@ -337,7 +337,7 @@
             <input class="mt-1" id="demoEmail" type="email" name="email" autocomplete="email" placeholder="you@example.com" spellcheck="false" required>
             <label class="f-note flex items-start gap-2.5 mt-4">
               <input type="checkbox" id="demoConsent" class="mt-[3px] flex-none accent-[var(--tt-accent)]" required>
-              <span>I understand that this blog and everything in it is deleted after <span data-demo-lifetime>one hour</span>.</span>
+              <span>I understand that this blog stops after <span data-demo-lifetime>24 hours</span>, and that we delete it with everything in it 30 days later.</span>
             </label>
             <p class="f-note mt-4 text-[var(--tt-accentloud)]" id="demoFormError" role="alert" hidden></p>
             <button class="btn solid lg w-full mt-5" type="submit" id="demoSubmit" data-track="demo_start">Start my demo blog</button>
@@ -493,8 +493,9 @@
      THE DEMO BUTTON
 
      Warper (github.com/texttile-blog/warper) creates one Texttile per
-     reader on Fly and destroys it when the hour is up. The whole
-     conversation is three steps, and only the middle one is slow:
+     reader on Fly, stops it when the day is up and deletes it 30 days
+     later. The whole conversation is three steps, and only the middle
+     one is slow:
 
        1 · GET  /altcha/challenge   a hash puzzle, solved here
        2 · POST /demo               waits while Fly starts the machine
@@ -518,10 +519,12 @@
        the reason is named. A reader never sees this sentence. */
     var HOME = 'https://www.texttile.blog';
 
-    /* how long a demo lives. It is one setting in Warper's admin, and
+    /* how long a demo runs. It is one setting in Warper's admin, and
        this is its copy: change the two words and every sentence on the
-       page that names the hour changes with it. */
-    var LIFETIME = 'one hour';
+       page that names the lifetime changes with it. The 30 days that
+       follow are Warper's retention, and they stand in the sentences
+       themselves. */
+    var LIFETIME = '24 hours';
 
     /* Warper's REQUEST_TIMEOUT_SECONDS is 60. This sits above it so
        that the server's own answer always arrives first. */
@@ -663,10 +666,17 @@
       return m === 1 ? 'a minute' : m + ' minutes';
     }
 
-    function clock(iso) {
+    /* a demo lives a day, so the time alone would name an hour without
+       a day. Today and tomorrow are the two answers Warper gives. */
+    function when(iso) {
       var at = new Date(iso);
       if (isNaN(at)) return '';
-      return at.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+      var time = at.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+      var now = new Date();
+      var next = new Date(now.getTime() + 86400000);
+      if (at.toDateString() === now.toDateString()) return 'today at ' + time;
+      if (at.toDateString() === next.toDateString()) return 'tomorrow at ' + time;
+      return at.toLocaleDateString([], { day: 'numeric', month: 'long' }) + ' at ' + time;
     }
 
     function claim() {
@@ -698,10 +708,11 @@
 
           if (answer.status === 201 && body.url) {
             bar.style.width = '100%';
-            var at = clock(body.expires_at);
-            expiry.textContent = at
-              ? 'We delete it at ' + at + ', with everything in it.'
-              : 'We delete it after ' + LIFETIME + ', with everything in it.';
+            var at = when(body.expires_at);
+            expiry.textContent = (at
+              ? 'It stops ' + at + '.'
+              : 'It stops after ' + LIFETIME + '.')
+              + ' We delete it 30 days later, with everything in it.';
             link.href = body.url;
             address.textContent = email.value.trim();
             show('ready');
@@ -712,8 +723,9 @@
           if (body.error === 'at_capacity') {
             busyTitle.textContent = 'All of them are in use';
             busyText.textContent = 'Somebody else is writing in every demo blog we keep. '
-              + 'Each one lives for ' + LIFETIME + ', so one is free again soon. '
-              + 'Please try again in ' + minutes(body.retry_after_seconds) + '.';
+              + 'Each one lives for ' + LIFETIME + ', so this can take a while. '
+              + 'Please try again in ' + minutes(body.retry_after_seconds) + ', '
+              + 'or run the container yourself, one section down.';
             show('busy');
             track('demo_at_capacity');
             return;
@@ -776,7 +788,7 @@
         return;
       }
       if (!consent.checked) {
-        formError.textContent = 'Please agree to the line above. The blog is deleted after ' + LIFETIME + '.';
+        formError.textContent = 'Please agree to the line above. The blog stops after ' + LIFETIME + '.';
         formError.hidden = false;
         consent.focus();
         return;

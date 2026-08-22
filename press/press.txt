@@ -30,15 +30,15 @@ In three paragraphs
 
   Texttile is open source, written in Elixir. It ships as one
   Docker container with SQLite inside, and needs no other service.
-  The demo at www.texttile.blog starts a real Texttile and destroys
-  it an hour later.
+  The demo at www.texttile.blog starts a real Texttile. It runs for
+  24 hours, then it stops.
 
 Facts
   What        A blog engine for more than one writer, self-hosted
   Ships as    One Docker container, SQLite inside, no other service
   Written in  Elixir, open source
   Source      https://github.com/texttile-blog/texttile
-  Demo        https://www.texttile.blog (a real Texttile for one hour)
+  Demo        https://www.texttile.blog (a real Texttile for 24 hours)
   Made by     Klaus Breyer, https://v01.io
   Contact     klaus@texttile.blog
 
