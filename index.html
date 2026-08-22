@@ -33,21 +33,6 @@
 <link rel="stylesheet" href="assets/css/front.css">
 <script src="assets/js/front-boot.js"></script>
 <script src="assets/js/analytics.js"></script>
-<script>
-  // The writing video plays once when it comes into view, muted, and never
-  // for a reader who asked for reduced motion. Until then only the poster
-  // loads, so the page costs a slow line nothing extra.
-  (function () {
-    var v = document.getElementById('writingVideo');
-    if (!v || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var io = new IntersectionObserver(function (entries) {
-      if (!entries[0].isIntersecting) return;
-      io.disconnect();
-      v.play().catch(function () {});
-    }, { threshold: 0.5 });
-    io.observe(v);
-  })();
-</script>
 <style type="text/tailwindcss">
   @theme inline {
     --font-sans: var(--tt-font-sans);
@@ -819,6 +804,21 @@
         email.focus();
       });
     });
+  })();
+</script>
+<script>
+  // The writing video plays once when it comes into view, muted, and never
+  // for a reader who asked for reduced motion. Until then only the poster
+  // loads, so the page costs a slow line nothing extra.
+  (function () {
+    var v = document.getElementById('writingVideo');
+    if (!v || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var io = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      v.play().catch(function () {});
+    }, { threshold: 0.5 });
+    io.observe(v);
   })();
 </script>
 </html>
