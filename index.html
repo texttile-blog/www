@@ -33,6 +33,21 @@
 <link rel="stylesheet" href="assets/css/front.css">
 <script src="assets/js/front-boot.js"></script>
 <script src="assets/js/analytics.js"></script>
+<script>
+  // The writing video plays once when it comes into view, muted, and never
+  // for a reader who asked for reduced motion. Until then only the poster
+  // loads, so the page costs a slow line nothing extra.
+  (function () {
+    var v = document.getElementById('writingVideo');
+    if (!v || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var io = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      v.play().catch(function () {});
+    }, { threshold: 0.5 });
+    io.observe(v);
+  })();
+</script>
 <style type="text/tailwindcss">
   @theme inline {
     --font-sans: var(--tt-font-sans);
@@ -178,24 +193,17 @@
         </div>
       </div>
 
-      <!-- the proof: the same entry in two browsers, the same minute -->
-      <div class="grid gap-6 mt-12">
-        <div>
-          <p class="f-eyebrow mb-2">Your screen</p>
-          <figure class="shot">
-            <img src="shots/writing-you.webp" width="1407" height="311" loading="lazy"
-                 alt="The editor while you write. The banner says: You are writing. Julia Demo reads along and sees it as you type.">
-          </figure>
-        </div>
-        <div>
-          <p class="f-eyebrow mb-2">The other person, the same minute</p>
-          <figure class="shot">
-            <img src="shots/writing-other.webp" width="1408" height="311" loading="lazy"
-                 alt="The same entry on the other side. The banner says: Klaus Demo is writing. The title and the body are read-only for you until they stop.">
-            <figcaption>The same entry in two browsers. One writes, the other reads along and can take the text over with one tap.</figcaption>
-          </figure>
-        </div>
-      </div>
+      <!-- the proof: the same entry in two browsers, the same minute. The
+           video plays once, muted, when it scrolls into view, and not at
+           all when the reader asked for reduced motion. -->
+      <figure class="shot square mt-12">
+        <video id="writingVideo" muted playsinline preload="none" poster="videos/writing.webp" width="1080" height="1080">
+          <source src="videos/writing.mp4" type="video/mp4">
+          <img src="videos/writing.webp" width="1080" height="1080" loading="lazy"
+               alt="Two browser windows, the same entry. In the top one a person types; in the bottom one the other person reads the words as they arrive, then takes the text over.">
+        </video>
+        <figcaption>The same entry in two browsers, the same minute. One writes, the other reads along and takes the text over with one tap.</figcaption>
+      </figure>
     </div>
   </section>
 
