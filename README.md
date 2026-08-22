@@ -21,6 +21,9 @@ framework: GitHub Pages serves the files as they lie here.
 | `assets/img/texttile-mark.svg` | the mark, and the favicon before the script runs |
 | `assets/img/social-card.png` | the 1200 x 630 picture a link to the page shows on LinkedIn, Mastodon and the like: the mark, the words and the two screens |
 | `shots/` | the product photographed: the screenshots `index.html` shows, in WebP |
+| `videos/writing.mp4` | the product filmed: two browsers, one entry, one takes the text over. 1080 x 1080, 27 seconds, no sound, H.264 |
+| `videos/writing.webp` | the first frame of that video, shown until it plays |
+| `videos/*.mov` | the screen recordings the video is cut from. Not in the repository; `ffmpeg -i writing.mov -an -vf scale=1080:1080,fps=30 -c:v libx264 -crf 27 -preset slow -movflags +faststart writing.mp4` |
 | `design/screenshots.sketch` | the Sketch file the screenshots are cropped from. Export to PNG, then `cwebp -q 80 -m 6 -sharp_yuv` |
 
 ## Where it points
