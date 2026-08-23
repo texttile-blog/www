@@ -91,11 +91,10 @@ Two numbers must agree with Warper:
   as SVG and as PNG at 1024 px. The adaptive original stays
   `assets/img/texttile-mark.svg`. The PNGs come from
   `rsvg-convert -w 1024 -h 1024`.
-- `press/shots/`: the nine screenshots as the original PNGs, restored from git
-  history (they left `shots/` for WebP in `8944594`), plus `writing-pair.png`:
-  the two writing shots stacked and labeled, so one picture shows both sides of
-  the same minute. Its WebP preview sits next to it, made with the same `cwebp`
-  line as the ones in `shots/`.
+- `press/shots/`: the nine screenshots as original PNG files, plus
+  `writing-pair.png`. This file stacks and labels the two writing screenshots,
+  so one picture shows both sides of the same minute. Its WebP preview sits next
+  to it, made with the same `cwebp` line as the files in `shots/`.
 - `press/texttile-press-kit.zip`: all of the above in one folder named
   `texttile-press-kit`. There is no build step, so after changing a file under
   `press/`, zip that folder layout again and commit the zip with it.
