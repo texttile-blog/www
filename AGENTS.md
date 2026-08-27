@@ -86,8 +86,8 @@ inside those 30 days gets it back. The whole client is the last script in
 - Rebase onto the latest `main` before you open a pull request.
 - Open a normal pull request, never a draft: a draft gets no review bot. Title
   in plain language, body with the problem in a sentence or two and then how you
-  solved it. End with the model and the harness that did the work. A visible
-  change carries before and after images.
+  solved it. End with the model and the harness that did the work. Describe a
+  visible change in words; commit no screenshots for a pull request.
 - One concern per pull request. If the description says "also", split it.
 - Never merge. Merging is my decision.
 
