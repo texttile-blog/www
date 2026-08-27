@@ -112,6 +112,9 @@
     letter-spacing: -.01em; color: var(--tt-ink); text-decoration: none;
   }
   .site-mark svg { color: var(--tt-ink); }
+  /* the "tile" in the wordmark wears the colour of the mark's last
+     tile, so word and mark tell the same story */
+  .site-mark .tile { color: var(--tt-accentsoft); }
   /* the site description, as it stands in Settings. It is the whole
      positioning line, and it costs no chrome */
   .site-desc {
