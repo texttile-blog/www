@@ -389,37 +389,30 @@
   <!-- ==================== RUN IT ==================================== -->
   <section class="band" id="run">
     <div class="wrap sec">
-      <div class="grid gap-12 md:grid-cols-2">
-        <div>
-          <h2 class="f-h2">Run it yourself</h2>
-          <p class="f-body mt-3">Texttile is one Docker container. The database, the original photos and videos, and the smaller copies it makes for the web all sit in one folder next to it. Updating means pulling the new image.</p>
-          <pre class="code mt-5"><code>docker run -d --name texttile \
+      <div class="max-w-[62ch]">
+        <h2 class="f-h2">Run it yourself</h2>
+        <p class="f-body mt-3">Texttile is one Docker container. The database, the original photos and videos, and the smaller copies it makes for the web all sit in one folder next to it. Updating means pulling the new image.</p>
+        <pre class="code mt-5"><code>docker run -d --name texttile \
   -p 4000:4000 \
   -v texttile-data:/data \
   -e SECRET_KEY_BASE="$(openssl rand -base64 48)" \
   -e PHX_HOST=blog.example.com \
   -e ADMIN_USERS=you,julia \
   ghcr.io/texttile-blog/texttile:latest</code></pre>
-          <p class="f-note mt-3">Those environment variables are the whole setup: who can write, the address the blog answers on, and one secret. If the blog is to send mail, add <span class="num">MAIL_ADAPTER</span> and its key. Everything you might change later is in Settings, and nothing there has a Save button.</p>
-          <p class="f-note mt-3">Coming from somewhere else: Settings takes a zip of your old blog, one folder per entry, and reports what it found before it imports anything.</p>
-          <div class="btn-row mt-6">
-            <a class="btn solid lg" href="https://github.com/texttile-blog/texttile" data-track="run_source">Get the source</a>
-            <a class="btn lg" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="run_demo">See the demo blog</a>
-          </div>
-        </div>
-        <div>
-          <h2 class="f-h2">Or let me run it</h2>
-          <p class="f-body mt-3">You bring a domain. I set your blog up on my server, by hand, and send an invoice every month. The contract runs twelve months at least. Ask and you get a copy of all your data.</p>
-          <p class="f-body mt-3">Name the package and the blog. I answer within two days.</p>
-          <div class="btn-row mt-6">
-            <a class="btn solid lg" href="mailto:klaus@texttile.blog?subject=Hosting%20a%20Texttile%20blog" data-track="hosting_mail">Write to klaus@texttile.blog</a>
-          </div>
+        <p class="f-note mt-3">Those environment variables are the whole setup: who can write, the address the blog answers on, and one secret. If the blog is to send mail, add <span class="num">MAIL_ADAPTER</span> and its key. Everything you might change later is in Settings, and nothing there has a Save button.</p>
+        <p class="f-note mt-3">Coming from somewhere else: Settings takes a zip of your old blog, one folder per entry, and reports what it found before it imports anything.</p>
+        <div class="btn-row mt-6">
+          <a class="btn solid lg" href="https://github.com/texttile-blog/texttile" data-track="run_source">Get the source</a>
+          <a class="btn lg" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="run_demo">See the demo blog</a>
         </div>
       </div>
 
+      <h2 class="f-h2 mt-16 pt-12 border-t border-rule">Or let me run it</h2>
+      <p class="f-body mt-3">You bring a domain. I set your blog up on my server, by hand, and send an invoice every month. The contract runs twelve months at least. Ask and you get a copy of all your data.</p>
+
       <!-- the packages: the figure table of the Stats screen, four
            machines across, one line per thing that differs -->
-      <div class="tscroll mt-12">
+      <div class="tscroll mt-9">
         <table class="ptable">
           <thead>
             <tr>
@@ -441,6 +434,10 @@
         </table>
       </div>
       <p class="f-note mt-4">Photo blog has no video. Converting one needs the bigger machines. Prices include VAT.</p>
+      <div class="btn-row mt-6">
+        <a class="btn solid lg" href="mailto:klaus@texttile.blog?subject=Hosting%20a%20Texttile%20blog" data-track="hosting_mail">Write to klaus@texttile.blog</a>
+        <span class="f-note">Name the package and the blog. I answer within two days.</span>
+      </div>
 
       <!-- the two things that cost once -->
       <div class="grid gap-10 md:grid-cols-2 md:gap-14 mt-12 pt-8 border-t border-rule">
