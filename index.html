@@ -388,8 +388,8 @@
 
   <!-- ==================== RUN IT ==================================== -->
   <section class="band" id="run">
-    <div class="wrap sec grid gap-12 md:grid-cols-2">
-      <div>
+    <div class="wrap sec">
+      <div class="max-w-[62ch]">
         <h2 class="f-h2">Run it yourself</h2>
         <p class="f-body mt-3">Texttile is one Docker container. The database, the original photos and videos, and the smaller copies it makes for the web all sit in one folder next to it. Updating means pulling the new image.</p>
         <pre class="code mt-5"><code>docker run -d --name texttile \
@@ -406,12 +406,50 @@
           <a class="btn lg" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="run_demo">See the demo blog</a>
         </div>
       </div>
-      <div>
-        <h2 class="f-h2">Or let us run it</h2>
-        <p class="f-body mt-3">Same software, one instance per blog, on our machines. Your domain in front of it, and a copy of all your data whenever you ask. Small monthly invoice, cancel whenever you like.</p>
-        <p class="f-body mt-3">Write us a line about the blog you have in mind and we answer in a day or two.</p>
-        <div class="btn-row mt-6">
-          <a class="btn solid lg" href="mailto:klaus@texttile.blog?subject=Hosting%20a%20Texttile%20blog" data-track="hosting_mail">Write to klaus@texttile.blog</a>
+
+      <h2 class="f-h2 mt-16 pt-12 border-t border-rule">Or let me run it</h2>
+      <p class="f-body mt-3">You bring a domain. I set your blog up on my server, by hand, and send an invoice every month. The contract runs twelve months at least. Ask and you get a copy of all your data.</p>
+
+      <!-- the packages: the figure table of the Stats screen, four
+           machines across, one line per thing that differs -->
+      <div class="tscroll mt-9" tabindex="0">
+        <table class="ptable">
+          <thead>
+            <tr>
+              <th scope="col"><span class="sr-only">What differs</span></th>
+              <th scope="col"><div class="tier">Photo blog</div><div class="price num">10 € <small>/ month</small></div></th>
+              <th scope="col"><div class="tier">Video blog</div><div class="price num">25 € <small>/ month</small></div><div class="f-note">What the demo runs on</div></th>
+              <th scope="col"><div class="tier">Big video blog</div><div class="price num">50 € <small>/ month</small></div></th>
+              <th scope="col"><div class="tier">Dedicated machine</div><div class="price">On request</div></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Storage</th><td>5 GB</td><td>10 GB</td><td>50 GB</td><td>As agreed</td></tr>
+            <tr><th scope="row">Bandwidth</th><td>10 GB</td><td>10 GB</td><td>100 GB</td><td>1 TB</td></tr>
+            <tr><th scope="row">CPU</th><td>1 shared</td><td>4 shared</td><td>8 shared</td><td>Guaranteed</td></tr>
+            <tr><th scope="row">Memory</th><td>512 MB</td><td>1 GB</td><td>2 GB</td><td>Guaranteed</td></tr>
+            <tr><th scope="row">Backups kept</th><td>30 days</td><td>90 days</td><td>1 year</td><td>As agreed</td></tr>
+            <tr><th scope="row">Videos</th><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="f-note mt-4">Prices include VAT.</p>
+      <div class="btn-row mt-6">
+        <a class="btn solid lg" href="mailto:klaus@texttile.blog?subject=Hosting%20a%20Texttile%20blog" data-track="hosting_mail">Write to klaus@texttile.blog</a>
+        <span class="f-note">Name the package and the blog. I answer within two days.</span>
+      </div>
+
+      <!-- the two things that cost once -->
+      <div class="grid gap-10 md:grid-cols-2 md:gap-14 mt-12 pt-8 border-t border-rule">
+        <div>
+          <h3 class="tier">Setup on your own server <span class="price once num">100 € <small>once</small></span></h3>
+          <p class="f-body mt-3">I install Texttile on your server: Docker, domain, mail, a backup script to a machine at home, your first admin. One hour on a call or by mail. Then it is yours: no subscription, no support contract. Updates are yours too, pull and restart, as the README says. For people who want control but not the evening it costs.</p>
+          <a class="btn mt-5" href="mailto:klaus@texttile.blog?subject=Setting%20up%20Texttile%20on%20my%20server" data-track="hosting_setup">Book a setup</a>
+        </div>
+        <div>
+          <h3 class="tier">Migration from your old blog <span class="price once num">100 € <small>once</small></span></h3>
+          <p class="f-body mt-3">I move your entries, photos and videos from your old blog into Texttile, whatever it runs on. You see what arrived before anything goes live.</p>
+          <a class="btn mt-5" href="mailto:klaus@texttile.blog?subject=Moving%20my%20blog%20to%20Texttile" data-track="hosting_migration">Book a migration</a>
         </div>
       </div>
     </div>

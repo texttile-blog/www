@@ -15,7 +15,7 @@ framework: GitHub Pages serves the files as they lie here.
 | `assets/css/base.css` | the app's element defaults: prose, inputs, focus ring, hairlines |
 | `assets/css/theme.css` | the app's theme: every colour, wash and radius, in one file of tokens |
 | `assets/css/theme-front.css` | six tokens the app has no use for: a band, a hero wash, a measure, a gutter |
-| `assets/css/front.css` | what the app does not have: header, hero, bands, the two lists, the mockup |
+| `assets/css/front.css` | what the app does not have: header, hero, bands, the two lists, the packages table, the mockup |
 | `assets/js/front-boot.js` | draws the tab icon from the live tokens |
 | `assets/js/analytics.js` | PostHog: the page view, every click, the sections read, the scroll depth |
 | `assets/img/texttile-mark.svg` | the mark, and the favicon before the script runs |
@@ -36,8 +36,9 @@ framework: GitHub Pages serves the files as they lie here.
   `assets/js/analytics.js` and to the demo client, so change it with them.
 - Imprint: `imprint.html`, in the same stylesheets. Name, address, mail, the
   person who answers for the content, and the two paragraphs the law asks for.
-- Hosting: the "Or let us run it" button is a mailto link to <klaus@texttile.blog>.
-  The page is static, so there is nothing to receive a form.
+- Hosting: "Or let me run it" is a table of four packages and two things that
+  cost once. Every button is a mailto link to <klaus@texttile.blog>. The page is
+  static, so there is nothing to receive a form.
 
 ## The one thing the page does
 
