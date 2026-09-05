@@ -55,7 +55,7 @@
   }
 </style>
 
-<header class="site-head">
+<header class="site-head site-head-home">
   <a class="site-mark" href="#top">
     <svg width="21" height="21" viewBox="0 0 43 43" aria-hidden="true">
       <rect x="0" y="0"    width="43" height="3.5" rx="1.75" fill="currentColor"/>
@@ -69,18 +69,19 @@
     <span>Text<span class="tile">tile</span></span>
   </a>
   <span class="site-desc">The Multiplayer Blog Engine</span>
-  <nav class="site-nav" aria-label="Sections">
-    <a href="#together" class="hide-sm">Writing together</a>
-    <a href="#story" class="hide-sm">Why I made it</a>
-    <a href="#does" class="hide-sm">What it does</a>
-    <a href="#try" data-track="nav_try">Try it</a>
-    <a href="#run" data-track="nav_hosting">Hosting</a>
-    <a class="btn sm hide-sm" href="press.html" data-track="nav_press">Press kit</a>
-    <a class="btn sm hide-sm" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="nav_demo">Demo blog</a>
-    <!-- the mark and the word: the code is one click from here, and so
-         is the star -->
-    <a class="btn sm" href="https://github.com/texttile-blog/texttile" target="_blank" rel="noopener"
-       title="Texttile on GitHub" aria-label="Texttile on GitHub, where you can star it" data-track="nav_source"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="flex-none"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Source</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="site-nav-group hide-sm">
+      <a href="#together" class="hide-md">Writing together</a>
+      <a href="#story" class="hide-md">Why I made it</a>
+      <a href="#does" class="hide-md">What it does</a>
+      <a href="#run" data-track="nav_hosting">Hosting</a>
+    </div>
+    <div class="site-nav-group site-nav-actions">
+      <a href="press.html" class="btn hide-md" data-track="nav_press">Press kit</a>
+      <a class="btn hide-sm" href="https://github.com/texttile-blog/texttile" target="_blank" rel="noopener"
+         aria-label="Texttile source on GitHub (opens in a new tab)" data-track="nav_source"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="flex-none"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Source <span aria-hidden="true">↗</span></a>
+      <a class="btn solid" href="#try" data-track="nav_try">Try Texttile</a>
+    </div>
   </nav>
 </header>
 
@@ -93,8 +94,8 @@
         <h1 class="f-h1">One entry.<br>Many authors.<br><span class="f-accent">No conflicts.</span></h1>
         <p class="f-lead mt-5">Texttile is a blog engine for more than one writer. Everyone on the blog can be in the same entry at the same time, photos and videos included. One of you drags a picture into place, and the others watch it move.</p>
         <div class="btn-row mt-7">
-          <a class="btn solid lg" href="#try" data-track="hero_try">Try it out!</a>
-          <a class="btn lg" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="hero_demo">See a demo blog</a>
+          <a class="btn solid lg" href="#try" data-track="hero_try">Try Texttile</a>
+          <a class="link" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="hero_demo">See an example blog <span aria-hidden="true">↗</span></a>
         </div>
         <p class="f-note mt-5"><a class="link" href="https://github.com/texttile-blog/texttile" data-track="hero_source">Open source in Elixir</a></p>
       </div>
