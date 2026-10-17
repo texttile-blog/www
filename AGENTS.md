@@ -1,8 +1,8 @@
 # www.texttile.blog
 
 This repository is the product page for Texttile. Three HTML files, the
-stylesheets the app ships, and two small scripts. GitHub Pages serves the files
-as they lie in the branch root. `README.md` says what each file is and how the
+stylesheets the app ships, and two small scripts. Bunny CDN serves the public
+files copied by `make site`. `README.md` says what each file is and how the
 demo client works. This file holds the rules.
 
 The product itself lives in `texttile-blog/texttile`. Read its `AGENTS.md`
@@ -59,9 +59,8 @@ inside those 30 days gets it back. The whole client is the last script in
 
 - A link worth counting gets `data-track="<name>"`. The click listener in
   `assets/js/analytics.js` sits on the document and needs nothing else.
-- Cloudflare rewrites every mailto on this domain into a
-  `/cdn-cgi/l/email-protection` URL. `analytics.js` reads it back before it
-  reports, so do not report a raw href from anywhere else.
+- Cloudflare provides DNS only. Bunny serves mailto links as written, without
+  email-address rewriting.
 
 ## Before you call it done
 
