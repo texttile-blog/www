@@ -2,8 +2,8 @@
 
 The product page for [www.texttile.blog](https://www.texttile.blog).
 
-One HTML file and the stylesheets it borrows from the app. No build step and no
-framework: GitHub Pages serves the files as they lie here.
+Static HTML files and the stylesheets they borrow from the app. No build step
+and no framework: bunny.net stores and serves the files as they are.
 
 | Path | What it is |
 |---|---|
@@ -12,6 +12,9 @@ framework: GitHub Pages serves the files as they lie here.
 | `imprint.html` | the details of the law, and the address to reach a person |
 | `press.html` | the press kit as a page: the words, the mark and the pictures, each a file to take |
 | `press/` | what the press page hands out, and the whole of it once more as `texttile-press-kit.zip` |
+| `bunny.jsonc` | the Bunny site name and deployment directory |
+| `.github/workflows/bunny-sites.yml` | publishes the website after a push to `main` |
+| `Makefile` | opens the page locally or copies public files into `.site/` |
 | `assets/css/base.css` | the app's element defaults: prose, inputs, focus ring, hairlines |
 | `assets/css/theme.css` | the app's theme: every colour, wash and radius, in one file of tokens |
 | `assets/css/theme-front.css` | six tokens the app has no use for: a band, a hero wash, a measure, a gutter |
@@ -149,5 +152,26 @@ has to change; the click listener sits on the document.
 
 ## Deploy
 
-Push to `main`. GitHub Pages publishes the branch root at `www.texttile.blog`.
-The `www` name is a CNAME to `texttile-blog.github.io`; the apex carries no record.
+After a merge to `main`, GitHub Actions copies the public files and deploys them
+to the Bunny site `texttile-www`. The workflow uses the repository secret
+`BUNNYNET_API_KEY`. `make site` copies the four HTML pages, `assets/`, `shots/`,
+`press/`, and the published video and poster into `.site/`. It does not compile
+anything. Repository files, the Sketch file, and raw videos are not deployed.
+
+The storage zone is in Germany. Bunny CDN serves the files at
+`www.texttile.blog`. Cloudflare provides DNS only: `www` is an unproxied CNAME
+to `sites-texttile-www-va5gga.b-cdn.net`. Bunny provides the HTTPS certificate.
+The domain name stays the same, so Warper's allowed origin stays the same.
+
+To deploy manually from a checkout that is ready to publish:
+
+```sh
+make site
+bunny sites deploy .site --site texttile-www --no-link
+```
+
+To restore the previous deployment:
+
+```sh
+bunny sites deployments publish --previous --site texttile-www --force
+```

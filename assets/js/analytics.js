@@ -47,21 +47,6 @@ posthog.init('phc_q4K3E2LzncRjUg7AsRKVxiHFnc8rZPz2HGHqWvnVmMuA', {
 
   ready(function () {
 
-    /* ================================================================
-       WHAT A LINK IS
-
-       Cloudflare rewrites every mailto on a proxied domain into a
-       /cdn-cgi/l/email-protection URL and decodes it in the browser.
-       Left alone, the one event that matters most on this page would
-       report a scrambled address, so the href is read back before it
-       is sent.
-       ================================================================ */
-    function href(a) {
-      var h = a.getAttribute('href') || '';
-      if (h.indexOf('/cdn-cgi/l/email-protection') === 0) return 'mailto:klaus@texttile.blog';
-      return h;
-    }
-
     function kind(h) {
       if (h.indexOf('mailto:') === 0) return 'mail';
       if (h.charAt(0) === '#') return 'anchor';
@@ -89,7 +74,7 @@ posthog.init('phc_q4K3E2LzncRjUg7AsRKVxiHFnc8rZPz2HGHqWvnVmMuA', {
     document.addEventListener('click', function (e) {
       var a = e.target.closest('a, button');
       if (!a) return;
-      var h = a.tagName === 'A' ? href(a) : '';
+      var h = a.tagName === 'A' ? (a.getAttribute('href') || '') : '';
       posthog.capture('cta_click', {
         name: a.getAttribute('data-track') || null,
         label: (a.textContent || '').trim().slice(0, 80),

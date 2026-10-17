@@ -1,0 +1,7 @@
+{
+  "sites": {
+    "name": "texttile-www",
+    "dir": ".site",
+    "spa": false
+  }
+}

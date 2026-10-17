@@ -1,0 +1,27 @@
+name: Deploy website to Bunny
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: bunny-sites
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect public files
+        run: make site
+      - name: Deploy website
+        uses: BunnyWay/actions/deploy-site@4b22fe0b319386b3913117daf97729409dd0a6ef # deploy-site_0.1.1
+        with:
+          site: texttile-www
+          directory: .site
+          api_key: ${{ secrets.BUNNYNET_API_KEY }}
