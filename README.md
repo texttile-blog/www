@@ -158,6 +158,10 @@ to the Bunny site `texttile-www`. The workflow uses the repository secret
 `press/`, and the published video and poster into `.site/`. It does not compile
 anything. Repository files, the Sketch file, and raw videos are not deployed.
 
+After each successful deployment, the workflow deletes old deployments and
+keeps the three most recent versions. Bunny always preserves the live version
+and the previous version, even if a rollback places them outside those three.
+
 The storage zone is in Germany. Bunny CDN serves the files at
 `www.texttile.blog`. Cloudflare provides DNS only: `www` is an unproxied CNAME
 to `sites-texttile-www-va5gga.b-cdn.net`. Bunny provides the HTTPS certificate.
