@@ -79,20 +79,20 @@ inside those 30 days gets it back. The whole client is the last script in
 
 - `main` is live. A push publishes the page. Never commit on `main`; every
   change starts on a branch.
-- Create the worktree at `../worktrees/<repository-folder-name>-<slug>`.
-- Branch names, commits and pull request text are English. Add no co-author and
-  no generation trailer, and never name the tool that wrote the change.
+- Follow the global worktree location and session rules.
+- Branch names, commits and pull request text are English. Do not add agent co-author
+  trailers. End commits with the global model and harness attribution.
 - Rebase onto the latest `main` before you open a pull request.
 - Open a normal pull request, never a draft: a draft gets no review bot. Title
   in plain language, body with the problem in a sentence or two and then how you
   solved it. End with the model and the harness that did the work. Describe a
   visible change in words; commit no screenshots for a pull request.
-- One concern per pull request. If the description says "also", split it.
-- Never merge. Merging is my decision.
+- Merge only when explicitly requested, including an explicit `full-send`, after the
+  required checks and reviews pass. Follow repository protections. Merging deploys.
 
 ## Prose
 
-- Apply `/ste-writing` to English pull request text, documentation and the copy
+- Apply the shared `ste-writing` skill to English pull request text, documentation and the copy
   on the page. Strict mode for procedures and errors, flavored mode everywhere
   else.
 - Never use an em dash. Use a comma, a colon, parentheses or two sentences.
