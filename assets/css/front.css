@@ -28,6 +28,9 @@
      search that leaves three results short of a screenful takes the
      scrollbar away, and the whole page steps sideways. */
   html { scrollbar-gutter: stable; }
+  /* a section reached by its link stops under the sticky header, not
+     behind it */
+  section[id] { scroll-margin-top: var(--tt-headh); }
   body { display: flex; flex-direction: column; min-height: 100dvh; }
   body > footer { margin-top: auto; }
 
