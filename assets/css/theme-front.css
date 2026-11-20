@@ -28,7 +28,7 @@
 
   /* measure and rhythm */
   --tt-measure:   62ch;          /* the app's own reading width */
-  --tt-gut:       clamp(14px, 4vw, 26px);
-  --tt-headh:     54px;          /* the height of the reader header */
-  --tt-sec:       clamp(46px, 7vw, 76px);
+  --tt-gut:       clamp(20px, 4vw, 32px);
+  --tt-headh:     58px;          /* the height of the reader header */
+  --tt-sec:       clamp(64px, 9vw, 120px);
 }

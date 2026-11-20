@@ -2,8 +2,8 @@
 
 This repository is the product page for Texttile. Three HTML files, the
 stylesheets the app ships, and two small scripts. Bunny CDN serves the public
-files copied by `make site`. `README.md` says what each file is and how the
-demo client works. This file holds the rules.
+files copied by `make site`. `README.md` says what each file is. This file
+holds the rules.
 
 The product itself lives in `texttile-blog/texttile`. Read its `AGENTS.md`
 before you argue about what Texttile is.
@@ -38,23 +38,6 @@ panel.
 
 My preferences in the moment beat anything written here.
 
-## The demo, and the two numbers
-
-The "Try it" section is the one thing the page does. It calls Warper at
-`https://warper.texttile.blog`, which creates a real Texttile on Fly, runs it
-for 24 hours, stops it and deletes it 30 days later. A reader who writes to us
-inside those 30 days gets it back. The whole client is the last script in
-`index.html`.
-
-- `LIFETIME` is the copy of Warper's `demo_ttl_minutes`. It stands once, and
-  every sentence that names the lifetime reads it from there. The 30 days stand
-  in the sentences themselves.
-- `TIMEOUT_MS` must stay above Warper's `request_timeout_seconds`, so the
-  server's own reason arrives before the browser gives up.
-- Warper answers only the origin in its settings, so the section cannot be
-  tested from `localhost` or from a file. Test it on the deployed page, or
-  against a local Warper with `allowed_origin` set to your address.
-
 ## Counting
 
 - A link worth counting gets `data-track="<name>"`. The click listener in
@@ -66,9 +49,9 @@ inside those 30 days gets it back. The whole client is the last script in
 
 - **All three pages.** `index.html`, `privacy.html` and `imprint.html` wear the
   same stylesheets. A style change touches all three.
-- **`privacy.html` stays true.** It describes what `analytics.js` counts and
-  what happens to the demo address. Change it in the same commit as either one.
-- **`README.md` stays true.** It is the map of the files and the demo client.
+- **`privacy.html` stays true.** It describes what `analytics.js` counts.
+  Change it in the same commit as that file.
+- **`README.md` stays true.** It is the map of the files.
 - **Phone and desktop.** Judge both screenshots together, phone first.
 - **Look at it.** After every change, open the changed HTML file from disk in
   the browser with `open`, no webserver. The pages work as plain files.

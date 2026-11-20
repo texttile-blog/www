@@ -27,7 +27,11 @@
   /* the gutter the scrollbar sits in is always reserved. Without it a
      search that leaves three results short of a screenful takes the
      scrollbar away, and the whole page steps sideways. */
-  html { scrollbar-gutter: stable; }
+  html { scrollbar-gutter: stable; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  /* a section reached by its link stops under the sticky header, not
+     behind it */
+  section[id] { scroll-margin-top: var(--tt-headh); }
   body { display: flex; flex-direction: column; min-height: 100dvh; }
   body > footer { margin-top: auto; }
 
@@ -52,8 +56,11 @@
   .btn.sm { height: 25px; padding: 0 9px; font-size: 12px; }
   /* the one size the desk does not need: a call to action that carries
      a line of its own */
-  .btn.lg { height: 38px; padding: 0 18px; font-size: 14px; }
-  .btn-row { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; }
+  .btn.lg { height: 44px; padding: 0 20px; font-size: 15px; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  /* on a phone every large button fills the line, so no row of them
+     ends a few pixels short of the text */
+  @media (max-width: 480px) { .btn.lg { display: flex; width: 100%; } }
 
   /* ==================================================================
      FIELDS · the quiet field of the desk's side column, not the filled
@@ -103,12 +110,13 @@
     position: sticky; top: 0; z-index: 40;
     display: flex; align-items: center; gap: 14px;
     height: var(--tt-headh); padding: 0 var(--tt-gut);
-    background: var(--tt-bar); border-bottom: 1px solid var(--tt-rule);
-    backdrop-filter: blur(8px) saturate(1.5); -webkit-backdrop-filter: blur(8px) saturate(1.5);
+    /* solid paper: a header that lets the page show through collects
+       gray smudges from every picture that passes under it */
+    background: var(--tt-paper); border-bottom: 1px solid var(--tt-rule);
   }
   .site-mark {
     display: inline-flex; align-items: center; gap: 9px; flex: none;
-    font-family: var(--tt-font-serif); font-size: 17px; font-weight: 600;
+    font-family: var(--tt-font-serif); font-size: 18px; font-weight: 600;
     letter-spacing: -.01em; color: var(--tt-ink); text-decoration: none;
   }
   .site-mark svg { color: var(--tt-ink); }
@@ -118,36 +126,64 @@
   /* the site description, as it stands in Settings. It is the whole
      positioning line, and it costs no chrome */
   .site-desc {
-    color: var(--tt-dim); font-size: 12.5px; white-space: nowrap;
+    color: var(--tt-dim); font-size: 13px; white-space: nowrap;
     padding-left: 14px; border-left: 1px solid var(--tt-rule);
   }
   .site-nav { display: flex; align-items: center; gap: 20px; margin-left: auto; }
   .site-nav-group { display: flex; align-items: center; gap: 4px; }
   .site-nav-actions { gap: 8px; }
+  .site-nav .btn { height: 34px; padding: 0 14px; font-size: 13.5px; }
   .site-nav .btn:not(.solid) { background: var(--tt-paper); }
   .site-nav a:not(.btn), .site-nav button:not(.btn) {
     display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
-    font-size: 13px; color: var(--tt-dim); text-decoration: none;
-    padding: 5px 8px; border-radius: var(--tt-radius); transition: color .15s ease, background-color .15s ease;
+    font-size: 14px; color: var(--tt-dim); text-decoration: none;
+    padding: 6px 10px; border-radius: var(--tt-radius); transition: color .15s ease, background-color .15s ease;
   }
   .site-nav a:not(.btn):hover, .site-nav button:not(.btn):hover { color: var(--tt-ink); background: var(--tt-field); }
   .site-nav a[aria-current] { color: var(--tt-ink); font-weight: 600; }
 
   /* the foot of every page: one row, dim text, links that answer the
      pointer instead of underlining themselves permanently */
-  .f-foot { font-size: 13px; color: var(--tt-dim); }
+  .f-foot { font-size: 13.5px; color: var(--tt-dim); }
   .f-foot a { color: var(--tt-dim); text-decoration: none; }
   .f-foot a:hover { color: var(--tt-ink); text-decoration: underline; text-underline-offset: 3px; }
   @media (max-width: 1200px) { .site-head-home .site-desc { display: none; } }
-  @media (max-width: 900px) {
-    .site-desc, .site-nav a.hide-md { display: none; }
+  @media (max-width: 1100px) {
+    .site-desc, .site-nav .hide-md { display: none; }
   }
-  @media (max-width: 600px) { .site-nav .hide-sm { display: none; } }
+
+  /* THE MENU OF A NARROW WINDOW · the section links do not fit beside
+     the mark, so they move into one list under the header. It is a
+     details element: it opens and closes without a script, and the
+     script in the page only closes it again after a link was used. */
+  .site-menu { display: none; }
+  @media (max-width: 1100px) { .site-menu { display: block; } }
+  .site-menu summary { list-style: none; cursor: pointer; }
+  .site-menu summary::-webkit-details-marker { display: none; }
+  .site-menu[open] summary { box-shadow: inset 0 0 0 1px var(--tt-ink); }
+  /* the button names what the next tap does */
+  .site-menu .when-open, .site-menu[open] .when-closed { display: none; }
+  .site-menu[open] .when-open { display: inline; }
+  .site-menu-panel {
+    position: absolute; left: 0; right: 0; top: var(--tt-headh);
+    /* a phone on its side is lower than the list: the list scrolls
+       then, so its last link stays in reach */
+    max-height: calc(100dvh - var(--tt-headh)); overflow-y: auto;
+    display: grid; padding: 6px var(--tt-gut) 14px;
+    background: var(--tt-paper); border-bottom: 1px solid var(--tt-rule);
+    box-shadow: 0 14px 24px rgb(var(--tt-shadow) / .10);
+  }
+  .site-nav .site-menu-panel a {
+    display: block; padding: 13px 0; border-radius: 0;
+    font-size: 16px; color: var(--tt-ink); border-top: 1px solid var(--tt-hair);
+  }
+  .site-nav .site-menu-panel a:first-child { border-top: 0; }
+  .site-nav .site-menu-panel a:hover { background: transparent; color: var(--tt-accent); }
 
   /* ==================================================================
      LAYOUT · one wrapper, three widths, all of them the desk's
      ================================================================== */
-  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 var(--tt-gut); }
+  .wrap { max-width: 1128px; margin: 0 auto; padding: 0 var(--tt-gut); }
   .wrap.mid { max-width: 760px; }
   .wrap.narrow { max-width: 660px; }
   /* padding-block only: .sec is worn together with .wrap, and the
@@ -155,19 +191,28 @@
   .sec { padding-top: var(--tt-sec); padding-bottom: var(--tt-sec); }
   .sec.tight { padding-top: calc(var(--tt-sec) * .62); padding-bottom: calc(var(--tt-sec) * .62); }
   .band { background: var(--tt-band); border-top: 1px solid var(--tt-rule); border-bottom: 1px solid var(--tt-rule); }
-  .hero-wash { background: linear-gradient(var(--tt-hero), var(--tt-page)); }
+  /* the footer draws the line under the last band */
+  main > .band:last-child { border-bottom: 0; }
+  /* the wash belongs to the top of a page. It ends after one screen,
+     so a long page does not stay tinted all the way down */
+  .hero-wash { background: linear-gradient(var(--tt-hero), var(--tt-page) min(100%, 640px)); }
 
   /* ==================================================================
      TYPE · four roles, all serif where the desk is serif
      ================================================================== */
   .f-h1 {
     font-family: var(--tt-font-serif); font-weight: 600;
-    font-size: clamp(33px, 6.2vw, 47px); line-height: 1.06; letter-spacing: -.025em;
+    font-size: clamp(38px, 6.4vw, 68px); line-height: 1.03; letter-spacing: -.03em;
+    text-wrap: balance;
   }
   .f-h2 {
     font-family: var(--tt-font-serif); font-weight: 600;
-    font-size: clamp(22px, 3.2vw, 27px); line-height: 1.15; letter-spacing: -.018em;
+    font-size: clamp(27px, 3.6vw, 38px); line-height: 1.12; letter-spacing: -.022em;
+    text-wrap: balance;
   }
+  /* on a page that is one text, a heading divides the text. It does
+     not open a new part of the page, so it is a size smaller */
+  .textpage .f-h2 { font-size: clamp(22px, 2.6vw, 26px); letter-spacing: -.018em; }
   .f-h3 { font-size: 14.5px; font-weight: 600; letter-spacing: -.005em; color: var(--tt-ink); }
   /* the reader's prose has lists on the pages, and the base sheet
      resets every list margin to zero */
@@ -178,15 +223,15 @@
      subscribe. One size for all of them, the serif of the article they
      sit under, so the page has one voice from the title down. */
   .f-sec-h {
-    font-family: var(--tt-font-serif); font-size: 21px; font-weight: 600;
+    font-family: var(--tt-font-serif); font-size: 22px; font-weight: 600;
     line-height: 1.2; letter-spacing: -.015em; color: var(--tt-ink);
   }
-  .f-lead { font-size: 15.5px; line-height: 1.62; color: var(--tt-dim); max-width: 48ch; }
-  .f-body { font-size: 14.5px; line-height: 1.62; max-width: var(--tt-measure); }
+  .f-lead { font-size: clamp(17px, 1.6vw, 19px); line-height: 1.55; color: var(--tt-dim); max-width: 50ch; text-wrap: pretty; }
+  .f-body { font-size: 16px; line-height: 1.65; max-width: var(--tt-measure); text-wrap: pretty; }
   /* the quiet role sits on dim, not faint: on a blog it carries dates,
      comment times and the notes under the forms, and those have to be
      comfortable to read, not just legible */
-  .f-note { font-size: 12.5px; line-height: 1.55; color: var(--tt-dim); }
+  .f-note { font-size: 13.5px; line-height: 1.55; color: var(--tt-dim); max-width: var(--tt-measure); }
   /* the one coloured phrase per page, and the accent it is allowed */
   .f-accent { color: var(--tt-accent); }
   .f-mark { background: var(--tt-mark); box-decoration-break: clone; -webkit-box-decoration-break: clone; padding: 0 .1em; }
@@ -246,66 +291,136 @@
   /* ==================================================================
      THE TWO LISTS · what it does, and what it refuses to have
      ================================================================== */
-  .flist { display: flex; flex-direction: column; gap: 13px; padding: 0; margin: 0; list-style: none; }
-  .flist li { display: flex; gap: 11px; font-size: 14px; line-height: 1.55; }
+  .flist { display: flex; flex-direction: column; gap: 14px; padding: 0; margin: 0; list-style: none; }
+  .flist li { display: flex; gap: 12px; font-size: 16px; line-height: 1.6; max-width: var(--tt-measure); }
   .flist li b { display: block; font-weight: 600; }
   .flist.does li::before {
-    content: ""; flex: none; width: 6px; height: 6px; margin-top: 8px;
+    content: ""; flex: none; width: 6px; height: 6px; margin-top: 10px;
     border-radius: 50%; background: var(--tt-accent);
   }
   .flist.nope { color: var(--tt-dim); }
   .flist.nope li::before {
-    content: ""; flex: none; width: 11px; height: 1px; margin-top: 11px; background: var(--tt-rule);
+    content: ""; flex: none; width: 12px; height: 1px; margin-top: 13px; background: var(--tt-faint);
+  }
+
+  /* what it does, in groups: the name of the group on the left, its
+     features in two columns beside it, one rule over each group */
+  .fgroup { display: grid; gap: 22px 48px; padding: 36px 0; border-top: 1px solid var(--tt-rule); }
+  .fgroup:last-child { padding-bottom: 0; }
+  @media (min-width: 900px) { .fgroup { grid-template-columns: 232px minmax(0, 1fr); padding: 44px 0; } }
+  /* columns, not a grid: a short feature beside a long one would leave
+     a hole in a grid row. Each column runs down without one. */
+  .feats { padding: 0; margin: 0 0 -26px; list-style: none; }
+  @media (min-width: 640px) { .feats { columns: 2; column-gap: 48px; } }
+  /* the gap under a feature is padding: a margin at the foot of a
+     column is cut off, and the groups would end at different heights */
+  .feats li { break-inside: avoid; padding-bottom: 26px; font-size: 16px; line-height: 1.6; text-wrap: pretty; }
+  .feats li b { display: block; margin-bottom: 4px; line-height: 1.4; }
+  .feats.nope { margin-bottom: -14px; }
+  .feats.nope li { display: flex; gap: 12px; padding-bottom: 14px; }
+  .feats.nope li::before {
+    content: ""; flex: none; width: 12px; height: 1px; margin-top: 13px; background: var(--tt-faint);
+  }
+
+  /* three things side by side, each under its own rule */
+  .cols3 { display: grid; gap: 36px 40px; }
+  @media (min-width: 800px) { .cols3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .cols3 > div { padding-top: 20px; border-top: 1px solid var(--tt-rule); }
+  /* the three things stand beside their proof once there is room */
+  .proof { display: grid; gap: 48px; }
+  @media (min-width: 1024px) {
+    .proof { grid-template-columns: minmax(0, 1fr) minmax(0, 500px); gap: 72px; align-items: start; }
+    .proof .cols3 { grid-template-columns: 1fr; gap: 32px; }
+    .proof .shot { position: sticky; top: calc(var(--tt-headh) + 28px); }
+  }
+  .cols2 { display: grid; gap: 40px 48px; }
+  @media (min-width: 800px) { .cols2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  /* the button of each one stands on the same line, however long the
+     text above it is */
+  .cols2 > div { display: flex; flex-direction: column; align-items: flex-start; padding-top: 24px; border-top: 1px solid var(--tt-rule); }
+  .cols2 > div > .btn { margin-top: auto; }
+
+  /* beside its heading, the first line stands on the heading's line,
+     and the heading stays in view while the story is read */
+  .story { max-width: 35em; font-size: 16px; }
+  @media (min-width: 1024px) {
+    .story { padding-top: 14px; }
+    .story-h { position: sticky; top: calc(var(--tt-headh) + 28px); align-self: start; }
   }
 
   /* the figure row of the Stats screen, borrowed for three numbers */
   .figrow { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--tt-rule); border-bottom: 1px solid var(--tt-rule); }
-  .figrow > div { padding: 15px 0; border-top: 1px solid var(--tt-hair); }
+  .figrow > div { padding: 20px 0; border-top: 1px solid var(--tt-hair); }
   .figrow > div:first-child { border-top: 0; }
   .figrow .n {
-    font-family: var(--tt-font-serif); font-size: 26px; font-weight: 600;
-    letter-spacing: -.015em; font-variant-numeric: tabular-nums;
+    font-family: var(--tt-font-serif); font-size: clamp(34px, 4vw, 44px); font-weight: 600;
+    line-height: 1; letter-spacing: -.02em; font-variant-numeric: tabular-nums;
   }
-  .figrow .l { font-size: 12.5px; color: var(--tt-faint); margin-top: 2px; }
+  .figrow .l { font-size: 14.5px; color: var(--tt-dim); margin-top: 8px; }
   @media (min-width: 720px) {
     .figrow { grid-template-columns: repeat(3, 1fr); }
-    .figrow > div { padding: 15px 20px; border-top: 0; border-left: 1px solid var(--tt-hair); }
+    .figrow > div { padding: 26px 28px; border-top: 0; border-left: 1px solid var(--tt-hair); }
     .figrow > div:first-child { padding-left: 0; border-left: 0; }
   }
 
   /* ==================================================================
-     THE PACKAGES · the figure table, four machines across. The first
-     column names what differs, the head carries name and price. On a
-     phone the table scrolls sideways inside its own box.
+     THE PACKAGES · one line per package: its name, its price, and the
+     six things that differ. On a phone there is no room for eight
+     columns, so each package becomes a block of its own, and every
+     figure carries its label.
      ================================================================== */
-  .tscroll { overflow-x: auto; }
   .ptable {
-    width: 100%; min-width: 620px; border-collapse: collapse; font-size: 13.5px;
+    width: 100%; border-collapse: collapse;
     border-top: 1px solid var(--tt-rule); border-bottom: 1px solid var(--tt-rule);
   }
   /* the base sheet draws a rule under every th; here every line is the
-     row's own hairline, so the label column matches the value cells */
+     row's own hairline */
   .ptable th, .ptable td {
-    padding: 10px 14px 10px 0; border-bottom: 0; border-top: 1px solid var(--tt-hair);
-    font-size: 13.5px; color: var(--tt-ink);
+    padding: 18px 20px 18px 0; border-bottom: 0; border-top: 1px solid var(--tt-hair);
+    font-size: 15px; color: var(--tt-ink); vertical-align: baseline; white-space: nowrap;
   }
-  .ptable thead th { border-top: 0; padding-top: 16px; padding-bottom: 14px; }
-  .ptable tbody th { color: var(--tt-dim); font-weight: 400; width: 22%; }
+  .ptable thead th {
+    border-top: 0; padding-top: 14px; padding-bottom: 12px;
+    font-size: 13.5px; font-weight: 500; color: var(--tt-dim);
+  }
   .ptable td { font-variant-numeric: tabular-nums; }
+  .ptable th:last-child, .ptable td:last-child { padding-right: 0; }
   .tier {
-    font-family: var(--tt-font-serif); font-size: 19px; font-weight: 600;
+    font-family: var(--tt-font-serif); font-size: 20px; font-weight: 600;
     line-height: 1.2; letter-spacing: -.015em; color: var(--tt-ink);
   }
+  .ptable .tier { font-size: 19px; }
   .price {
-    font-family: var(--tt-font-serif); font-size: 26px; font-weight: 600;
-    line-height: 1.1; letter-spacing: -.015em; margin-top: 8px; color: var(--tt-ink);
+    font-family: var(--tt-font-serif); font-size: 22px; font-weight: 600;
+    line-height: 1.1; letter-spacing: -.015em; color: var(--tt-ink);
   }
+  .ptable td.price { font-size: 21px; }
   .price small {
-    font-family: var(--tt-font-sans); font-size: 12.5px; font-weight: 400;
+    font-family: var(--tt-font-sans); font-size: 13px; font-weight: 400;
     color: var(--tt-dim); letter-spacing: 0;
   }
   /* the one-off price rides on the heading line */
-  .price.once { display: inline; font-size: 19px; margin: 0 0 0 6px; }
+  h3.tier { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
+  .price.once { font-size: 20px; white-space: nowrap; }
+  @media (max-width: 599px) { .price.once { flex-basis: 100%; } }
+
+  @media (max-width: 899px) {
+    .ptable, .ptable tbody { display: block; }
+    .ptable thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .ptable tr {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 16px;
+      padding: 24px 0; border-top: 1px solid var(--tt-hair);
+    }
+    .ptable tr:first-child { border-top: 0; }
+    .ptable th, .ptable td { display: block; padding: 0; border: 0; white-space: normal; }
+    .ptable .tier { grid-column: 1 / 3; align-self: baseline; margin-bottom: 4px; }
+    .ptable td.price { grid-column: 3; align-self: baseline; justify-self: end; white-space: nowrap; }
+    .ptable td[data-l] { font-size: 14.5px; }
+    .ptable td[data-l]::before {
+      content: attr(data-l); display: block; margin-bottom: 4px;
+      font-size: 12.5px; color: var(--tt-dim);
+    }
+  }
 
   /* ==================================================================
      THE SCREENSHOTS · the product photographed, not imitated: a window
@@ -325,8 +440,31 @@
     background: var(--tt-paper);
   }
   /* a square recording does not get the whole measure, or it is taller than a screen */
-  .shot.square { max-width: 680px; margin-left: auto; margin-right: auto; }
-  .shot figcaption { margin-top: 8px; font-size: 12.5px; line-height: 1.55; color: var(--tt-dim); }
+  .shot.square { max-width: 560px; margin-left: auto; margin-right: auto; }
+  .shot a { display: block; cursor: zoom-in; }
+  /* the link to the file of a picture stays in one piece */
+  .shot figcaption .link { white-space: nowrap; }
+
+  /* THE PICTURES · two across for the windows, three across for the
+     phones. On a phone they stand in one row and the reader swipes: the
+     next picture shows at the edge, so the row says that it moves. */
+  .shots { display: grid; gap: 40px 32px; }
+  @media (min-width: 768px) {
+    .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .shots.phones { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 900px; margin-left: auto; margin-right: auto; }
+  }
+  @media (max-width: 767px) {
+    .shots {
+      display: flex; gap: 14px; align-items: flex-start; overflow-x: auto;
+      scroll-snap-type: x mandatory; scrollbar-width: none;
+      margin: 0 calc(-1 * var(--tt-gut)) -30px; padding: 0 var(--tt-gut) 30px;
+      scroll-padding: 0 var(--tt-gut);
+    }
+    .shots::-webkit-scrollbar { display: none; }
+    .shots > * { flex: 0 0 86%; scroll-snap-align: start; }
+    .shots.phones > * { flex-basis: 62%; }
+  }
+  .shot figcaption { margin-top: 12px; font-size: 13.5px; line-height: 1.55; color: var(--tt-dim); }
   /* a phone keeps the corners of the device it was taken on */
   .shot.phone img { border-radius: 18px; }
 
@@ -334,10 +472,21 @@
      CODE · the one place a monospace face is honest
      ================================================================== */
   .code {
-    font-family: var(--tt-font-mono); font-size: 12.5px; line-height: 1.7;
+    font-family: var(--tt-font-mono); font-size: 13.5px; line-height: 1.75;
     background: var(--tt-field); color: var(--tt-ink);
-    border-radius: var(--tt-radius); padding: 13px 15px; overflow-x: auto;
+    border-radius: var(--tt-radius-pop); padding: 20px 22px; overflow-x: auto;
     box-shadow: inset 0 0 0 1px var(--tt-hair);
+  }
+  /* the box around the block holds the button that copies it */
+  .codebox { position: relative; }
+  .codecopy { position: absolute; top: 10px; right: 10px; background: var(--tt-paper); }
+  /* on a phone the block runs from edge to edge, its text starts where
+     the text of the page starts, and the type follows the width of the
+     window, so the longest line of the command fits */
+  @media (max-width: 480px) {
+    .codebox { margin-left: calc(-1 * var(--tt-gut)); margin-right: calc(-1 * var(--tt-gut)); }
+    .codebox .code { padding: 18px var(--tt-gut); border-radius: 0; font-size: min(12.5px, 2.9vw); }
+    .codecopy { right: var(--tt-gut); }
   }
 
   /* ==================================================================
@@ -428,6 +577,7 @@
     font-family: var(--tt-font-serif); font-size: 19px; font-weight: 600;
     letter-spacing: -.02em; padding-bottom: 7px; border-bottom: 2px solid var(--tt-inksoft);
   }
+  .mock .f-note { font-size: 12px; }
   .mock-line { height: 7px; border-radius: 3px; background: var(--tt-hair); }
   .mock-caret { display: inline-block; width: 1.5px; height: 13px; background: var(--tt-julia); vertical-align: -2px; animation: pulse 1.1s steps(1, end) infinite; }
   /* julia's bar, in her own tint, exactly as the editor states it */
@@ -453,9 +603,9 @@
   .mock-tiles svg.held { box-shadow: 0 0 0 2px var(--tt-julia); }
   /* julia's pointer: her color, her name, no motion the desk does not
      have either */
-  .jcursor { position: absolute; left: 0; top: 0; z-index: 5; pointer-events: none; display: flex; align-items: flex-start; transition: transform 1.05s cubic-bezier(.3, .7, .3, 1); }
+  .jcursor { position: absolute; left: 0; top: 0; z-index: 5; pointer-events: none; display: flex; flex-direction: column; align-items: flex-start; transition: transform 1.05s cubic-bezier(.3, .7, .3, 1); }
   .jname {
-    margin-left: 3px; padding: 1px 5px; border-radius: var(--tt-radius-img);
+    margin-left: 6px; padding: 1px 5px; border-radius: var(--tt-radius-img);
     background: var(--tt-julia); color: var(--tt-onsolid); font-size: 10px; font-weight: 600;
   }
   /* the darkroom treatment reaches the front end too */
