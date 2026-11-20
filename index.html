@@ -70,15 +70,28 @@
   </a>
   <span class="site-desc">The Multiplayer Blog Engine</span>
   <nav class="site-nav" aria-label="Main navigation">
-    <div class="site-nav-group hide-sm">
-      <a href="#together" class="hide-md">Writing together</a>
-      <a href="#story" class="hide-md">Why I made it</a>
-      <a href="#does" class="hide-md">What it does</a>
-      <a href="#run" class="hide-md">Run it</a>
+    <div class="site-nav-group hide-md">
+      <a href="#together">Writing together</a>
+      <a href="#story">Why I made it</a>
+      <a href="#does">What it does</a>
+      <a href="#run">Run it</a>
       <a href="#hosting" data-track="nav_hosting">Hosting</a>
     </div>
     <div class="site-nav-group site-nav-actions">
       <a href="press.html" class="btn hide-md" data-track="nav_press">Press kit</a>
+      <!-- the same links for a narrow window, in one list under the header -->
+      <details class="site-menu" id="siteMenu">
+        <summary class="btn" data-track="nav_menu">Menu</summary>
+        <div class="site-menu-panel">
+          <a href="#together">Writing together</a>
+          <a href="#story">Why I made it</a>
+          <a href="#looks">What it looks like</a>
+          <a href="#does">What it does</a>
+          <a href="#run">Run it</a>
+          <a href="#hosting" data-track="menu_hosting">Hosting</a>
+          <a href="press.html" data-track="menu_press">Press kit</a>
+        </div>
+      </details>
       <a class="btn solid" href="https://github.com/texttile-blog/texttile" target="_blank" rel="noopener"
          aria-label="Texttile source on GitHub (opens in a new tab)" data-track="nav_source"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="flex-none"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Source <span aria-hidden="true">↗</span></a>
     </div>
@@ -97,7 +110,7 @@
           <a class="btn solid lg" href="#run" data-track="hero_run">Run it yourself</a>
           <a class="btn lg" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="hero_demo">See the demo blog <span aria-hidden="true">↗</span></a>
         </div>
-        <p class="f-note mt-5"><a class="link" href="https://github.com/texttile-blog/texttile" data-track="hero_source">Open source in Elixir</a></p>
+        <p class="f-note mt-5">Open source, written in Elixir. <a class="link" href="https://github.com/texttile-blog/texttile" data-track="hero_source">The source is on GitHub</a>.</p>
       </div>
 
       <!-- the editor, still life: julia is moving a tile while you read -->
@@ -164,39 +177,40 @@
     <div class="wrap">
       <h2 class="f-h2">How writing together works</h2>
       <p class="f-lead mt-4">Here is what happens when two of you open the same entry.</p>
-      <div class="cols3 mt-12">
-        <div>
-          <h3 class="f-sec-h">One person has the text</h3>
-          <p class="f-body mt-3 text-dim">That person types. Everyone else sees the words appear as they are written, and can take the text over with one click. Texttile asks before it hands the text over, and tells the person who had it. Nothing gets lost, and they can take it straight back.</p>
+      <div class="proof mt-12">
+        <div class="cols3">
+          <div>
+            <h3 class="f-sec-h">One person has the text</h3>
+            <p class="f-body mt-3">That person types. Everyone else sees the words appear as they are written, and can take the text over with one click. Texttile asks before it hands the text over, and tells the person who had it. Nothing gets lost, and they can take it straight back.</p>
+          </div>
+          <div>
+            <h3 class="f-sec-h">Nobody has to wait for the gallery</h3>
+            <p class="f-body mt-3">The gallery and the entry settings are never locked. You can all drag tiles, photos and videos alike, set the date and change the entry's web address at the same time, and you see each other doing it. The order you leave the tiles in is the order readers see.</p>
+          </div>
+          <div>
+            <h3 class="f-sec-h">You can go back</h3>
+            <p class="f-body mt-3">Press Save version and Texttile keeps the title and text as they are. Later you can see what changed word by word, and put an old version back in the editor.</p>
+          </div>
         </div>
-        <div>
-          <h3 class="f-sec-h">Nobody has to wait for the gallery</h3>
-          <p class="f-body mt-3 text-dim">The gallery and the entry settings are never locked. You can all drag tiles, photos and videos alike, set the date and change the entry's web address at the same time, and you see each other doing it. The order you leave the tiles in is the order readers see.</p>
-        </div>
-        <div>
-          <h3 class="f-sec-h">You can go back</h3>
-          <p class="f-body mt-3 text-dim">Press Save version and Texttile keeps the title and text as they are. Later you can see what changed word by word, and put an old version back in the editor.</p>
-        </div>
+        <!-- the proof: the same entry in two browsers, the same minute. The
+             video plays once, muted, when it scrolls into view, and not at
+             all when the reader asked for reduced motion. -->
+        <figure class="shot square">
+          <video id="writingVideo" muted playsinline preload="none" poster="videos/writing.webp" width="1080" height="1080">
+            <source src="videos/writing.mp4" type="video/mp4">
+            <img src="videos/writing.webp" width="1080" height="1080" loading="lazy"
+                 alt="Two browser windows, the same entry. In the top one a person types; in the bottom one the other person reads the words as they arrive, then takes the text over.">
+          </video>
+          <figcaption>The same entry in two browsers, the same minute. One writes, the other reads along and takes the text over with one click.</figcaption>
+        </figure>
       </div>
-
-      <!-- the proof: the same entry in two browsers, the same minute. The
-           video plays once, muted, when it scrolls into view, and not at
-           all when the reader asked for reduced motion. -->
-      <figure class="shot square mt-16">
-        <video id="writingVideo" muted playsinline preload="none" poster="videos/writing.webp" width="1080" height="1080">
-          <source src="videos/writing.mp4" type="video/mp4">
-          <img src="videos/writing.webp" width="1080" height="1080" loading="lazy"
-               alt="Two browser windows, the same entry. In the top one a person types; in the bottom one the other person reads the words as they arrive, then takes the text over.">
-        </video>
-        <figcaption>The same entry in two browsers, the same minute. One writes, the other reads along and takes the text over with one click.</figcaption>
-      </figure>
     </div>
   </section>
 
   <!-- ==================== STORY ==================================== -->
   <section class="band" id="story">
     <div class="wrap sec grid gap-8 lg:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-      <h2 class="f-h2">Why I made it</h2>
+      <h2 class="f-h2 story-h">Why I made it</h2>
       <div class="story">
         <p class="f-body">My wife and I have blogged about every trip since our honeymoon 10 years ago. For the people at home, for ourselves later, and by now for our children. We took turns writing, but both had photos and videos on their phones.</p>
         <p class="f-body mt-4">The text was never the hard part. The photos and videos were: every day one of us sent them from the phone to the other, who had to upload them and sort them into the entry in the right order.</p>
@@ -216,42 +230,42 @@
     <div class="wrap sec">
       <h2 class="f-h2">What it looks like</h2>
       <p class="f-lead mt-4">The editor, an entry the way the reader sees it, the comments, and the numbers. And all of it fits in one hand.</p>
-      <div class="grid gap-x-8 gap-y-10 md:grid-cols-2 mt-12">
+      <div class="shots mt-12">
         <figure class="shot">
-          <img src="shots/backend.webp" width="1407" height="885" loading="lazy"
-               alt="The admin area: an entry open in the editor, the text on the left, the tiles of the gallery on the right.">
+          <a href="shots/backend.webp" target="_blank" rel="noopener"><img src="shots/backend.webp" width="1407" height="885" loading="lazy"
+               alt="The admin area: an entry open in the editor, the text on the left, the tiles of the gallery on the right."></a>
           <figcaption>The editor: text left, tiles right. The first tile is a video.</figcaption>
         </figure>
         <figure class="shot">
-          <img src="shots/frontend.webp" width="1407" height="885" loading="lazy"
-               alt="The reader: the end of an entry, and the gallery under the text.">
+          <a href="shots/frontend.webp" target="_blank" rel="noopener"><img src="shots/frontend.webp" width="1407" height="885" loading="lazy"
+               alt="The reader: the end of an entry, and the gallery under the text."></a>
           <figcaption>The reader: the text first, then the gallery, the video in it like any other tile.</figcaption>
         </figure>
         <figure class="shot">
-          <img src="shots/stats.webp" width="1407" height="885" loading="lazy"
-               alt="The Stats page of the admin area: views, people and the busiest day.">
+          <a href="shots/stats.webp" target="_blank" rel="noopener"><img src="shots/stats.webp" width="1407" height="885" loading="lazy"
+               alt="The Stats page of the admin area: views, people and the busiest day."></a>
           <figcaption>Views and readers, counted by the blog itself.</figcaption>
         </figure>
         <figure class="shot">
-          <img src="shots/comments.webp" width="1408" height="885" loading="lazy"
-               alt="Two comments under an entry, and the form to post the next one.">
+          <a href="shots/comments.webp" target="_blank" rel="noopener"><img src="shots/comments.webp" width="1408" height="885" loading="lazy"
+               alt="Two comments under an entry, and the form to post the next one."></a>
           <figcaption>Comments, with no queue to work through.</figcaption>
         </figure>
       </div>
-      <div class="grid gap-10 sm:gap-8 sm:grid-cols-3 mt-16 max-w-[300px] sm:max-w-[900px] mx-auto">
+      <div class="shots phones mt-16">
         <figure class="shot phone">
-          <img src="shots/mobile-text.webp" width="1320" height="2868" loading="lazy"
-               alt="The editor on a phone, with an entry open.">
+          <a href="shots/mobile-text.webp" target="_blank" rel="noopener"><img src="shots/mobile-text.webp" width="1320" height="2868" loading="lazy"
+               alt="The editor on a phone, with an entry open."></a>
           <figcaption>The entry, written on a phone.</figcaption>
         </figure>
         <figure class="shot phone">
-          <img src="shots/mobile-tiles.webp" width="1320" height="2868" loading="lazy"
-               alt="The tiles of an entry on a phone, numbered and ready to sort.">
+          <a href="shots/mobile-tiles.webp" target="_blank" rel="noopener"><img src="shots/mobile-tiles.webp" width="1320" height="2868" loading="lazy"
+               alt="The tiles of an entry on a phone, numbered and ready to sort."></a>
           <figcaption>The gallery, sorted with a thumb.</figcaption>
         </figure>
         <figure class="shot phone">
-          <img src="shots/mobile-frontend.webp" width="1320" height="2868" loading="lazy"
-               alt="An entry on a phone, the way the reader sees it.">
+          <a href="shots/mobile-frontend.webp" target="_blank" rel="noopener"><img src="shots/mobile-frontend.webp" width="1320" height="2868" loading="lazy"
+               alt="An entry on a phone, the way the reader sees it."></a>
           <figcaption>The reader, on the same phone.</figcaption>
         </figure>
       </div>
@@ -259,9 +273,9 @@
   </section>
 
   <!-- ==================== DOES / NOTHING MORE ====================== -->
-  <section class="sec border-t border-rule" id="does">
-    <div class="wrap">
-      <h2 class="f-h2">What it does, and what it leaves out.</h2>
+  <section class="band" id="does">
+    <div class="wrap sec">
+      <h2 class="f-h2">What it does, and what it leaves out</h2>
       <div class="mt-12">
         <div class="fgroup">
           <h3 class="f-sec-h">Writing together</h3>
@@ -312,7 +326,7 @@
               <li>A build step and a laptop. You can write the whole thing on a phone.</li>
               <li>AI.</li>
             </ul>
-            <p class="f-body mt-8 text-dim">If the first list is what you need and you do not miss anything in the second, this will suit you. If you do miss something in the second, get Ghost or WordPress instead.</p>
+            <p class="f-body mt-8">If the first list is what you need and you do not miss anything in the second, this will suit you. If you do miss something in the second, get Ghost or WordPress instead.</p>
           </div>
         </div>
       </div>
@@ -320,7 +334,7 @@
   </section>
 
   <!-- ==================== RUN IT ==================================== -->
-  <section class="band" id="run">
+  <section id="run">
     <div class="wrap sec grid gap-10 lg:gap-16 lg:grid-cols-2 lg:items-start">
       <div>
         <h2 class="f-h2">Run it yourself</h2>
@@ -345,8 +359,8 @@
   </section>
 
   <!-- ==================== HOSTING =================================== -->
-  <section class="sec" id="hosting">
-    <div class="wrap">
+  <section class="band" id="hosting">
+    <div class="wrap sec">
       <h2 class="f-h2">Or let me run it</h2>
       <p class="f-lead mt-4 max-w-[62ch]">You bring a domain. I set your blog up on my server, by hand, and send an invoice every month. The contract runs twelve months at least. Ask and you get a copy of all your data. The packages are a guide, not a menu: write to me and I set up a hosting that fits what you need.</p>
 
@@ -372,12 +386,12 @@
       <div class="cols2 mt-16">
         <div>
           <h3 class="tier">Setup on your own server <span class="price once num">100 € <small>once</small></span></h3>
-          <p class="f-body mt-3 text-dim">I install Texttile on your server: Docker, domain, mail, a backup script to a machine at home, your first admin. One hour on a call or by mail. Then it is yours: no subscription, no support contract. Updates are yours too, pull and restart, as the README says. For people who want control but not the evening it costs.</p>
+          <p class="f-body mt-3">I install Texttile on your server: Docker, domain, mail, a backup script to a machine at home, your first admin. One hour on a call or by mail. Then it is yours: no subscription, no support contract. Updates are yours too, pull and restart, as the README says. For people who want control but not the evening it costs.</p>
           <a class="btn lg mt-6" href="mailto:klaus@texttile.blog?subject=Setting%20up%20Texttile%20on%20my%20server" data-track="hosting_setup">Book a setup</a>
         </div>
         <div>
           <h3 class="tier">Migration from your old blog <span class="price once num">100 € <small>once</small></span></h3>
-          <p class="f-body mt-3 text-dim">I move your entries, photos and videos from your old blog into Texttile, whatever it runs on. You see what arrived before anything goes live.</p>
+          <p class="f-body mt-3">I move your entries, photos and videos from your old blog into Texttile, whatever it runs on. You see what arrived before anything goes live.</p>
           <a class="btn lg mt-6" href="mailto:klaus@texttile.blog?subject=Moving%20my%20blog%20to%20Texttile" data-track="hosting_migration">Book a migration</a>
         </div>
       </div>
@@ -452,6 +466,20 @@
   })();
 </script>
 
+<script>
+  // The menu of a narrow window is a details element, so it opens by
+  // itself. It closes again here: after one of its links was used, on
+  // Escape, and on a click anywhere else.
+  (function () {
+    var menu = document.getElementById('siteMenu');
+    if (!menu) return;
+    document.addEventListener('click', function (e) {
+      if (!menu.open) return;
+      if (e.target.closest('.site-menu-panel a') || !menu.contains(e.target)) menu.open = false;
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') menu.open = false; });
+  })();
+</script>
 <script>
   // The writing video plays once when it comes into view, muted, and never
   // for a reader who asked for reduced motion. Until then only the poster

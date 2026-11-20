@@ -47,9 +47,9 @@
 
 <header class="site-head">
   <a class="site-mark" href="index.html" data-track="press_home">
-    <svg width="17" height="17" viewBox="0 0 43 43" aria-hidden="true" class="flex-none">
+    <svg width="21" height="21" viewBox="0 0 43 43" aria-hidden="true">
       <rect x="0" y="0"    width="43" height="3.5" rx="1.75" fill="currentColor"/>
-      <rect x="0" y="7.5"  width="34" height="3.5" rx="1.75" fill="currentColor"/>
+      <rect x="0" y="7.5"  width="43" height="3.5" rx="1.75" fill="currentColor"/>
       <rect x="0" y="15"   width="43" height="3.5" rx="1.75" fill="currentColor"/>
       <rect x="0" y="22.5" width="26" height="3.5" rx="1.75" fill="currentColor"/>
       <rect x="0"  y="30" width="13" height="13" rx="2.5" fill="currentColor"/>
@@ -68,11 +68,11 @@
 
   <!-- ==================== HERO ==================================== -->
   <section class="hero-wash" id="hero">
-    <div class="wrap flex flex-wrap items-end gap-x-10 gap-y-6 pt-12 pb-12 lg:pt-16 lg:pb-14">
+    <div class="wrap flex flex-wrap items-end gap-x-10 gap-y-6 pt-12 lg:pt-16">
       <div class="min-w-[260px] flex-1">
         <h1 class="f-h1">Press</h1>
       </div>
-      <div class="btn-row">
+      <div class="btn-row fill">
         <a class="btn solid lg" href="press/texttile-press-kit.zip" download data-track="press_kit">Download the kit (ZIP, 10 MB)</a>
         <a class="btn lg" href="mailto:klaus@texttile.blog?subject=Press" data-track="press_mail_top">Write to klaus@texttile.blog</a>
       </div>
@@ -80,11 +80,11 @@
   </section>
 
   <!-- ==================== THE WORDS ================================ -->
-  <section class="sec" id="words">
+  <section class="sec tight" id="words">
     <div class="wrap">
       <h2 class="f-h2">Words</h2>
       <p class="f-body mt-4"><b>Texttile</b> meaning: an entry is text, and its gallery is tiles. It is called <i>The Multiplayer Blog Engine</i>. The short form of what it does: <i>One entry. Many authors. No conflicts.</i></p>
-      <div class="grid gap-10 md:grid-cols-2 mt-10">
+      <div class="grid gap-10 mt-10">
         <div>
           <h3 class="f-sec-h">In fifty words</h3>
           <blockquote class="f-body mt-4 pl-4 border-l-2 border-accentsoft">Texttile is a blog engine for more than one writer. Everyone on the blog can be in the same entry at the same time, gallery of photos and videos included. It ships as one Docker container with SQLite inside, and needs no other service.</blockquote>
@@ -104,7 +104,7 @@
 
   <!-- ==================== THE MARK ================================= -->
   <section class="band" id="mark">
-    <div class="wrap sec">
+    <div class="wrap sec tight">
       <h2 class="f-h2 mb-7">Mark</h2>
       <div class="grid gap-7 sm:grid-cols-2 max-w-[430px]">
         <div>
@@ -141,7 +141,7 @@
           <a class="link" href="press/shots/writing-pair.png" download data-track="press_shot_writing-pair">PNG, 1480 × 826</a></figcaption>
       </figure>
 
-      <div class="grid gap-7 md:grid-cols-2 mt-9">
+      <div class="shots mt-10">
         <figure class="shot">
           <img src="shots/backend.webp" width="1407" height="885" loading="lazy"
                alt="The admin area: an entry open in the editor, the text on the left, the tiles of the gallery on the right.">
@@ -180,7 +180,7 @@
         </figure>
       </div>
 
-      <div class="grid gap-8 sm:gap-7 sm:grid-cols-3 mt-12 max-w-[300px] sm:max-w-[860px] mx-auto">
+      <div class="shots phones mt-16">
         <figure class="shot phone">
           <img src="shots/mobile-text.webp" width="1320" height="2868" loading="lazy"
                alt="The editor on a phone, with an entry open.">
@@ -209,20 +209,20 @@
       <div>
         <h2 class="f-h2 mb-6">Facts</h2>
         <table class="w-full text-[15px] leading-normal">
-          <tr><th class="text-left align-top font-semibold whitespace-nowrap pr-6 py-2 border-b border-hair">What</th>
-              <td class="py-2 border-b border-hair">A blog engine for more than one writer, self-hosted</td></tr>
-          <tr><th class="text-left align-top font-semibold whitespace-nowrap pr-6 py-2 border-b border-hair">Ships as</th>
-              <td class="py-2 border-b border-hair">One Docker container, SQLite inside, no other service</td></tr>
-          <tr><th class="text-left align-top font-semibold whitespace-nowrap pr-6 py-2 border-b border-hair">Written in</th>
-              <td class="py-2 border-b border-hair">Elixir, open source</td></tr>
-          <tr><th class="text-left align-top font-semibold whitespace-nowrap pr-6 py-2 border-b border-hair">Source</th>
-              <td class="py-2 border-b border-hair"><a class="link" href="https://github.com/texttile-blog/texttile" data-track="press_source">github.com/texttile-blog/texttile</a></td></tr>
-          <tr><th class="text-left align-top font-semibold whitespace-nowrap pr-6 py-2 border-b border-hair">Demo</th>
-              <td class="py-2 border-b border-hair">An example blog at <a class="link" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="press_demo">demo.texttile.blog</a></td></tr>
-          <tr><th class="text-left align-top font-semibold whitespace-nowrap pr-6 py-2 border-b border-hair">Made by</th>
-              <td class="py-2 border-b border-hair"><a class="link" href="https://v01.io" target="_blank" rel="noopener" data-track="press_v01">Klaus Breyer</a></td></tr>
-          <tr><th class="text-left align-top font-semibold whitespace-nowrap pr-6 py-2 border-b-0">Contact</th>
-              <td class="py-2"><a class="link" href="mailto:klaus@texttile.blog?subject=Press" data-track="press_mail_facts">klaus@texttile.blog</a></td></tr>
+          <tr><th class="text-left align-baseline font-semibold whitespace-nowrap pr-6 py-2 border-b border-hair">What</th>
+              <td class="py-2 border-b border-hair align-baseline">A blog engine for more than one writer, self-hosted</td></tr>
+          <tr><th class="text-left align-baseline font-semibold whitespace-nowrap pr-6 py-2 border-b border-hair">Ships as</th>
+              <td class="py-2 border-b border-hair align-baseline">One Docker container, SQLite inside, no other service</td></tr>
+          <tr><th class="text-left align-baseline font-semibold whitespace-nowrap pr-6 py-2 border-b border-hair">Written in</th>
+              <td class="py-2 border-b border-hair align-baseline">Elixir, open source</td></tr>
+          <tr><th class="text-left align-baseline font-semibold whitespace-nowrap pr-6 py-2 border-b border-hair">Source</th>
+              <td class="py-2 border-b border-hair align-baseline"><a class="link" href="https://github.com/texttile-blog/texttile" data-track="press_source">github.com/texttile-blog/texttile</a></td></tr>
+          <tr><th class="text-left align-baseline font-semibold whitespace-nowrap pr-6 py-2 border-b border-hair">Demo</th>
+              <td class="py-2 border-b border-hair align-baseline">An example blog at <a class="link" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="press_demo">demo.texttile.blog</a></td></tr>
+          <tr><th class="text-left align-baseline font-semibold whitespace-nowrap pr-6 py-2 border-b border-hair">Made by</th>
+              <td class="py-2 border-b border-hair align-baseline"><a class="link" href="https://v01.io" target="_blank" rel="noopener" data-track="press_v01">Klaus Breyer</a></td></tr>
+          <tr><th class="text-left align-baseline font-semibold whitespace-nowrap pr-6 py-2 border-b-0">Contact</th>
+              <td class="py-2 align-baseline"><a class="link" href="mailto:klaus@texttile.blog?subject=Press" data-track="press_mail_facts">klaus@texttile.blog</a></td></tr>
         </table>
       </div>
       <div>

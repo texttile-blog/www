@@ -58,6 +58,7 @@
      a line of its own */
   .btn.lg { height: 44px; padding: 0 20px; font-size: 15px; }
   .btn-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  @media (max-width: 480px) { .btn-row.fill .btn { flex: 1 1 100%; } }
 
   /* ==================================================================
      FIELDS · the quiet field of the desk's side column, not the filled
@@ -145,9 +146,30 @@
   .f-foot a:hover { color: var(--tt-ink); text-decoration: underline; text-underline-offset: 3px; }
   @media (max-width: 1200px) { .site-head-home .site-desc { display: none; } }
   @media (max-width: 900px) {
-    .site-desc, .site-nav a.hide-md { display: none; }
+    .site-desc, .site-nav .hide-md { display: none; }
   }
-  @media (max-width: 600px) { .site-nav .hide-sm { display: none; } }
+
+  /* THE MENU OF A NARROW WINDOW · the section links do not fit beside
+     the mark, so they move into one list under the header. It is a
+     details element: it opens and closes without a script, and the
+     script in the page only closes it again after a link was used. */
+  .site-menu { display: none; }
+  @media (max-width: 900px) { .site-menu { display: block; } }
+  .site-menu summary { list-style: none; cursor: pointer; }
+  .site-menu summary::-webkit-details-marker { display: none; }
+  .site-menu[open] summary { box-shadow: inset 0 0 0 1px var(--tt-ink); }
+  .site-menu-panel {
+    position: absolute; left: 0; right: 0; top: var(--tt-headh);
+    display: grid; padding: 6px var(--tt-gut) 14px;
+    background: var(--tt-paper); border-bottom: 1px solid var(--tt-rule);
+    box-shadow: 0 14px 24px rgb(var(--tt-shadow) / .10);
+  }
+  .site-nav .site-menu-panel a {
+    display: block; padding: 13px 0; border-radius: 0;
+    font-size: 16px; color: var(--tt-ink); border-top: 1px solid var(--tt-hair);
+  }
+  .site-nav .site-menu-panel a:first-child { border-top: 0; }
+  .site-nav .site-menu-panel a:hover { background: transparent; color: var(--tt-accent); }
 
   /* ==================================================================
      LAYOUT · one wrapper, three widths, all of them the desk's
@@ -160,6 +182,8 @@
   .sec { padding-top: var(--tt-sec); padding-bottom: var(--tt-sec); }
   .sec.tight { padding-top: calc(var(--tt-sec) * .62); padding-bottom: calc(var(--tt-sec) * .62); }
   .band { background: var(--tt-band); border-top: 1px solid var(--tt-rule); border-bottom: 1px solid var(--tt-rule); }
+  /* the footer draws the line under the last band */
+  main > .band:last-child { border-bottom: 0; }
   /* the wash belongs to the top of a page. It ends after one screen,
      so a long page does not stay tinted all the way down */
   .hero-wash { background: linear-gradient(var(--tt-hero), var(--tt-page) min(100%, 640px)); }
@@ -179,7 +203,7 @@
   }
   /* on a page that is one text, a heading divides the text. It does
      not open a new part of the page, so it is a size smaller */
-  .wrap.mid .f-h2 { font-size: clamp(22px, 2.6vw, 26px); letter-spacing: -.018em; }
+  .textpage .f-h2 { font-size: clamp(22px, 2.6vw, 26px); letter-spacing: -.018em; }
   .f-h3 { font-size: 14.5px; font-weight: 600; letter-spacing: -.005em; color: var(--tt-ink); }
   /* the reader's prose has lists on the pages, and the base sheet
      resets every list margin to zero */
@@ -277,9 +301,10 @@
   @media (min-width: 900px) { .fgroup { grid-template-columns: 232px minmax(0, 1fr); padding: 44px 0; } }
   .feats { display: grid; gap: 26px 48px; padding: 0; margin: 0; list-style: none; }
   @media (min-width: 640px) { .feats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  .feats li { font-size: 15px; line-height: 1.6; color: var(--tt-dim); text-wrap: pretty; }
-  .feats li b { display: block; margin-bottom: 4px; font-size: 16px; line-height: 1.4; color: var(--tt-ink); }
-  .feats.nope li { display: flex; gap: 12px; font-size: 16px; }
+  .feats li { font-size: 16px; line-height: 1.6; text-wrap: pretty; }
+  .feats li b { display: block; margin-bottom: 4px; line-height: 1.4; }
+  .feats.nope { gap: 14px 48px; }
+  .feats.nope li { display: flex; gap: 12px; }
   .feats.nope li::before {
     content: ""; flex: none; width: 12px; height: 1px; margin-top: 13px; background: var(--tt-faint);
   }
@@ -288,16 +313,24 @@
   .cols3 { display: grid; gap: 36px 40px; }
   @media (min-width: 800px) { .cols3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   .cols3 > div { padding-top: 20px; border-top: 1px solid var(--tt-rule); }
+  /* the three things stand beside their proof once there is room */
+  .proof { display: grid; gap: 48px; }
+  @media (min-width: 1024px) {
+    .proof { grid-template-columns: minmax(0, 1fr) minmax(0, 500px); gap: 72px; align-items: start; }
+    .proof .cols3 { grid-template-columns: 1fr; gap: 32px; }
+    .proof .shot { position: sticky; top: calc(var(--tt-headh) + 28px); }
+  }
   .cols2 { display: grid; gap: 40px 48px; }
   @media (min-width: 800px) { .cols2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   .cols2 > div { padding-top: 24px; border-top: 1px solid var(--tt-rule); }
 
-  /* the story is the one long read on the page, so it gets the size
-     of a text that is read and not scanned */
-  .story { max-width: 600px; }
-  /* beside its heading, the first line stands on the heading's line */
-  @media (min-width: 1024px) { .story { padding-top: 12px; } }
-  .story .f-body { font-size: 17px; line-height: 1.7; }
+  /* beside its heading, the first line stands on the heading's line,
+     and the heading stays in view while the story is read */
+  .story { max-width: 35em; font-size: 16px; }
+  @media (min-width: 1024px) {
+    .story { padding-top: 14px; }
+    .story-h { position: sticky; top: calc(var(--tt-headh) + 28px); align-self: start; }
+  }
 
   /* the figure row of the Stats screen, borrowed for three numbers */
   .figrow { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--tt-rule); border-bottom: 1px solid var(--tt-rule); }
@@ -332,7 +365,7 @@
   }
   .ptable thead th {
     border-top: 0; padding-top: 14px; padding-bottom: 12px;
-    font-size: 13px; font-weight: 500; color: var(--tt-dim);
+    font-size: 13.5px; font-weight: 500; color: var(--tt-dim);
   }
   .ptable td { font-variant-numeric: tabular-nums; }
   .ptable th:last-child, .ptable td:last-child { padding-right: 0; }
@@ -353,6 +386,7 @@
   /* the one-off price rides on the heading line */
   h3.tier { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
   .price.once { font-size: 20px; white-space: nowrap; }
+  @media (max-width: 599px) { .price.once { flex-basis: 100%; } }
 
   @media (max-width: 899px) {
     .ptable, .ptable tbody { display: block; }
@@ -367,7 +401,7 @@
     .ptable td.price { grid-column: 3; align-self: baseline; justify-self: end; white-space: nowrap; }
     .ptable td[data-l] { font-size: 14.5px; }
     .ptable td[data-l]::before {
-      content: attr(data-l); display: block; margin-bottom: 2px;
+      content: attr(data-l); display: block; margin-bottom: 4px;
       font-size: 12.5px; color: var(--tt-dim);
     }
   }
@@ -390,7 +424,30 @@
     background: var(--tt-paper);
   }
   /* a square recording does not get the whole measure, or it is taller than a screen */
-  .shot.square { max-width: 680px; margin-left: auto; margin-right: auto; }
+  .shot.square { max-width: 560px; margin-left: auto; margin-right: auto; }
+  .shot a { display: block; cursor: zoom-in; }
+  /* the link to the file of a picture stays in one piece */
+  .shot figcaption .link { white-space: nowrap; }
+
+  /* THE PICTURES · two across for the windows, three across for the
+     phones. On a phone they stand in one row and the reader swipes: the
+     next picture shows at the edge, so the row says that it moves. */
+  .shots { display: grid; gap: 40px 32px; }
+  @media (min-width: 768px) {
+    .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .shots.phones { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 900px; margin-left: auto; margin-right: auto; }
+  }
+  @media (max-width: 767px) {
+    .shots {
+      display: flex; gap: 14px; align-items: flex-start; overflow-x: auto;
+      scroll-snap-type: x mandatory; scrollbar-width: none;
+      margin: 0 calc(-1 * var(--tt-gut)) -30px; padding: 0 var(--tt-gut) 30px;
+      scroll-padding: 0 var(--tt-gut);
+    }
+    .shots::-webkit-scrollbar { display: none; }
+    .shots > * { flex: 0 0 86%; scroll-snap-align: start; }
+    .shots.phones > * { flex-basis: 62%; }
+  }
   .shot figcaption { margin-top: 12px; font-size: 13.5px; line-height: 1.55; color: var(--tt-dim); }
   /* a phone keeps the corners of the device it was taken on */
   .shot.phone img { border-radius: 18px; }
@@ -403,6 +460,14 @@
     background: var(--tt-field); color: var(--tt-ink);
     border-radius: var(--tt-radius-pop); padding: 20px 22px; overflow-x: auto;
     box-shadow: inset 0 0 0 1px var(--tt-hair);
+  }
+  /* on a phone the block runs from edge to edge, and the type follows
+     the width of the window, so the longest line of the command fits */
+  @media (max-width: 480px) {
+    .code {
+      margin-left: calc(-1 * var(--tt-gut)); margin-right: calc(-1 * var(--tt-gut));
+      padding: 18px 16px; border-radius: 0; font-size: min(12.5px, 2.95vw);
+    }
   }
 
   /* ==================================================================
@@ -518,9 +583,9 @@
   .mock-tiles svg.held { box-shadow: 0 0 0 2px var(--tt-julia); }
   /* julia's pointer: her color, her name, no motion the desk does not
      have either */
-  .jcursor { position: absolute; left: 0; top: 0; z-index: 5; pointer-events: none; display: flex; align-items: flex-start; transition: transform 1.05s cubic-bezier(.3, .7, .3, 1); }
+  .jcursor { position: absolute; left: 0; top: 0; z-index: 5; pointer-events: none; display: flex; flex-direction: column; align-items: flex-start; transition: transform 1.05s cubic-bezier(.3, .7, .3, 1); }
   .jname {
-    margin-left: 3px; padding: 1px 5px; border-radius: var(--tt-radius-img);
+    margin-left: 6px; padding: 1px 5px; border-radius: var(--tt-radius-img);
     background: var(--tt-julia); color: var(--tt-onsolid); font-size: 10px; font-weight: 600;
   }
   /* the darkroom treatment reaches the front end too */
