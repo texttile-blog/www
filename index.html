@@ -74,7 +74,8 @@
       <a href="#together" class="hide-md">Writing together</a>
       <a href="#story" class="hide-md">Why I made it</a>
       <a href="#does" class="hide-md">What it does</a>
-      <a href="#run" data-track="nav_hosting">Hosting</a>
+      <a href="#run" class="hide-md">Run it</a>
+      <a href="#hosting" data-track="nav_hosting">Hosting</a>
     </div>
     <div class="site-nav-group site-nav-actions">
       <a href="press.html" class="btn hide-md" data-track="nav_press">Press kit</a>
@@ -88,13 +89,13 @@
 
   <!-- ==================== HERO ==================================== -->
   <section class="hero-wash" id="hero">
-    <div class="wrap grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,480px)] lg:items-center pt-12 pb-14 lg:pt-16 lg:pb-20">
+    <div class="wrap grid gap-12 lg:gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:items-center pt-14 pb-16 lg:pt-24 lg:pb-28">
       <div>
         <h1 class="f-h1">One entry.<br>Many authors.<br><span class="f-accent">No conflicts.</span></h1>
-        <p class="f-lead mt-5">Texttile is a blog engine for more than one writer. Everyone on the blog can be in the same entry at the same time, photos and videos included. One of you drags a picture into place, and the others watch it move.</p>
-        <div class="btn-row mt-7">
+        <p class="f-lead mt-6">Texttile is a blog engine for more than one writer. Everyone on the blog can be in the same entry at the same time, photos and videos included. One of you drags a picture into place, and the others watch it move.</p>
+        <div class="btn-row mt-8">
           <a class="btn solid lg" href="#run" data-track="hero_run">Run it yourself</a>
-          <a class="link" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="hero_demo">See an example blog <span aria-hidden="true">↗</span></a>
+          <a class="btn lg" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="hero_demo">See the demo blog <span aria-hidden="true">↗</span></a>
         </div>
         <p class="f-note mt-5"><a class="link" href="https://github.com/texttile-blog/texttile" data-track="hero_source">Open source in Elixir</a></p>
       </div>
@@ -162,26 +163,26 @@
   <section class="sec" id="together">
     <div class="wrap">
       <h2 class="f-h2">How writing together works</h2>
-      <p class="f-lead mt-3">Here is what happens when two of you open the same entry.</p>
-      <div class="grid gap-9 md:grid-cols-3 mt-9">
+      <p class="f-lead mt-4">Here is what happens when two of you open the same entry.</p>
+      <div class="cols3 mt-12">
         <div>
-          <h3 class="f-h3">One person has the text</h3>
-          <p class="f-body mt-2">That person types. Everyone else sees the words appear as they are written, and can take the text over with one click. Texttile asks before it hands the text over, and tells the person who had it. Nothing gets lost, and they can take it straight back.</p>
+          <h3 class="f-sec-h">One person has the text</h3>
+          <p class="f-body mt-3 text-dim">That person types. Everyone else sees the words appear as they are written, and can take the text over with one click. Texttile asks before it hands the text over, and tells the person who had it. Nothing gets lost, and they can take it straight back.</p>
         </div>
         <div>
-          <h3 class="f-h3">Nobody has to wait for the gallery</h3>
-          <p class="f-body mt-2">The gallery and the entry settings are never locked. You can all drag tiles, photos and videos alike, set the date and change the entry's web address at the same time, and you see each other doing it. The order you leave the tiles in is the order readers see.</p>
+          <h3 class="f-sec-h">Nobody has to wait for the gallery</h3>
+          <p class="f-body mt-3 text-dim">The gallery and the entry settings are never locked. You can all drag tiles, photos and videos alike, set the date and change the entry's web address at the same time, and you see each other doing it. The order you leave the tiles in is the order readers see.</p>
         </div>
         <div>
-          <h3 class="f-h3">You can go back</h3>
-          <p class="f-body mt-2">Press Save version and Texttile keeps the title and text as they are. Later you can see what changed word by word, and put an old version back in the editor.</p>
+          <h3 class="f-sec-h">You can go back</h3>
+          <p class="f-body mt-3 text-dim">Press Save version and Texttile keeps the title and text as they are. Later you can see what changed word by word, and put an old version back in the editor.</p>
         </div>
       </div>
 
       <!-- the proof: the same entry in two browsers, the same minute. The
            video plays once, muted, when it scrolls into view, and not at
            all when the reader asked for reduced motion. -->
-      <figure class="shot square mt-12">
+      <figure class="shot square mt-16">
         <video id="writingVideo" muted playsinline preload="none" poster="videos/writing.webp" width="1080" height="1080">
           <source src="videos/writing.mp4" type="video/mp4">
           <img src="videos/writing.webp" width="1080" height="1080" loading="lazy"
@@ -194,9 +195,9 @@
 
   <!-- ==================== STORY ==================================== -->
   <section class="band" id="story">
-    <div class="wrap sec grid gap-8 lg:grid-cols-[260px_minmax(0,1fr)]">
-      <h2 class="f-h2">Why I<br class="hidden lg:block"> made it</h2>
-      <div class="max-w-[62ch]">
+    <div class="wrap sec grid gap-8 lg:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+      <h2 class="f-h2">Why I made it</h2>
+      <div class="story">
         <p class="f-body">My wife and I have blogged about every trip since our honeymoon 10 years ago. For the people at home, for ourselves later, and by now for our children. We took turns writing, but both had photos and videos on their phones.</p>
         <p class="f-body mt-4">The text was never the hard part. The photos and videos were: every day one of us sent them from the phone to the other, who had to upload them and sort them into the entry in the right order.</p>
         <p class="f-body mt-4">I built <a href="https://imaedge.org" class="link" data-track="story_imaedge">imaedge</a> for that part first, and we tried it on the next trip, in Mexico in 2026. Uploading held up. Tiles arrive in the order the camera gives them, and dragging one changes the order in the gallery.</p>
@@ -214,8 +215,8 @@
   <section id="looks">
     <div class="wrap sec">
       <h2 class="f-h2">What it looks like</h2>
-      <p class="f-lead mt-3">The editor, an entry the way the reader sees it, the comments, and the numbers. And all of it fits in one hand.</p>
-      <div class="grid gap-7 md:grid-cols-2 mt-9">
+      <p class="f-lead mt-4">The editor, an entry the way the reader sees it, the comments, and the numbers. And all of it fits in one hand.</p>
+      <div class="grid gap-x-8 gap-y-10 md:grid-cols-2 mt-12">
         <figure class="shot">
           <img src="shots/backend.webp" width="1407" height="885" loading="lazy"
                alt="The admin area: an entry open in the editor, the text on the left, the tiles of the gallery on the right.">
@@ -237,7 +238,7 @@
           <figcaption>Comments, with no queue to work through.</figcaption>
         </figure>
       </div>
-      <div class="grid gap-8 sm:gap-7 sm:grid-cols-3 mt-12 max-w-[300px] sm:max-w-[860px] mx-auto">
+      <div class="grid gap-10 sm:gap-8 sm:grid-cols-3 mt-16 max-w-[300px] sm:max-w-[900px] mx-auto">
         <figure class="shot phone">
           <img src="shots/mobile-text.webp" width="1320" height="2868" loading="lazy"
                alt="The editor on a phone, with an entry open.">
@@ -261,35 +262,48 @@
   <section class="sec border-t border-rule" id="does">
     <div class="wrap">
       <h2 class="f-h2">What it does, and what it leaves out.</h2>
-      <div class="grid gap-10 md:grid-cols-2 md:gap-14 mt-9">
-        <div>
-          <h3 class="f-eyebrow mb-5">It does this</h3>
-          <ul class="flist does">
-            <li><span><b>Everyone writes in the same entry.</b>One person has the text and types. The others read along as it happens, and can take it over with one click.</span></li>
-            <li><span><b>You sort the gallery together.</b>Drag the tiles around, photos and videos alike, from as many phones as there are people. Each entry has one gallery, and the order you leave it in is the order readers see. Texttile keeps the order beside the picture, not inside it, so the file you uploaded stays the file you uploaded.</span></li>
-            <li><span><b>Videos, from your own server.</b>Drop one in and Texttile converts it once, into one MP4 every browser plays, with a poster frame. It converts one at a time and at the lowest priority, so the blog stays quick while it works. No player from anywhere else, and no account on a video site.</span></li>
-            <li><span><b>Markdown, saved while you type.</b>Paste or drop a photo into the text and it gets uploaded and inserted, the way GitHub does it.</span></li>
-            <li><span><b>Versions.</b>Save version keeps the title and text as they stand. You can see what changed word by word and put an old one back.</span></li>
-            <li><span><b>A log for every entry.</b>Who took the text over, which picture arrived, which tile moved, when it went live, which version was saved and which was put back.</span></li>
-            <li><span><b>Entries and pages.</b>Tags get their own archive page, and pages appear in the site menu on their own.</span></li>
-            <li><span><b>Publish today, or on a day you name.</b>A date in the future holds the entry back, and Texttile puts it live on that day by itself, subscriber mail included. Until then the entry's address answers only to somebody signed in.</span></li>
-            <li><span><b>English or German.</b>One language for the blog, picked in Settings. It reaches the reader pages, the admin area, the dates, the feed and every mail.</span></li>
-            <li><span><b>Comments, with no queue to work through.</b>A reader confirms their address once by mail, and everything they write afterwards appears at once. Switch the confirmation off and nothing waits at all. Admins can release, edit or bin a comment, and the bin holds it for 30 days. The spam filter is a honeypot, a timer and a rate limit.</span></li>
-            <li><span><b>An email when you publish, and a feed.</b>Readers subscribe once and confirm. Every mail carries the way off the list. The RSS feed at /feed.xml carries the whole entry.</span></li>
-            <li><span><b>Mail through the service you already have.</b>Name one of Resend, Postmark, Brevo, Amazon SES or plain SMTP, and the confirmations, the subscriber mail and the password reset go out through it. It is one variable and its key, and nothing else changes.</span></li>
-            <li><span><b>Views and readers, counted by the blog itself.</b>Per entry and for the whole site, with the pages readers arrived from. No cookie is set and none is read. A reader becomes one number for one day, drawn with a secret this server forgets every midnight.</span></li>
-            <li><span><b>One password for the whole blog.</b>A word you hand around, not a login. It guards the whole blog: no entry has a switch of its own. While it stands, there is no feed, because a feed reader cannot type a password.</span></li>
-            <li><span><b>The people who may write.</b>Environment variables in the configuration name them. The first sign-in of a name sets its password, its email address and the name shown over its work, so a forgotten password comes back by mail. Take a name out and its access ends at once, in every open browser.</span></li>
-            <li><span><b>One container, SQLite, photos and videos as files.</b>Back up the folder and the blog is backed up, or let a machine of your own pull the whole installation on a schedule.</span></li>
-            <li><span><b>The look is one CSS file.</b>You edit it in Settings.</span></li>
+      <div class="mt-12">
+        <div class="fgroup">
+          <h3 class="f-sec-h">Writing together</h3>
+          <ul class="feats">
+            <li><b>Everyone writes in the same entry.</b>One person has the text and types. The others read along as it happens, and can take it over with one click.</li>
+            <li><b>You sort the gallery together.</b>Drag the tiles around, photos and videos alike, from as many phones as there are people. Each entry has one gallery, and the order you leave it in is the order readers see. Texttile keeps the order beside the picture, not inside it, so the file you uploaded stays the file you uploaded.</li>
+            <li><b>Versions.</b>Save version keeps the title and text as they stand. You can see what changed word by word and put an old one back.</li>
+            <li><b>A log for every entry.</b>Who took the text over, which picture arrived, which tile moved, when it went live, which version was saved and which was put back.</li>
           </ul>
         </div>
-        <!-- the rule runs the whole height of the section, and the short
-             list rides along it instead of running out halfway down -->
-        <div class="md:border-l md:border-rule md:pl-14">
-          <div class="md:sticky md:top-[78px]">
-            <h3 class="f-eyebrow mb-5">It leaves out</h3>
-            <ul class="flist nope">
+        <div class="fgroup">
+          <h3 class="f-sec-h">Publishing</h3>
+          <ul class="feats">
+            <li><b>Markdown, saved while you type.</b>Paste or drop a photo into the text and it gets uploaded and inserted, the way GitHub does it.</li>
+            <li><b>Videos, from your own server.</b>Drop one in and Texttile converts it once, into one MP4 every browser plays, with a poster frame. It converts one at a time and at the lowest priority, so the blog stays quick while it works. No player from anywhere else, and no account on a video site.</li>
+            <li><b>Entries and pages.</b>Tags get their own archive page, and pages appear in the site menu on their own.</li>
+            <li><b>Publish today, or on a day you name.</b>A date in the future holds the entry back, and Texttile puts it live on that day by itself, subscriber mail included. Until then the entry's address answers only to somebody signed in.</li>
+          </ul>
+        </div>
+        <div class="fgroup">
+          <h3 class="f-sec-h">Readers</h3>
+          <ul class="feats">
+            <li><b>Comments, with no queue to work through.</b>A reader confirms their address once by mail, and everything they write afterwards appears at once. Switch the confirmation off and nothing waits at all. Admins can release, edit or bin a comment, and the bin holds it for 30 days. The spam filter is a honeypot, a timer and a rate limit.</li>
+            <li><b>An email when you publish, and a feed.</b>Readers subscribe once and confirm. Every mail carries the way off the list. The RSS feed at /feed.xml carries the whole entry.</li>
+            <li><b>Views and readers, counted by the blog itself.</b>Per entry and for the whole site, with the pages readers arrived from. No cookie is set and none is read. A reader becomes one number for one day, drawn with a secret this server forgets every midnight.</li>
+            <li><b>One password for the whole blog.</b>A word you hand around, not a login. It guards the whole blog: no entry has a switch of its own. While it stands, there is no feed, because a feed reader cannot type a password.</li>
+          </ul>
+        </div>
+        <div class="fgroup">
+          <h3 class="f-sec-h">Your server</h3>
+          <ul class="feats">
+            <li><b>One container, SQLite, photos and videos as files.</b>Back up the folder and the blog is backed up, or let a machine of your own pull the whole installation on a schedule.</li>
+            <li><b>The people who may write.</b>Environment variables in the configuration name them. The first sign-in of a name sets its password, its email address and the name shown over its work, so a forgotten password comes back by mail. Take a name out and its access ends at once, in every open browser.</li>
+            <li><b>Mail through the service you already have.</b>Name one of Resend, Postmark, Brevo, Amazon SES or plain SMTP, and the confirmations, the subscriber mail and the password reset go out through it. It is one variable and its key, and nothing else changes.</li>
+            <li><b>English or German.</b>One language for the blog, picked in Settings. It reaches the reader pages, the admin area, the dates, the feed and every mail.</li>
+            <li><b>The look is one CSS file.</b>You edit it in Settings.</li>
+          </ul>
+        </div>
+        <div class="fgroup">
+          <h3 class="f-sec-h">It leaves out</h3>
+          <div>
+            <ul class="feats nope">
               <li>Plugins and a theme store.</li>
               <li>A sign-up page and user roles to hand out.</li>
               <li>A comment queue to work through.</li>
@@ -298,7 +312,7 @@
               <li>A build step and a laptop. You can write the whole thing on a phone.</li>
               <li>AI.</li>
             </ul>
-            <p class="f-body mt-7 pt-5 border-t border-hair text-dim">If the first list is what you need and you do not miss anything in the second, this will suit you. If you do miss something in the second, get Ghost or WordPress instead.</p>
+            <p class="f-body mt-8 text-dim">If the first list is what you need and you do not miss anything in the second, this will suit you. If you do miss something in the second, get Ghost or WordPress instead.</p>
           </div>
         </div>
       </div>
@@ -307,67 +321,64 @@
 
   <!-- ==================== RUN IT ==================================== -->
   <section class="band" id="run">
-    <div class="wrap sec">
-      <div class="max-w-[62ch]">
+    <div class="wrap sec grid gap-10 lg:gap-16 lg:grid-cols-2 lg:items-start">
+      <div>
         <h2 class="f-h2">Run it yourself</h2>
-        <p class="f-body mt-3">Texttile is one Docker container. The database, the original photos and videos, and the smaller copies it makes for the web all sit in one folder next to it. Updating means pulling the new image.</p>
-        <pre class="code mt-5"><code>docker run -d --name texttile \
+        <p class="f-lead mt-4">Texttile is one Docker container. The database, the original photos and videos, and the smaller copies it makes for the web all sit in one folder next to it. Updating means pulling the new image.</p>
+        <div class="btn-row mt-8">
+          <a class="btn solid lg" href="https://github.com/texttile-blog/texttile" data-track="run_source">Get the source</a>
+          <a class="btn lg" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="run_demo">See the demo blog <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="min-w-0">
+        <pre class="code"><code>docker run -d --name texttile \
   -p 4000:4000 \
   -v texttile-data:/data \
   -e SECRET_KEY_BASE="$(openssl rand -base64 48)" \
   -e PHX_HOST=blog.example.com \
   -e ADMIN_USERS=you,julia \
   ghcr.io/texttile-blog/texttile:latest</code></pre>
-        <p class="f-note mt-3">Those environment variables are the whole setup: who can write, the address the blog answers on, and one secret. If the blog is to send mail, add <span class="num">MAIL_ADAPTER</span> and its key. Everything you might change later is in Settings, and nothing there has a Save button.</p>
+        <p class="f-note mt-4">Those environment variables are the whole setup: who can write, the address the blog answers on, and one secret. If the blog is to send mail, add <span class="num">MAIL_ADAPTER</span> and its key. Everything you might change later is in Settings, and nothing there has a Save button.</p>
         <p class="f-note mt-3">Coming from somewhere else: Settings takes a zip of your old blog, one folder per entry, and reports what it found before it imports anything.</p>
-        <div class="btn-row mt-6">
-          <a class="btn solid lg" href="https://github.com/texttile-blog/texttile" data-track="run_source">Get the source</a>
-          <a class="btn lg" href="https://demo.texttile.blog" target="_blank" rel="noopener" data-track="run_demo">See the demo blog</a>
-        </div>
       </div>
+    </div>
+  </section>
 
-      <h2 class="f-h2 mt-16 pt-12 border-t border-rule">Or let me run it</h2>
-      <p class="f-body mt-3">You bring a domain. I set your blog up on my server, by hand, and send an invoice every month. The contract runs twelve months at least. Ask and you get a copy of all your data. The packages are a guide, not a menu: write to me and I set up a hosting that fits what you need.</p>
+  <!-- ==================== HOSTING =================================== -->
+  <section class="sec" id="hosting">
+    <div class="wrap">
+      <h2 class="f-h2">Or let me run it</h2>
+      <p class="f-lead mt-4 max-w-[62ch]">You bring a domain. I set your blog up on my server, by hand, and send an invoice every month. The contract runs twelve months at least. Ask and you get a copy of all your data. The packages are a guide, not a menu: write to me and I set up a hosting that fits what you need.</p>
 
-      <!-- the packages: the figure table of the Stats screen, four
-           machines across, one line per thing that differs -->
-      <div class="tscroll mt-9" tabindex="0">
-        <table class="ptable">
-          <thead>
-            <tr>
-              <th scope="col"><span class="sr-only">What differs</span></th>
-              <th scope="col"><div class="tier">Photo blog</div><div class="price num">10 € <small>/ month</small></div></th>
-              <th scope="col"><div class="tier">Video blog</div><div class="price num">25 € <small>/ month</small></div></th>
-              <th scope="col"><div class="tier">Big video blog</div><div class="price num">50 € <small>/ month</small></div></th>
-              <th scope="col"><div class="tier">Dedicated machine</div><div class="price">On request</div></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">Storage</th><td>5 GB</td><td>10 GB</td><td>100 GB</td><td>As agreed</td></tr>
-            <tr><th scope="row">Bandwidth</th><td>10 GB</td><td>10 GB</td><td>100 GB</td><td>1 TB</td></tr>
-            <tr><th scope="row">CPU</th><td>1 shared</td><td>4 shared</td><td>8 shared</td><td>Guaranteed</td></tr>
-            <tr><th scope="row">Memory</th><td>512 MB</td><td>1 GB</td><td>2 GB</td><td>Guaranteed</td></tr>
-            <tr><th scope="row">Backups kept</th><td>30 days</td><td>90 days</td><td>1 year</td><td>As agreed</td></tr>
-            <tr><th scope="row">Videos</th><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="f-note mt-4">Prices are without VAT. Say which package comes close, and above all what you need. Then we find the right setup. I answer within two days.</p>
-      <div class="btn-row mt-6">
+      <!-- the packages: one line per package, and the same six figures
+           for each. On a phone every package is a block of its own. -->
+      <table class="ptable mt-12">
+        <thead>
+          <tr><th scope="col">Package</th><th scope="col">Price</th><th scope="col">Storage</th><th scope="col">Bandwidth</th><th scope="col">CPU</th><th scope="col">Memory</th><th scope="col">Backups kept</th><th scope="col">Videos</th></tr>
+        </thead>
+        <tbody>
+            <tr><th scope="row" class="tier">Photo blog</th><td class="price num">10 € <small>/ month</small></td><td data-l="Storage">5 GB</td><td data-l="Bandwidth">10 GB</td><td data-l="CPU">1 shared</td><td data-l="Memory">512 MB</td><td data-l="Backups kept">30 days</td><td data-l="Videos">No</td></tr>
+            <tr><th scope="row" class="tier">Video blog</th><td class="price num">25 € <small>/ month</small></td><td data-l="Storage">10 GB</td><td data-l="Bandwidth">10 GB</td><td data-l="CPU">4 shared</td><td data-l="Memory">1 GB</td><td data-l="Backups kept">90 days</td><td data-l="Videos">Yes</td></tr>
+            <tr><th scope="row" class="tier">Big video blog</th><td class="price num">50 € <small>/ month</small></td><td data-l="Storage">100 GB</td><td data-l="Bandwidth">100 GB</td><td data-l="CPU">8 shared</td><td data-l="Memory">2 GB</td><td data-l="Backups kept">1 year</td><td data-l="Videos">Yes</td></tr>
+            <tr><th scope="row" class="tier">Dedicated machine</th><td class="price num">On request</td><td data-l="Storage">As agreed</td><td data-l="Bandwidth">1 TB</td><td data-l="CPU">Guaranteed</td><td data-l="Memory">Guaranteed</td><td data-l="Backups kept">As agreed</td><td data-l="Videos">Yes</td></tr>
+        </tbody>
+      </table>
+      <p class="f-note mt-5">Prices are without VAT. Say which package comes close, and above all what you need. Then we find the right setup. I answer within two days.</p>
+      <div class="btn-row mt-7">
         <a class="btn solid lg" href="mailto:klaus@texttile.blog?subject=Hosting%20a%20Texttile%20blog" data-track="hosting_mail">Write to klaus@texttile.blog</a>
       </div>
 
       <!-- the two things that cost once -->
-      <div class="grid gap-10 md:grid-cols-2 md:gap-14 mt-12 pt-8 border-t border-rule">
+      <div class="cols2 mt-16">
         <div>
           <h3 class="tier">Setup on your own server <span class="price once num">100 € <small>once</small></span></h3>
-          <p class="f-body mt-3">I install Texttile on your server: Docker, domain, mail, a backup script to a machine at home, your first admin. One hour on a call or by mail. Then it is yours: no subscription, no support contract. Updates are yours too, pull and restart, as the README says. For people who want control but not the evening it costs.</p>
-          <a class="btn mt-5" href="mailto:klaus@texttile.blog?subject=Setting%20up%20Texttile%20on%20my%20server" data-track="hosting_setup">Book a setup</a>
+          <p class="f-body mt-3 text-dim">I install Texttile on your server: Docker, domain, mail, a backup script to a machine at home, your first admin. One hour on a call or by mail. Then it is yours: no subscription, no support contract. Updates are yours too, pull and restart, as the README says. For people who want control but not the evening it costs.</p>
+          <a class="btn lg mt-6" href="mailto:klaus@texttile.blog?subject=Setting%20up%20Texttile%20on%20my%20server" data-track="hosting_setup">Book a setup</a>
         </div>
         <div>
           <h3 class="tier">Migration from your old blog <span class="price once num">100 € <small>once</small></span></h3>
-          <p class="f-body mt-3">I move your entries, photos and videos from your old blog into Texttile, whatever it runs on. You see what arrived before anything goes live.</p>
-          <a class="btn mt-5" href="mailto:klaus@texttile.blog?subject=Moving%20my%20blog%20to%20Texttile" data-track="hosting_migration">Book a migration</a>
+          <p class="f-body mt-3 text-dim">I move your entries, photos and videos from your old blog into Texttile, whatever it runs on. You see what arrived before anything goes live.</p>
+          <a class="btn lg mt-6" href="mailto:klaus@texttile.blog?subject=Moving%20my%20blog%20to%20Texttile" data-track="hosting_migration">Book a migration</a>
         </div>
       </div>
     </div>
