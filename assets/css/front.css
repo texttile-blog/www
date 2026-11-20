@@ -166,6 +166,9 @@
   .site-menu[open] .when-open { display: inline; }
   .site-menu-panel {
     position: absolute; left: 0; right: 0; top: var(--tt-headh);
+    /* a phone on its side is lower than the list: the list scrolls
+       then, so its last link stays in reach */
+    max-height: calc(100dvh - var(--tt-headh)); overflow-y: auto;
     display: grid; padding: 6px var(--tt-gut) 14px;
     background: var(--tt-paper); border-bottom: 1px solid var(--tt-rule);
     box-shadow: 0 14px 24px rgb(var(--tt-shadow) / .10);

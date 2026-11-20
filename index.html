@@ -486,15 +486,25 @@
 </script>
 <script>
   // The button on the docker block copies the command. A browser that
-  // cannot do that does not show the button.
+  // cannot do that does not show the button. A browser that refuses
+  // marks the command instead, so one key press copies it.
   (function () {
     var button = document.getElementById('copyRun');
-    if (!button) return;
+    var code = document.querySelector('pre.code');
+    if (!button || !code) return;
     if (!navigator.clipboard) { button.hidden = true; return; }
     button.addEventListener('click', function () {
-      navigator.clipboard.writeText(document.querySelector('pre.code').textContent).then(function () {
+      navigator.clipboard.writeText(code.textContent).then(function () {
         button.textContent = 'Copied';
         if (window.posthog && posthog.capture) posthog.capture('docker_command_copied');
+      }, function () {
+        var range = document.createRange();
+        range.selectNodeContents(code);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        button.textContent = 'Selected';
+      }).then(function () {
         setTimeout(function () { button.textContent = 'Copy'; }, 1600);
       });
     });
