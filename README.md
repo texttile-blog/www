@@ -8,7 +8,7 @@ and no framework: bunny.net stores and serves the files as they are.
 | Path | What it is |
 |---|---|
 | `index.html` | the page |
-| `privacy.html` | what the page counts, and what happens to the demo address |
+| `privacy.html` | what the page stores and what it counts |
 | `imprint.html` | the details of the law, and the address to reach a person |
 | `press.html` | the press kit as a page: the words, the mark and the pictures, each a file to take |
 | `press/` | what the press page hands out, and the whole of it once more as `texttile-press-kit.zip` |
@@ -33,57 +33,13 @@ and no framework: bunny.net stores and serves the files as they are.
 
 - Source: [texttile-blog/texttile](https://github.com/texttile-blog/texttile)
 - Demo blog: [demo.texttile.blog](https://demo.texttile.blog)
-- A demo of your own: the "Try it" section calls Warper at
-  `https://warper.texttile.blog`. See below.
 - Privacy: `privacy.html`, in the same stylesheets. It has to stay true to
-  `assets/js/analytics.js` and to the demo client, so change it with them.
+  `assets/js/analytics.js`, so change it with that file.
 - Imprint: `imprint.html`, in the same stylesheets. Name, address, mail, the
   person who answers for the content, and the two paragraphs the law asks for.
 - Hosting: "Or let me run it" is a table of four packages and two things that
   cost once. Every button is a mailto link to <klaus@texttile.blog>. The page is
   static, so there is nothing to receive a form.
-
-## The one thing the page does
-
-"Try it with a blog of your own" starts a real Texttile for the reader.
-[Warper](https://github.com/texttile-blog/warper) creates it on Fly, runs it for
-24 hours, stops it and deletes it 30 days later. The script at the foot of
-`index.html` is the whole client:
-
-1. `GET /altcha/challenge`, and solve the hash puzzle with Web Crypto. It is a
-   few thousand SHA-256 rounds, about a tenth of a second.
-2. `POST /demo` with the address, the consent and the proof. Warper holds the
-   request open while Fly starts the machine, so this takes 30 to 60 seconds.
-   The page reports what is being done while it waits. Warper refuses the
-   request without `contact_consent: true`, so the page always sends it. The
-   checkbox states the 24 hours the blog runs and the 30 days before it is
-   deleted, and the line under the button says what the address is used for.
-3. On `201`, ask the reader to check their mail, and show one link: the blog at
-   `url`, in a new tab. Warper hands the address to the new Texttile as its
-   first admin address, and the blog mails the one-time link that sets the
-   password. The account is not open yet, the address is the sign-in name, and
-   the page has no second door to offer. The page sends the browser nowhere by
-   itself.
-
-The answers the page knows:
-
-| Answer | What the reader sees |
-|---|---|
-| `201` | check your mail, the address the link went to, the day and hour it stops, a link to the blog |
-| `503 at_capacity` | all demos are in use, try again in a few minutes |
-| `429 rate_limited` | one demo at a time from one connection, try again in N minutes |
-| `422 invalid_email` | back to the form, with the field named |
-| `502` / `504` / no answer | an apology, Try again, and a link to the repository |
-
-Two numbers must agree with Warper:
-
-- `LIFETIME` is the copy of `demo_ttl_minutes`, which is 1440. It stands once in
-  the script and every sentence on the page that names the lifetime reads it
-  from there. The 30 days that Warper keeps a stopped demo stand in the
-  sentences themselves, because nothing else on the page needs the number.
-- `TIMEOUT_MS` is 75 seconds and must stay above Warper's
-  `request_timeout_seconds` (60), so that the server's own reason arrives before
-  the browser gives up.
 
 ## The press kit
 
@@ -114,11 +70,6 @@ python3 -m http.server 8000
 The app ships one theme, so the page wears that one. There is nothing to
 switch.
 
-The "Try it" section is the one part that a local copy cannot do: Warper answers
-only requests from `https://www.texttile.blog`, so from `localhost` or from a
-file the browser is refused. Test it on the deployed page, or against a local
-Warper with `allowed_origin` set to the address you serve from.
-
 ## The design comes from the app
 
 Everything under `assets/` is a copy of what
@@ -133,14 +84,10 @@ PostHog (EU host). Three layers:
 - **Autocapture**, which PostHog does by itself: page view, page leave, and
   every click with the element it hit.
 - **`cta_click`**, one event for every link and button, with the `data-track`
-  name of the ones that matter (`hero_try`, `hosting_mail`, `run_demo` and
+  name of the ones that matter (`hero_run`, `hosting_mail`, `run_demo` and
   so on), plus the section it sits in and whether the target is outbound.
 - **Reading**: `section_viewed` per section, `scroll_depth` at 25/50/75/100,
   and `docker_command_copied` when somebody copies the `docker run` line.
-- **The demo**, from the script in the page: `demo_requested` on the click,
-  then one of `demo_created`, `demo_at_capacity`, `demo_rate_limited` or
-  `demo_failed` with the reason. It is the one funnel the page has, so the
-  outcome is counted where it happens and not by the click alone.
 
 `persistence: 'memory'` keeps the id in the tab, so the page writes no cookie
 and no local storage and needs no consent banner. A reload is therefore a new
@@ -165,7 +112,6 @@ and the previous version, even if a rollback places them outside those three.
 The storage zone is in Germany. Bunny CDN serves the files at
 `www.texttile.blog`. Cloudflare provides DNS only: `www` is an unproxied CNAME
 to `sites-texttile-www-va5gga.b-cdn.net`. Bunny provides the HTTPS certificate.
-The domain name stays the same, so Warper's allowed origin stays the same.
 
 To deploy manually from a checkout that is ready to publish:
 
