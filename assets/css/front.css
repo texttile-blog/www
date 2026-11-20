@@ -332,7 +332,10 @@
   }
   .cols2 { display: grid; gap: 40px 48px; }
   @media (min-width: 800px) { .cols2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  .cols2 > div { padding-top: 24px; border-top: 1px solid var(--tt-rule); }
+  /* the button of each one stands on the same line, however long the
+     text above it is */
+  .cols2 > div { display: flex; flex-direction: column; align-items: flex-start; padding-top: 24px; border-top: 1px solid var(--tt-rule); }
+  .cols2 > div > .btn { margin-top: auto; }
 
   /* beside its heading, the first line stands on the heading's line,
      and the heading stays in view while the story is read */
