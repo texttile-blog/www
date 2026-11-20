@@ -73,6 +73,7 @@
     <div class="site-nav-group hide-md">
       <a href="#together">Writing together</a>
       <a href="#story">Why I made it</a>
+      <a href="#looks">What it looks like</a>
       <a href="#does">What it does</a>
       <a href="#run">Run it</a>
       <a href="#hosting" data-track="nav_hosting">Hosting</a>
@@ -81,7 +82,7 @@
       <a href="press.html" class="btn hide-md" data-track="nav_press">Press kit</a>
       <!-- the same links for a narrow window, in one list under the header -->
       <details class="site-menu" id="siteMenu">
-        <summary class="btn" data-track="nav_menu">Menu</summary>
+        <summary class="btn" data-track="nav_menu"><span class="when-closed">Menu</span><span class="when-open">Close</span></summary>
         <div class="site-menu-panel">
           <a href="#together">Writing together</a>
           <a href="#story">Why I made it</a>
@@ -345,13 +346,16 @@
         </div>
       </div>
       <div class="min-w-0">
-        <pre class="code"><code>docker run -d --name texttile \
+        <div class="codebox">
+          <button class="btn sm codecopy" type="button" id="copyRun" data-track="run_copy">Copy</button>
+          <pre class="code"><code>docker run -d --name texttile \
   -p 4000:4000 \
   -v texttile-data:/data \
   -e SECRET_KEY_BASE="$(openssl rand -base64 48)" \
   -e PHX_HOST=blog.example.com \
   -e ADMIN_USERS=you,julia \
   ghcr.io/texttile-blog/texttile:latest</code></pre>
+        </div>
         <p class="f-note mt-4">Those environment variables are the whole setup: who can write, the address the blog answers on, and one secret. If the blog is to send mail, add <span class="num">MAIL_ADAPTER</span> and its key. Everything you might change later is in Settings, and nothing there has a Save button.</p>
         <p class="f-note mt-3">Coming from somewhere else: Settings takes a zip of your old blog, one folder per entry, and reports what it found before it imports anything.</p>
       </div>
@@ -362,7 +366,7 @@
   <section class="band" id="hosting">
     <div class="wrap sec">
       <h2 class="f-h2">Or let me run it</h2>
-      <p class="f-lead mt-4 max-w-[62ch]">You bring a domain. I set your blog up on my server, by hand, and send an invoice every month. The contract runs twelve months at least. Ask and you get a copy of all your data. The packages are a guide, not a menu: write to me and I set up a hosting that fits what you need.</p>
+      <p class="f-lead mt-4">You bring a domain. I set your blog up on my server, by hand, and send an invoice every month. The contract runs twelve months at least. Ask and you get a copy of all your data. The packages are a guide, not a menu: write to me and I set up a hosting that fits what you need.</p>
 
       <!-- the packages: one line per package, and the same six figures
            for each. On a phone every package is a block of its own. -->
@@ -478,6 +482,22 @@
       if (e.target.closest('.site-menu-panel a') || !menu.contains(e.target)) menu.open = false;
     });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') menu.open = false; });
+  })();
+</script>
+<script>
+  // The button on the docker block copies the command. A browser that
+  // cannot do that does not show the button.
+  (function () {
+    var button = document.getElementById('copyRun');
+    if (!button) return;
+    if (!navigator.clipboard) { button.hidden = true; return; }
+    button.addEventListener('click', function () {
+      navigator.clipboard.writeText(document.querySelector('pre.code').textContent).then(function () {
+        button.textContent = 'Copied';
+        if (window.posthog && posthog.capture) posthog.capture('docker_command_copied');
+        setTimeout(function () { button.textContent = 'Copy'; }, 1600);
+      });
+    });
   })();
 </script>
 <script>
